@@ -1,0 +1,225 @@
+﻿extends _layout
+//variables passed from routing:
+//facilitatorID worldID gameStarted participants permissions nicknmae
+block content
+   script.
+     $("body").css('background', '#D1F3F9');
+     console.log( "Participants: " + '#{participants}' );
+   script(src="https://www.gstatic.com/charts/loader.js")
+
+   script(src='/express-public' + version +'/AllEUstateData.js')
+   script(src='/express-public' + version +'/AllEUstateDataBrowser.js')
+   script(src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js')
+   link(rel='stylesheet', type='text/css', href='/express-public' + version + '/stylesheets/sideMenuStyle.css')
+   link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
+   script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js")
+   
+   div(id='pWorld')
+    div.wrapper 
+         nav(id='sidebar').nav.expanded 
+            form(method='POST' action='#{path}/backToMain' style='display: inline')
+             label(for='name') 
+                input(type='hidden' name='id', value=userID)
+                input(type='hidden' name='username', value=username)
+             button.pull-left.btn-xs(type='submit' style ='color: black') Back to World Administration #{facilitatorID} #{facilitatorName}
+
+            h3(style='text-align: center') #{username}
+            button(id='openWelcomeMsg' style='text-align: center').dropdownButton Open Welcome Message
+            div#accordionContainer.scrollbar.style-1
+             if permissions.controller 
+                 div#timeButtonsAcc
+                   p
+                      span.menuHeading Control Time
+                   div.accordionContent
+                     div.timeButtons 
+                       if gameStarted
+                         button(id='startButton', hidden='true') Start time        
+                         button(id='stopButton') Stop time 
+                       if !gameStarted 
+                         button(id='startButton') Start time        
+                         button(id='stopButton', hidden='true') Stop time 
+                       button(id="reset") Reset Time
+                     div.timeButtons
+                       button(id="x1") 1x
+                       button(id="x2") 2x
+                       button(id="x4") 4x
+                       button(id="x8") 8x
+                       button(id="x16") 16x
+                       button(id="fullspeed") fullspeed
+                       if gameStarted
+                         button(id="oneStep", hidden='true') One step
+                       if !gameStarted
+                          button(id="oneStep") One step
+                       //button#serverprofiler Start Profiling
+             div(id='role')
+             
+                   p
+                    span.menuHeading Role
+                   div.accordionContent
+                     ul
+                       li 
+                         button(id='roleButton' title='Your role (either East, West or Observer)').menuButton #{currentRole.m_name}
+             if permissions.controller 
+                 div#participantsAcc
+                   p
+                      span.menuHeading Participants
+                   div#participants.scrollbar.style-1.accordionContent
+                       button#inviteParticipant(title='Invite participants to play with, by providing a link to this world').menuButton Invite participant
+                       div#onlineParticipants
+                 
+                       div#offlineParticipants
+             
+         
+             div(id='data')
+               p
+                  span.menuHeading Available Indicators 
+               div#dataContent.accordionContent
+                 ul
+                   each role in roles              
+                     if currentRole.m_name == role.m_name
+                       each indicator in role.m_indicators
+                         li 
+                           button(id='#{indicator.m_id}' title='#{indicator.m_description}').menuButton !{indicator.m_name}
+             if permissions.player
+                  div(id='decision' title='You have two decisions to make in each month: the level of heating subsidies to the population in your country, and the level of investments in renewable facilities in your country. Adjust the levers below accordingly.')
+                        p
+                          span.menuHeading Decisions
+                        div.accordionContent
+                         ul(id='decisionList').progressUL
+                           each role in roles              
+                             if role.m_name == currentRole.m_name
+                               each decision in role.m_decisions                     
+                                 li
+                                   table
+                                    tbody
+                                      tr
+                                       td
+                                         span #{decision.m_name}:
+                                       td
+                                         div(id='#{decision.m_id}'+'value')
+                                   div.progressBar(id='#{decision.m_id}' title='#{decision.m_description}')
+               
+             div(id='otherDecisionsContainer')
+                 p
+                  span.menuHeading Participant's Decisions
+                 div.accordionContent
+                   ul.progressUL
+                     each role in roles
+                       if (role.m_decisions.length)
+                         p #{role.m_name}
+                       each decision in role.m_decisions
+                         li
+                            table
+                                tbody
+                                  tr
+                                   td
+                                     span #{decision.m_name}:
+                                   td
+                                     div(id='#{decision.m_id}'+'barValue')
+                            div.progress.progressBar.otherDecProgress
+                              div.progress-bar(id='#{decision.m_id}'+'bar' title='#{role.m_name}' role="progessbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%; transition:none;")
+     
+             div(id='score')
+               p
+                 span#scoreHeading.menuHeading Score
+               div.accordionContent
+                  ul
+                     li 
+                       button(id='socialScore' title='Click to see the social score on the map').menuButton Social: 
+                     li 
+                       button(id='economicScore').menuButton Economic:
+                     li 
+                       button(id='environmentalScore').menuButton Environmental:
+             div#historyAcc
+              p
+                span.menuHeading History
+              div.accordionContent
+                ul#history
+                   li
+                     button#currentSimBtn.menuButton(hidden='true') Current Simulation
+         div(id="content")
+            div#menubar
+               table 
+                  tbody
+                     tr
+                        td
+                            div.nav-toggle.expanded
+                              div.nav-toggle-bar.expanded
+                                    
+                        td
+                            div#titleDiv ReeemGame
+                        td
+                            div#worldIdDiv WorldID: #{worldID}
+
+            table(id='dateTable')
+                  tbody
+                    tr
+                      td
+                        #month.date June
+                      td
+                        #year.date 2017
+            div#simulationNumber.menu.date  
+     
+            div(id='pMap') 
+      
+    
+            div#timeBarContainer
+                div#progressBar.progress.dateProgress
+                   div.progress-bar(class='dateProgressValue' role="progessbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%; transition:none;")
+                div#progressBarSlider.progress.dateProgress(style="display:none")
+                  div#custom-handle.ui-slider-handle.leftHandle
+                  div#custom-handle-locked.ui-slider-handle.rigthHandle
+     
+   script(src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js')
+   script(src='/express-public' + version + '/dist/connectBundle.js')
+   script(src='/express-public' + version + '/dist/facilitatorBundle.js')
+   script.
+     $(document).ready(function () {
+
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar').toggleClass('active');
+        });
+     });
+
+     $(function() {
+
+         var hamburger = {
+            navToggle: document.querySelector('.nav-toggle'),
+            nav: document.querySelector('nav'),
+
+            doToggle: function(e) {
+                e.preventDefault();
+                this.navToggle.classList.toggle('expanded');
+                this.nav.classList.toggle('expanded');
+            }
+        };
+
+        hamburger.navToggle.addEventListener('click', function(e) { hamburger.doToggle(e); });
+
+        }());
+
+      $(function() {//Add and remove class expanded when window er resized
+        var $window = $(window)
+
+        function resize() {
+            if ($window.width() > 768) {
+                $('.nav-toggle').addClass('expanded');
+                $('nav').addClass('expanded');
+                $('#titleDiv').show();
+            } else {
+                $('.nav-toggle').removeClass('expanded');
+                $('nav').removeClass('expanded');
+                $('#titleDiv').hide();
+           }
+        }
+
+        $window
+            .resize(resize)
+            .trigger('resize');
+     }());
+     $(function() {
+        // Load the Visualization API and the corechart package.
+        google.charts.load('current', {'packages':['corechart']});
+        var connection = new connectBundle.Connection('#{worldID}', "/game11"); 
+        var facilitator = new facilitatorBundle.Facilitator(connection, { name: !{JSON.stringify(username)}, pin: "123", permissions: !{JSON.stringify(permissions)}, currentRole: !{JSON.stringify(currentRole.m_name)}},  !{JSON.stringify(participants)}, !{JSON.stringify(allParticipants)}, !{JSON.stringify(currentRole)}, #{newParticipant}); 
+     });   

@@ -1,0 +1,30 @@
+extends _layout
+
+block content
+
+ div.div1#mainDiv
+      div.div2 
+        h2 ReeemGame
+        h3 Create new user using cognito
+      
+        form(method='POST' action='#{path}/createNewUser')
+            input(class='participantInput' id='username' type='text' name='userName' placeholder='Username' required)
+            .br
+            input(class='participantInput' id='email' type='email' name='email' placeholder='Email' required)
+            .br
+            input(class="participantInput" id='password' type='text' name='password' placeholder='Password' required minlength=6)
+            .br
+            input(type='hidden' name='worldID' value=worldID)
+            button(class='participantButton' type='submit') Register!
+        form(method='get' action='#{path}/')
+            input(type='hidden' name='worldID' value=worldID)
+            button(class='participantButton' type='submit') Back to login page
+       append content2
+
+       script.
+        $(() => {
+          $("body").css('background', '#90D9E8');
+          $(".div1").css('background', '#90D9E8');
+
+        });
+  

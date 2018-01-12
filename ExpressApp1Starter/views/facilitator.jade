@@ -1,0 +1,25 @@
+﻿extends _layout
+
+block content
+  //.jumbotron
+    h1 ReeemGame
+    p.lead ReeemGame Facilitator Login Page
+    p
+      a.btn.btn-primary.btn-large(href='http://reeem.org/') Learn more &raquo;
+  .row
+    
+    .col-md-12
+      h2 Facilitator Login
+      p Login as a Facilitator to manage private worlds
+      p
+        form(method='POST' action='#{path}/facilitatorLogin')
+            label(for='name') Facilitator Name: 
+            input(type='text', name='facilitatorName')
+            input(type='password', name='facilitatorPassword')
+            button(type='submit') Manage
+        //a.btn.btn-default(href='https://www.npmjs.org/') Learn more &raquo;
+    //.col-md-6
+      h2 Manual
+      p Instuctions for Participants and Facilitators
+      p
+        a.btn.btn-default(href='http://azure.microsoft.com') Learn more &raquo;

@@ -1,0 +1,26 @@
+################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/slnx.sqlite-journal
+/.vs/slnx.sqlite
+/.vs/ReeemGame2/v15/.suo
+/.vs/ProjectSettings.json
+/.vs/develop/v15/*.*
+/.vs/REEEMgame/.suo
+/bin/**
+/obj/**
+*.suo
+*.cache
+*.js
+*.map
+*.jsx
+node_modules/
+
+
+UpgradeLog.htm
+
+!webpack.config.js
+
+/ExpressApp1Starter/obj/Debug/REEEMgame.njsprojResolveAssemblyReference.cache
+ExpressApp1Starter/obj/Debug/TypeScriptCompilerOutput.txt

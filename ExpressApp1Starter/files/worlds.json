@@ -1,0 +1,36 @@
+{
+  "worlds": [
+    {
+      "idcode": 12345,
+      "name": "This Land",
+      "owner": 1,
+      "date": "2017-11-03 13:38:17.641",
+      "dateactive": "2018-01-11T10:35:11.808Z",
+      "highscore": 52
+    },
+    {
+      "idcode": 20252,
+      "name": "MyWorld",
+      "owner": 1,
+      "date": "2017-11-03 13:38:17.641",
+      "dateactive": "2018-01-11T10:18:57.582Z",
+      "highscore": 0
+    },
+    {
+      "idcode": 87585,
+      "name": "World87585",
+      "owner": 2,
+      "date": "2018-01-11T09:39:33.850Z",
+      "dateactive": "2018-01-11T09:39:33.851Z",
+      "highscore": 0
+    },
+    {
+      "idcode": 60090,
+      "name": "new world",
+      "owner": 1,
+      "date": "2018-01-11T11:12:30.265Z",
+      "dateactive": "2018-01-11T11:12:30.265Z",
+      "highscore": 0
+    }
+  ]
+}

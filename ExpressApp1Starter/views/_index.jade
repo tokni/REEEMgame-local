@@ -1,0 +1,37 @@
+﻿extends _layout
+
+block content
+  
+  //.jumbotron
+    h1 ReeemGame
+    p.lead ReeemGame is a strategic simulation, used for learning about pathways to a cleaner Europe
+    p
+      a.btn.btn-primary.btn-large(href='http://reeem.org/') Learn more &raquo;
+  div.div1
+      div.div2 
+        h2.center-block ReeemGame 
+        script.
+          $( () => {
+            
+            $( "#worldIDInput" ).on('focus', () => {
+                 console.log("focus!");
+                 $( "#worldIDInput" ).val("");
+                 });
+            
+          });
+        
+        .bg-danger 
+        
+          //a.btn.btn-default(href='http://expressjs.com/') Learn more &raquo;
+          form(method='GET' action='#{path}/enterWorld').form-group
+              //label(for='name') World ID: 
+              input(id='worldIDInput' type='text', name='worldPassword' value='World ID')
+              .br
+              button(id='worldIDButton' type='submit') Enter
+      div.help
+          a(href='/howtoworldid') Where can I find the world ID
+      div#pMap
+  append content2
+  
+ 
+    

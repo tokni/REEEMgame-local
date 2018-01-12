@@ -1,0 +1,58 @@
+﻿extends _layout
+block content
+
+  //.jumbotron
+    h1 ReeemGame
+    p.lead ReeemGame is a strategic simulation, used for learning about pathways to a cleaner Europe
+    p
+      a.btn.btn-primary.btn-large(href='http://reeem.org/') Learn more &raquo;
+  div.div1
+      div.div2 
+        h2.center-block ReeemGame 
+        h2.center-block Welcome #{nickname}!
+        h3 Enter the world ID
+        .bg-danger 
+        
+          //a.btn.btn-default(href='http://expressjs.com/') Learn more &raquo;
+          form(method='POST' action='#{path}/enterWorld').form-group
+              input(id='worldIDInput' type='text', name='worldID' value='' placeholder='World ID')
+              .br
+              input(type='hidden' name='nickname' value=nickname)
+              button(id='worldIDButton' type='submit') Enter
+        h3 or sign out 
+        .bg-danger 
+          
+      div.help
+          a(href='/howtoworldid') Where can I find the world ID
+      div#pMap
+  append content2
+  script(src='/express-public' + version + '/clientTypescript/leaflet/leafletWrap.js')
+  
+  script(src='/express-public' + version +'/twoAreasData.js')
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js')
+  //script(src='/express-public' + version + '/clientTypescript/gameView/WorldUpdater.js')
+  script(src='/express-public' + version + '/clientTypescript/leaflet/TKN_map.js')
+
+  script(src='/express-public' + version + '/clientTypescript/ClientView/Dialogs/Dialog.js')
+  script(src='/express-public' + version + '/clientTypescript/ClientView/Dialogs/DataDialog.js')
+  script(src='/express-public' + version + '/clientTypescript/ClientView/Dialogs/ScoreDialog.js')
+  script(src='/express-public' + version + '/clientTypescript/ClientView/Dialogs/WelcomeDialog.js')
+
+  script(src='/express-public' + version + '/clientTypescript/ClientView/MapView/MapView.js')
+
+  script(src='/express-public' + version + '/clientTypescript/ClientView/MenuView/MenuView.js')
+  script(src='/express-public' + version + '/clientTypescript/ClientView/MenuView/DecisionsView.js')
+  script(src='/express-public' + version + '/clientTypescript/ClientView/MenuView/OverlayDataView.js')
+  script(src='/express-public' + version + '/clientTypescript/ClientView/MenuView/ParticipantsView.js')
+  script(src='/express-public' + version + '/clientTypescript/ClientView/MenuView/ProfileView.js')
+  script(src='/express-public' + version + '/clientTypescript/ClientView/MenuView/ScoreView.js')
+
+  script(src='/express-public' + version + '/clientTypescript/ClientView/TimeView/Time.js')
+
+  script(src='/express-public' + version + '/clientTypescript/ClientView/FacilitatorView.js')
+  script(src='/express-public' + version + '/clientTypescript/ClientControl/Connection.js')
+  script(src='/express-public' + version + '/clientTypescript/ClientControl/FacilitatorController.js')
+  script(src='/express-public' + version + '/clientTypescript/Facilitator.js')
+
+
+    

@@ -1,0 +1,11 @@
+extends cognitoParticipantLogin
+
+block content3
+  div.idfail.infoDiv
+    div.idfailcontent #{msg}
+  script.
+    $(() => {
+      $("body").css('background', '#E8589B');
+      $(".div1").css('background', '#E8589B');
+      $("#participantNameInput").val('#{nickname}');
+    });

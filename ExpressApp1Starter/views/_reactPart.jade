@@ -1,0 +1,24 @@
+﻿doctype html
+
+- var version = "Dev"
+
+html(style='height: 100%; width: 100%')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title #{title} - ReeemGame
+    script(src='/express-public' + version + '/javascripts/jquery-1.10.2.js')
+    script(src='/express-public' + version + '/javascripts/bootstrap.js')
+    link(rel="stylesheet" href='https://unpkg.com/leaflet@1.0.3/dist/leaflet.css')
+    script(src='https://unpkg.com/leaflet@1.0.3/dist/leaflet.js')
+    link(rel='stylesheet', type='text/css', href='/express-public' + version + '/stylesheets/bootstrap.min.css')
+    script(crossorigin src="https://unpkg.com/react@16/umd/react.development.js")
+    script(crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js")
+    //script(crossorigin src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js")
+    
+  body(style='height: 100%; width: 100%; position: relative')
+    div#pWorld(style='height: 100%; width: 100%; position: relative')
+    
+    
+    script(src="/express-publicDev/dist/reactPartBundle.js")
+    

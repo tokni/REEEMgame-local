@@ -1,0 +1,33 @@
+extends _layout
+//worldID
+block content
+  div.div1
+      div.div2 
+        h2 ReeemGame
+        h3 World ID: #{worldID}
+      
+      
+        form(method='GET' action='#{path}/participantNickname').form-group
+            input(id='participantNameInput' type='text' name='nickname' value='Nickname' )
+            input(type='hidden' name='worldID' value=worldID)
+            .br
+            button(class='participantButton' type='submit') Ok, go!
+      div.help
+        a(id='worldIDRegret' href='#{path}/') I want to choose another World ID
+
+      script.
+        $(() => {
+          $("body").css('background', '#90D9E8');
+          $(".div1").css('background', '#90D9E8');
+          //$( "#participantNameInput" ).css('width', 200);
+          //$( "#participantNameInput" ).css('width', 200);
+          //$( "#participantNameInput" ).css('border', '3px grey solid');
+          $( "#participantNameInput" ).on('focus', () => {
+                 $( "#participantNameInput" ).val("");
+                 });
+          //$( "#participantNameButton" ).css('border', '3px grey solid');          
+          //$( "#participantNameButton" ).css('width', 200);
+          //$( "#participantNameButton" ).css('background', 'grey');
+          //$( "#participantNameButton" ).css('color', 'white');
+        });
+     

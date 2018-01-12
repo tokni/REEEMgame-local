@@ -1,0 +1,124 @@
+﻿extends _layout
+
+block content
+ script.
+  window.onbeforeunload = function(e){
+            gapi.auth2.getAuthInstance().signOut(); //To prevent to user to automatically be signed in with google if already signed in
+  };
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '544916079183739',
+      cookie     : true,
+      xfbml      : true,
+      version    : 'v2.10'
+    });
+    FB.AppEvents.logPageView();   
+    FB.Event.subscribe('xfbml.render', finished_rendering);
+  };
+
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.10&appId=544916079183739";
+    fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+ div.div1#mainDiv
+      div.div2 
+        h1 ReeemGame
+        h3 Please log in to continue
+        div#loginButtons
+            //Facebook login button
+            
+            div(id="facebookLoginBtn"
+                class="fb-login-button" 
+                data-max-rows="1" 
+                data-size="medium" 
+                data-height="25"
+                data-width="200"
+                data-button-type="login_with" 
+                data-show-faces="false" 
+                data-auto-logout-link="false" 
+                data-use-continue-as="false" 
+                scope="public_profile,email" 
+                onlogin="checkLoginState();")
+            //Google Login button
+            diV(class="g-signin2" data-onsuccess="onSignIn" data-width="200" data-height="30" data-theme="dark" data-longtitle="true") 
+
+        //Form for sending data from facebook login to server
+        form( style="display: hidden" action='#{path}/facebookLogin' method="POST" id="facebookForm")
+            input(type="hidden" id="accessToken" name="accessToken" value="")
+            input(type="hidden" id="facebookUsername" name="username" value="")
+            input(type="hidden" id="facebookEmail" name="email" value="")
+            input(type='hidden' name='worldID' value=worldID)
+        
+        //Form for sending data from google login to server
+        form( style="display: hidden" action='#{path}/googleLogin' method="POST" id="googleForm")
+            input(type="hidden" id="idToken" name="idToken" value="")
+            input(type="hidden" id="googleuUsername" name="username" value="")
+            input(type="hidden" id="googleEmail" name="email" value="")
+            input(type='hidden' name='worldID' value=worldID)
+
+        h4 or sign in manually 
+        //Normal cognito login
+        form(method='POST' action='#{path}/login')
+            input(id='participantNameInput' type='text' name='userName' placeholder='Username' required)
+            .br
+            input(id="pincodeInput" type='password' name='password' placeholder='Password' required)
+            .br
+            input(type='hidden' name='worldID' value=worldID)
+            input(type='hidden' name='email' value="")
+            button(class='participantButton' type='submit') Ok, go!
+
+         form(method='POST' action='#{path}/newUser')
+            input(type='hidden' name='worldID' value=worldID)
+            button(class='participantButton' type='submit') Register as new user 
+            
+        
+        a(id='forgotPassword' href='#{path}/forgotPassword' worldID=worldID) Forgot your password?
+        
+         
+        
+
+      append content3  
+
+
+ script.
+        
+        //For google
+        function onSignIn(googleUser) {
+            console.log("login with google");
+            var profile = googleUser.getBasicProfile();
+            var authResponse = googleUser.getAuthResponse();
+            console.log("ID Token: " + authResponse.id_token);
+            $("#idToken").val(authResponse.id_token);
+            $("#googleuUsername").val(profile.getName());
+            $("#googleEmail").val(profile.getEmail());
+            $("#googleForm").submit();
+        }
+        var finished_rendering = function() {
+            console.log("finished rendering facebook plugins");
+            
+        }
+        //For facebook
+        function checkLoginState() {
+            FB.getLoginStatus(function(response) {
+                console.log("checking facebook response");
+                if (response.authResponse) {
+                    console.log("authenticating");
+                    FB.api('/me?fields=name,email', function(info) {
+                    $("#accessToken").val(response.authResponse.accessToken);
+                    $("#facebookUsername").val(info.name);
+                    $("#facebookEmail").val(info.email);
+                    $("#facebookForm").submit();
+                    });
+                }
+                else {
+                    console.log('something went wrong with facebook login');
+                }
+            });
+        }
+
+        
+  

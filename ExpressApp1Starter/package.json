@@ -1,0 +1,41 @@
+{
+  "name": "express-app1-starter",
+  "version": "0.0.0",
+  "description": "ExpressApp1Starter",
+  "main": "app.js",
+  "author": {
+    "name": "bl_000"
+  },
+  "scripts": {
+    "webpackWatch": "webpack -w",
+    "debug": "DEBUG=* node app2"
+  },
+  "devDependencies": {},
+  "dependencies": {
+    "amazon-cognito-identity-js": "^1.20.0",
+    "awesome-typescript-loader": "^3.2.3",
+    "aws-sdk": "^2.134.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "1.6.0",
+    "body-parser": "^1.16.0",
+    "csvtojson": "^1.1.7",
+    "express": "3.4.4",
+    "fast-csv": "^2.4.0",
+    "generic-pool": "2.4.2",
+    "jade": "*",
+    "node-sass": "^4.5.3",
+    "node-sass-middleware": "^0.11.0",
+    "opn": "^5.1.0",
+    "pg": "5.1.0",
+    "pg-pool": "^1.6.0",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "socket.io": "^1.7.4",
+    "stylus": "*",
+    "ts-mockito": "^1.2.0",
+    "typescript": "^2.5.3",
+    "lowdb": "1.0.0"
+  }
+}

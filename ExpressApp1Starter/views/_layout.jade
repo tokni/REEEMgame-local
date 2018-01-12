@@ -1,0 +1,51 @@
+﻿doctype html
+
+- var version = "Dev"
+
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title #{title} - ReeemGame
+
+    //For login using Google+ 
+    meta(name="google-signin-scope" content="profile email")
+    meta(name="google-signin-client_id" content="848203535595-hbj58n0tmnre32hqe7c75b6qmfatgarc.apps.googleusercontent.com")
+    script(src="https://apis.google.com/js/platform.js" async defer)
+
+
+    link(rel='stylesheet', type='text/css', href='/express-public' + version + '/javascripts/jquery.custom-scrollbar.css')
+    link(rel='stylesheet', type='text/css', href='/express-public' + version + '/javascripts/jquery-ui-1.12.1/jquery-ui.css')
+    link(rel='stylesheet', type='text/css', href='/express-public' + version + '/stylesheets/bootstrap.min.css')
+    link(rel='stylesheet', type='text/css', href='/express-public' + version + '/stylesheets/styleDev.css')
+    link(rel='stylesheet', type='text/css', href='/express-public' + version + '/javascripts/jquery-ui-1.12.1/jquery-ui.css')
+    //link(rel='stylesheet', type='text/css', href='/express-public/stylesheets/style.css')
+    //link(rel='stylesheet', type='text/css', href='/express-public/stylesheets/first.css')
+
+    //link(rel="stylesheet" href='https://unpkg.com/leaflet@1.0.3/dist/leaflet.css')
+    //script(src='https://unpkg.com/leaflet@1.0.3/dist/leaflet.js')
+    link(rel="stylesheet" href='https://unpkg.com/leaflet@1.2.0/dist/leaflet.css')
+    script(src='https://unpkg.com/leaflet@1.2.0/dist/leaflet.js')
+    
+    //script(src='/javascripts/modernizr-2.6.2.js')
+    script(src='/express-public' + version + '/javascripts/jquery-1.10.2.js')
+    script(src='/express-public' + version + '/javascripts/jquery-ui-1.12.1/jquery-ui.js')
+    script(src='/express-public' + version + '/javascripts/jquery.custom-scrollbar.js')
+
+    //Cognito
+    script(src='/express-public' + version + '/javascripts/aws-sdk.js')
+    script(src='/express-public' + version + '/javascripts/aws-sdk.min.js')
+    script(src='/express-public' + version + '/javascripts/aws-cognito-sdk.min.js')
+    script(src='/express-public' + version + '/javascripts/amazon-cognito-identity.min.js')
+
+
+    //script(src='/express-public' + version + '/clientTypescript/ClientModel/GameStatus.js')
+    
+  body#bodylayout  
+    
+      block content
+
+    script(src='/express-public' + version + '/javascripts/bootstrap.js')
+    script(src='/express-public' + version + '/javascripts/respond.js')
+    
+    block scripts
