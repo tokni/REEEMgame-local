@@ -21,6 +21,7 @@ node_modules/
 UpgradeLog.htm
 
 !webpack.config.js
+!app2.js
 
 /ExpressApp1Starter/obj/Debug/REEEMgame.njsprojResolveAssemblyReference.cache
 ExpressApp1Starter/obj/Debug/TypeScriptCompilerOutput.txt
