@@ -7,5 +7,6 @@ Node.js and npm Node ^6.10.1, npm ^3.10.10
 
 	npm run build
 ## Start Server at port 6011
-Make sure port 6011 is not in use
 	npm run serve
+Make sure port 6011 is not in use
+	
