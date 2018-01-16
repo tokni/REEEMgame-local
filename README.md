@@ -13,5 +13,5 @@ Make sure port 6011 is not in use
 ## Browser
 Go to url [localhost:6011/game11](http://localhost:6011/game11/)
 
-Login with name: testuser, and password: test 
+Login with name: user1, and password: 123
 	
