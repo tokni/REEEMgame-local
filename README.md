@@ -9,4 +9,8 @@ Node.js and npm Node ^6.10.1, npm ^3.10.10
 ## Start Server at port 6011
 	npm run serve
 Make sure port 6011 is not in use
+
+## Browser
+Go to url [localhost:6011/game11](localhost:6011/game11)
+Login with name: testuser, and password: test 
 	
