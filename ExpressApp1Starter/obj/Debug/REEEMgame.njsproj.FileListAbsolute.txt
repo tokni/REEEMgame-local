@@ -5,3 +5,5 @@ C:\Users\olavu\Source\Repos\develop\ExpressApp1Starter\bin\Microsoft.NodejsTools
 C:\Users\Marita\Documents\Source\Repos\ReeemGame2\ExpressApp1Starter\obj\Debug\REEEMgame.njsprojResolveAssemblyReference.cache
 C:\Users\Marita\Documents\Source\Repos\ReeemGame2\ExpressApp1Starter\obj\Debug\REEEMgame.njsproj.CoreCompileInputs.cache
 C:\Users\Marita\Documents\Source\Repos\ReeemGame2\ExpressApp1Starter\bin\Microsoft.NodejsTools.WebRole.dll
+C:\Users\bl_000\Source\Repos\REEEMgame-local\ExpressApp1Starter\obj\Debug\REEEMgame.njsprojResolveAssemblyReference.cache
+C:\Users\bl_000\Source\Repos\REEEMgame-local\ExpressApp1Starter\bin\Microsoft.NodejsTools.WebRole.dll

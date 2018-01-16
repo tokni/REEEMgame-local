@@ -1,9 +1,9 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "ExpressApp1Starter", "ExpressApp1Starter\ExpressApp1Starter.njsproj", "{21A1BC4B-A420-4EAD-B014-DB3835470C50}"
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "ExpressApp1Starter", "ExpressApp1Starter\REEEMgame.njsproj", "{21A1BC4B-A420-4EAD-B014-DB3835470C50}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
