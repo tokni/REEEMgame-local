@@ -1,0 +1,9 @@
+c:\users\bl_000\documents\visual studio 2015\Projects\ExpressApp1Starter\ExpressApp1Starter\bin\Microsoft.NodejsTools.WebRole.dll
+C:\Users\bl_000\documents\visual studio 2015\Projects\ExpressApp1Starter\ExpressApp1Starter\obj\Debug\ExpressApp1Starter.njsprojResolveAssemblyReference.cache
+C:\Users\Marita\Documents\reeemgame2\ExpressApp1Starter\bin\Microsoft.NodejsTools.WebRole.dll
+C:\Users\Marita\Documents\reeemgame2\ExpressApp1Starter\obj\Debug\ExpressApp1Starter.njsprojResolveAssemblyReference.cache
+C:\Users\bl_000\Desktop\New folder (6)\ExpressApp1Starter\obj\Debug\ExpressApp1Starter.njsprojResolveAssemblyReference.cache
+C:\Users\bl_000\Desktop\New folder (6)\ExpressApp1Starter\bin\Microsoft.NodejsTools.WebRole.dll
+C:\Users\Marita\Documents\Source\Repos\ReeemGame2\ExpressApp1Starter\bin\Microsoft.NodejsTools.WebRole.dll
+C:\Users\Marita\Documents\Source\Repos\ReeemGame2\ExpressApp1Starter\obj\Debug\ExpressApp1Starter.njsprojResolveAssemblyReference.cache
+C:\Users\bl_000\Documents\reeemgame\ExpressApp1Starter\obj\Debug\ExpressApp1Starter.njsprojResolveAssemblyReference.cache

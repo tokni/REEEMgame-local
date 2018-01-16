@@ -1,0 +1,30 @@
+﻿doctype html
+
+- var version = "Dev"
+
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title #{title} - ReeemGame
+
+    link(rel='stylesheet', type='text/css', href='/express-public' + version + '/javascripts/jquery.custom-scrollbar.css')
+    link(rel='stylesheet', type='text/css', href='/express-public' + version + '/javascripts/jquery-ui-1.12.1/jquery-ui.css')
+    link(rel='stylesheet', type='text/css', href='/express-public' + version + '/stylesheets/bootstrap.min.css')
+    link(rel='stylesheet', type='text/css', href='/express-public' + version + '/stylesheets/styleDev.css')
+    link(rel='stylesheet', type='text/css', href='/express-public' + version + '/javascripts/jquery-ui-1.12.1/jquery-ui.css')
+    link(rel="stylesheet" href='https://unpkg.com/leaflet@1.2.0/dist/leaflet.css')
+    script(src='https://unpkg.com/leaflet@1.2.0/dist/leaflet.js')
+
+    script(src='/express-public' + version + '/javascripts/jquery-1.10.2.js')
+    script(src='/express-public' + version + '/javascripts/jquery-ui-1.12.1/jquery-ui.js')
+    script(src='/express-public' + version + '/javascripts/jquery.custom-scrollbar.js')
+    
+  body#bodylayout  
+    
+      block content
+
+    script(src='/express-public' + version + '/javascripts/bootstrap.js')
+    script(src='/express-public' + version + '/javascripts/respond.js')
+    
+    block scripts
