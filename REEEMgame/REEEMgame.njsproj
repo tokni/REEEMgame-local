@@ -235,7 +235,6 @@
     <Content Include="files\worlds.json">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="javascripts\jquery.custom-scrollbar.css" />
     <Content Include="public\express-publicDev\clientTypescript\icons\arrow-down-b.png" />
     <Content Include="public\express-publicDev\clientTypescript\icons\arrow-up-b.png" />
     <Content Include="public\express-publicDev\clientTypescript\icons\first.png" />
@@ -297,7 +296,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="files\" />
-    <Folder Include="javascripts\" />
     <Folder Include="public\express-publicDev\clientTypescript\ClientView\MapView\" />
     <Folder Include="public\express-publicDev\clientTypescript\ClientView\MenuView\" />
     <Folder Include="public\express-publicDev\clientTypescript\ClientView\Dialogs\" />
@@ -334,9 +332,6 @@
     <Folder Include="views\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="javascripts\jquery.custom-scrollbar.min.js" />
-    <Compile Include="javascripts\jquery.tablesorter.min.js" />
-    <Compile Include="javascripts\jquery.tablesorter.pager.js" />
     <Compile Include="public\express-publicDev\javascripts\jquery.custom-scrollbar.js" />
     <Compile Include="public\express-publicDev\javascripts\jquery.custom-scrollbar.min.js" />
     <Compile Include="public\express-publicDev\javascripts\bootstrap.js" />
