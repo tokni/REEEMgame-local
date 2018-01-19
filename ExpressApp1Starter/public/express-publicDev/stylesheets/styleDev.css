@@ -151,7 +151,7 @@ input[type="checkbox"].input-validation-error {
 }
 
 .menuButton {
-    background: #0F7D98;
+    background: none;
     color: white;
     border-radius: 25px;
     border: none;
@@ -181,6 +181,7 @@ ul {
     left: 50px;
     bottom: 65px;
     position: absolute;
+    color: white;
 }
 
 #simulationNumber {
@@ -703,7 +704,7 @@ ul {
 #worldsTable thead tr th.tablesorter-headerAsc div {
     background-image: url('../icons/arrow-down-b.png');
 }
-´#worldsTable tbody tr {
+ï¿½#worldsTable tbody tr {
     color: #555;
 }
 #worldsTable tbody tr td {
