@@ -14,7 +14,7 @@ The game is a simulation of how the future will look depending on how participan
 ## Build the server and client 
  	npm run build
 ## Start Server at port 6011
-	npm run serve
+	npm run start
 Make sure port 6011 is not in use
 
 ## Browser
