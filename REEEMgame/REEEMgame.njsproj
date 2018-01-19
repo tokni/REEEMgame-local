@@ -243,7 +243,6 @@
     <Content Include="public\express-publicDev\clientTypescript\icons\next.png" />
     <Content Include="public\express-publicDev\clientTypescript\icons\prev.png" />
     <Content Include="public\express-publicDev\javascripts\jquery.custom-scrollbar.css" />
-    <Content Include="package.json" />
     <Content Include="public\express-publicDev\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="public\express-publicDev\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="public\express-publicDev\fonts\glyphicons-halflings-regular.ttf" />
@@ -348,7 +347,6 @@
     <Compile Include="public\express-publicDev\javascripts\respond.js" />
     <Compile Include="public\express-publicDev\javascripts\respond.min.js" />
     <Compile Include="webpack.config.js" />
-    <Compile Include="webpackServer.config.js" />
     <None Include="public\express-publicDev\javascripts\jquery-1.10.2.intellisense.js" />
     <Compile Include="public\express-publicDev\javascripts\jquery-1.10.2.js" />
     <Compile Include="public\express-publicDev\javascripts\jquery-1.10.2.min.js" />

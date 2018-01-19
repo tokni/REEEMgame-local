@@ -40,8 +40,8 @@ module.exports = [{
     //    fs: 'empty'
     //}
 }, {
-    entry: "./app2",
-    output: { filename: "./app.js" },
+        entry: "./app2",
+    output: { filename: "./REEEMgame.js" },
     target: 'node',
     externals: [nodeExternals()],
     resolve: {

@@ -4,7 +4,7 @@
 */
 /*jshint browser:true, jquery:true, unused:false */
 ;(function($) {
-    'use strict'
+	'use strict';
 	/*jshint supernew:true */
 	var ts = $.tablesorter;
 
@@ -1262,4 +1262,4 @@
 		tablesorterPager: $.tablesorterPager.construct
 	});
 
-})(jQuery);//
+})(jQuery);
