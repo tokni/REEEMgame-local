@@ -1,6 +1,6 @@
 # Getting Started
 ## Prerequisites
-Node.js and npm Node ^6.10.1, npm ^3.10.10
+Node.js and npm Node ^6.10.1, npm ^3.10.10, and webpack ^3.10.0
 ## Installation
 	cd .\ExpressApp1Starter\
 	npm install 
