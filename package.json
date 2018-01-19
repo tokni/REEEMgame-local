@@ -10,7 +10,7 @@
     "webpackWatch": "webpack -w",
     "debug": "DEBUG=* node app2",
     "build": "webpack",
-    "serve": "node app"
+    "start": "node REEEMgame/app"
 
   },
   "devDependencies": {},
