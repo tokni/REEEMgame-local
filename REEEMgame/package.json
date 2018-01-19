@@ -1,7 +1,7 @@
 {
-  "name": "express-app1-starter",
+  "name": "REEEMgame",
   "version": "0.0.0",
-  "description": "ExpressApp1Starter",
+  "description": "",
   "main": "app.js",
   "author": {
     "name": "bl_000"
@@ -10,7 +10,7 @@
     "webpackWatch": "webpack -w",
     "debug": "DEBUG=* node app2",
     "build": "webpack",
-    "start": "node REEEMgame/app"
+    "start": "node REEEMgame"
 
   },
   "devDependencies": {},

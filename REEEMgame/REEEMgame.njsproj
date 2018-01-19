@@ -235,6 +235,7 @@
     <Content Include="files\worlds.json">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="package.json" />
     <Content Include="public\express-publicDev\clientTypescript\icons\arrow-down-b.png" />
     <Content Include="public\express-publicDev\clientTypescript\icons\arrow-up-b.png" />
     <Content Include="public\express-publicDev\clientTypescript\icons\first.png" />

@@ -3,14 +3,14 @@ var nodeExternals = require('webpack-node-externals');
 
 module.exports = [{
     entry: {
-        connectBundle: __dirname + "./public/express-publicDev/clientTypescript/ClientControl/connection.ts",
-        facilitatorBundle: __dirname + "./public/express-publicDev/clientTypescript/Facilitator.ts",
-        facilitatorMainBundle: __dirname + "./public/express-publicDev/clientTypescript/ClientControl/FacilitatorMainScreenController.ts",
-        listOfWorldsUpdaterBundle: __dirname + "./public/express-publicDev/clientTypescript/ClientControl/ListOfWorldsUpdater.ts",
-        connectionMainBundle: __dirname + "./public/express-publicDev/clientTypescript/ClientControl/MainScreenConnection.ts",
+        connectBundle: __dirname + "/public/express-publicDev/clientTypescript/ClientControl/connection.ts",
+        facilitatorBundle: __dirname + "/public/express-publicDev/clientTypescript/Facilitator.ts",
+        facilitatorMainBundle: __dirname + "/public/express-publicDev/clientTypescript/ClientControl/FacilitatorMainScreenController.ts",
+        listOfWorldsUpdaterBundle: __dirname + "/public/express-publicDev/clientTypescript/ClientControl/ListOfWorldsUpdater.ts",
+        connectionMainBundle: __dirname + "/public/express-publicDev/clientTypescript/ClientControl/MainScreenConnection.ts",
     }, 
     output: {
-        filename: __dirname + "./public/express-publicDev/dist/[name].js",
+        filename: "./public/express-publicDev/dist/[name].js",
         library: '[name]'
     },
     resolve: {
@@ -40,8 +40,8 @@ module.exports = [{
     //    fs: 'empty'
     //}
 }, {
-        entry: __dirname + "./app2",
-        output: { filename: __dirname + "./REEEMgame.js" },
+        entry: __dirname + "/app2",
+        output: { filename: "./REEEMgame.js" },
     target: 'node',
     externals: [nodeExternals()],
     resolve: {
