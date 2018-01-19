@@ -21,6 +21,9 @@ node_modules/
 UpgradeLog.htm
 
 !webpack.config.js
-
+!/public/express-publicDev/javascripts/jquery.custom-scrollbar.min.js
+!/public/express-publicDev/javascripts/jquery.custom-scrollbar.css
+!/public/express-publicDev/javascripts/jquery.tablesorter.min.js
+!/public/express-publicDev/javascripts/jquery.tablesorter.pager.js
 /ExpressApp1Starter/obj/Debug/REEEMgame.njsprojResolveAssemblyReference.cache
 ExpressApp1Starter/obj/Debug/TypeScriptCompilerOutput.txt
