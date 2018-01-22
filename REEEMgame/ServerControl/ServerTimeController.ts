@@ -38,7 +38,6 @@ export default class ServerTimeController {
     }
     private onTimeChange = (data) => { //paused, x1, x2, x4, x8, x16, finished, fullspeed, oneTick, reset
         setImmediate(() => { 
-            //console.log("TimeChange: " + JSON.stringify(data));
             data.worldID = this.m_worldID;
             switch (data.status) {
                 case GameStatus.paused: { this.pause(data)}; break;
@@ -131,21 +130,19 @@ export default class ServerTimeController {
     }
     private executeTick = () => {
         var startTime = Date.now();
+        //If we are ready for next tick
         if (startTime - this.m_lastTickTime > this.m_model.getScenario().getDefaultDelay() / this.m_simulationSpeed) {
             //If game is finished
             if (this.m_model.getTime() >= this.m_model.getDuration()) {
                 this.finishGame();
-            } else {
-                if (this.m_model.getView().getStatus() != GameStatus.paused) {
-                    this.m_model.tick();
-                    var t = this.m_model.getScenario().getDefaultDelay() / this.m_simulationSpeed;
-                    if (this.m_model.getView().getStatus() != GameStatus.paused) {
-                        this.m_tickTimeOut = setTimeout(this.tick, this.m_model.getScenario().getDefaultDelay() / this.m_simulationSpeed);
-                        this.m_lastTickTime = Date.now();
-                    }
-                }
+            } else if (this.m_model.getView().getStatus() != GameStatus.paused) {
+                this.m_model.tick();
+                //Schedule next tick
+                this.m_tickTimeOut = setTimeout(this.tick, this.m_model.getScenario().getDefaultDelay() / this.m_simulationSpeed);
+                this.m_lastTickTime = Date.now();
             }
         } else {
+            //Delay next tick
             this.m_tickTimeOut = setTimeout(this.tick, (this.m_model.getScenario().getDefaultDelay() / this.m_simulationSpeed - (startTime - this.m_lastTickTime)));
         }
     }

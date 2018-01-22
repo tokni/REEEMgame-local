@@ -9,7 +9,6 @@ export class GameView {
     private m_model;
     private m_status: GameStatus;
     private m_emit: EventEmitter;
-    private m_debugTime: number = Date.now();
 
     constructor(p_scenario, p_worldID, p_serverSocket) {
         this.m_scenario = p_scenario;
@@ -48,9 +47,6 @@ export class GameView {
     }
     private emitTickToWorldID(p_worldID, p_tickData) {
         var now: number = Date.now();
-        if (this.m_worldID == 35598 || this.m_worldID == 95112 || this.m_worldID == 65640) 
-            console.log("emitting tick: "+ this.m_model.getTime() + " to world: " + this.m_worldID + "  deltaTime: " + (Date.now() - this.m_debugTime.valueOf()) + " ms");
-        this.m_debugTime = Date.now();
         this.m_serverSocket.emit("tickFromServer" + p_worldID, p_tickData);
     }
 

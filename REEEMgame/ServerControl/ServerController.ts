@@ -75,7 +75,6 @@ export default class ServerController {
         this.m_app.get(ServerController.m_path + '/worlds', this.m_routes.listOfWorlds);
         this.m_app.get(ServerController.m_path + '/worlds/', this.m_routes.listOfWorlds);
 
-
         this.m_app.get(ServerController.m_path + '/', this.m_routes.localLoginStartPage);
         this.m_app.get(ServerController.m_path + '', this.m_routes.localLoginStartPage); 
         this.m_app.post(ServerController.m_path + '/login', this.m_routes.login);

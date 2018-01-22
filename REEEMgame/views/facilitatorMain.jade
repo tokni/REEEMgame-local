@@ -96,11 +96,9 @@ block content
                  div(id='highscore' + world.idcode).date
           .col-md-1
              p 
-               //a(id='#{world.idcode}' href='http://www.reeem.org#{path}/enterWorld?worldPassword=#{world.idcode}') Link to World
                a(id='#{world.idcode}' href='#{path}/?worldPassword=#{world.idcode}') Link to World
-               //a(href='http://52.209.170.126:5000#{path}/enterWorld?worldPassword=#{world.idcode}') Link to World
           .col-md-2
-             button.pull-left.btn-xs(id='copyLink'+world.idcode data-copytarget="#website"+world.idcode) Copy link to clipboard
+             button.pull-left.btn-xs(id='copyLink'+world.idcode data-copytarget='#{path}/?worldPassword=#{world.idcode}') Copy link to 
    h3(style='padding:5px') Worlds Playing
    each world in worlds_playing
         .row
