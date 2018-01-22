@@ -9,12 +9,12 @@ The game is a simulation of how the future will look depending on how participan
 
 [webpack](https://github.com/webpack/webpack)  webpack ^3.7.1
 ## Installation
-	cd .\ExpressApp1Starter\
+	cd .\REEEMgame\
 	npm install 
 ## Build the server and client 
  	npm run build
 ## Start Server at port 6011
-	npm run serve
+	npm run start
 Make sure port 6011 is not in use
 
 ## Browser
