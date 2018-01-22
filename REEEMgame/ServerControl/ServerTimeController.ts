@@ -109,7 +109,7 @@ export default class ServerTimeController {
             this.executeTick();
         }
     }
-    private gameFinished = () => {
+    private finishGame = () => {
         this.m_model.getView().setStatus(GameStatus.finished);
         var highscore: number = this.m_model.end();
         var data;
@@ -123,7 +123,7 @@ export default class ServerTimeController {
     }
     private executeOneTick = () => {
         if (this.m_model.getTime() >= this.m_model.getDuration()) {
-            this.gameFinished();
+            this.finishGame();
         } else {
             this.m_model.tick();
             this.m_lastTickTime = Date.now();
@@ -134,7 +134,7 @@ export default class ServerTimeController {
         if (startTime - this.m_lastTickTime > this.m_model.getScenario().getDefaultDelay() / this.m_simulationSpeed) {
             //If game is finished
             if (this.m_model.getTime() >= this.m_model.getDuration()) {
-                this.gameFinished();
+                this.finishGame();
             } else {
                 if (this.m_model.getView().getStatus() != GameStatus.paused) {
                     this.m_model.tick();
