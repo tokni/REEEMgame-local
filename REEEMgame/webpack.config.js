@@ -40,7 +40,7 @@ module.exports = [{
     //    fs: 'empty'
     //}
 }, {
-        entry: __dirname + "/app2",
+        entry: __dirname + "/app2.ts",
         output: { filename: "./REEEMgame.js" },
     target: 'node',
     externals: [nodeExternals()],
