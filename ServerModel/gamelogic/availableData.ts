@@ -47,9 +47,6 @@ export abstract class AvailableData {
 
 export class AirTemperature extends AvailableData {
     protected m_name = "AirTemperature";
-    //private baseAirTemperature: number = 17;
-    //private environmentalImpactOnAirTemperature: number = 0.10;
-    //private evironmentalImpactConvergenceThreshold: number = 80;
     private baseAirTemperature: number = 17;
     private environmentalImpactOnAirTemperature: number = 0.08;
     private evironmentalImpactConvergenceThreshold: number = 80;
@@ -85,14 +82,6 @@ export class AirTemperature extends AvailableData {
 
 export class ComfortableHousingTemperature extends AvailableData {
     protected m_name = "ComfortableHousingTemperature";
-    //private baseComfortableHousingTemp: number = 17;
-    //private maxDiscomfortDifference: number = 17;
-    //private subsidiesImpactOnComfort: number = 0.5;
-    //private gdpImpactOnComfort: number = 0.002;
-    //private comfortFactorImpactOnComfort: number = 0.3;
-    //private maxRunningAverageMonths: number = 6;
-    //private maxRunningAverageMonths2: number = 12;
-    //private historicImpactOnComfort: number = 0.6;
 
     private baseComfortableHousingTemp: number = 17;
     private maxDiscomfortDifference: number = 17;
@@ -110,7 +99,6 @@ export class ComfortableHousingTemperature extends AvailableData {
         let previousMonthsValue = this.getMonthsValue(month - 1);
         let comfortFactor = this.CalculateComfortFactor(month, energySubsidies, gdpPerPerson);
         let averageTemperature = airTemperature.GetAverage(month, this.maxRunningAverageMonths);
-        //let differenceFromBase = Math.abs(averageTemperature - this.baseComfortableHousingTemp);
         let differenceFromBase = Math.abs(airTemperature.getMonthsValue(month) - this.baseComfortableHousingTemp);
         differenceFromBase = differenceFromBase > this.maxDiscomfortDifference ? this.maxDiscomfortDifference : differenceFromBase;
         let comfortFactorImpact = this.comfortFactorImpactOnComfort * comfortFactor;
@@ -151,10 +139,6 @@ export class ComfortableHousingTemperature extends AvailableData {
 
 export class CO2Emissions extends AvailableData {
     protected m_name = "CO2Emissions";
-    //private subsidiesImpactOnNextYearsCO2: number = 0.00005;
-    //private renewableInvestmentsImpactOnNextYearsCO2: number = -0.0002;
-    //private monthlyCO2growth: number = 0.001;
-
     private subsidiesImpactOnNextYearsCO2: number = 0.000007;
     private renewableInvestmentsImpactOnNextYearsCO2: number = -0.0002;
     private monthlyCO2growth: number = 0.0015;
@@ -171,12 +155,6 @@ export class CO2Emissions extends AvailableData {
 
 export class GDPperPerson extends AvailableData {
     protected m_name = "GDPperPerson";
-    //private subsidiesImpactOnNextYearsGDP: number = -0.00002;
-    //private renewInvestImpactOnNextYearsGDP: number = -0.00005;
-    //private sixMonthMinComfortImpactOnGDP: number = 0.0001;
-    //private sixMonthMinComfortImpactOnGDPthreshold: number = 80;
-    //private maxPastMonths: number = 5;
-    //private defaultGrowth: number = 0.003;
 
     private subsidiesImpactOnNextYearsGDP: number = -0.00002;
     private renewInvestImpactOnNextYearsGDP: number = -0.00002;
@@ -190,7 +168,6 @@ export class GDPperPerson extends AvailableData {
         let gdpLastMonth = this.getMonthsValue(month - 1);
         let energySubsidiesLastMonth = energySubsidies.GetMonthsDecision(month - 1);
         let investmentInRenewableLastMonth = investmentInRenewables.GetMonthsDecision(month - 1);
-        //let fromMonth = ((month - 1) > this.maxPastMonths) ? (month - 1) - this.maxPastMonths : 0;
         let fromMonth = ((month) > this.maxPastMonths) ? (month) - this.maxPastMonths : 0;
         let sixMonthMinComfort = comfortableHousingTemperature.GetPastMinimum(fromMonth, month - 1);
         let gdpValue = gdpLastMonth * (1 + energySubsidiesLastMonth * this.subsidiesImpactOnNextYearsGDP

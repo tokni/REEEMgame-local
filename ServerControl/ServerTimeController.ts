@@ -8,7 +8,6 @@ export enum GameStatus { paused, running, finished, oneTick, reset };
 export enum Speed { x0, x1, x2, x4, x8, x16}
 export default class ServerTimeController {
     private m_serverSocket;
-    private m_setIntervalTimer;
     private m_delayPerTick;
     private m_model: ModelDev;
     private m_worldID;
@@ -39,7 +38,6 @@ export default class ServerTimeController {
     }
     private onTimeChange = (data) => { //paused, x1, x2, x4, x8, x16, finished, fullspeed, oneTick, reset
         setImmediate(() => { 
-            //console.log("TimeChange: " + JSON.stringify(data));
             data.worldID = this.m_worldID;
             switch (data.status) {
                 case GameStatus.paused: { this.pause(data)}; break;
@@ -86,13 +84,13 @@ export default class ServerTimeController {
         this.m_serverSocket.emit("timeChangeFromServer" + this.m_worldID, data);
     }
     private oneTick(data) {
-        this.tick();
+        console.log("one tick on server");
+        this.executeOneTick();
         this.m_serverSocket.emit("timeChangeFromServer" + this.m_worldID, data);
     }
     public reset(data) {
         setImmediate(() => { 
             this.m_model.getView().setStatus(GameStatus.paused);
-            clearInterval(this.m_setIntervalTimer);
             this.m_model.resetTime();
             //Send data to client to update view
             data.data = this.m_model.getView().createTickData();
@@ -110,33 +108,41 @@ export default class ServerTimeController {
             this.executeTick();
         }
     }
+    private finishGame = () => {
+        this.m_model.getView().setStatus(GameStatus.finished);
+        var highscore: number = this.m_model.end();
+        var data;
+        if (highscore) {
+            var scoredata = { worldID: this.m_worldID, score: highscore };
+            this.m_dataBaseHandler.updateHighScore(highscore);//Update the highscore in the database
+            this.m_serverSocket.emit('highscoreFromServer' + this.m_worldID, scoredata);
+        }
+        data = { worldID: this.m_worldID };
+        this.m_serverSocket.emit('simulationFinishedFromServer' + this.m_worldID, data);
+    }
+    private executeOneTick = () => {
+        if (this.m_model.getTime() >= this.m_model.getDuration()) {
+            this.finishGame();
+        } else {
+            this.m_model.tick();
+            this.m_lastTickTime = Date.now();
+        }
+    }
     private executeTick = () => {
         var startTime = Date.now();
+        //If we are ready for next tick
         if (startTime - this.m_lastTickTime > this.m_model.getScenario().getDefaultDelay() / this.m_simulationSpeed) {
             //If game is finished
             if (this.m_model.getTime() >= this.m_model.getDuration()) {
-                this.m_model.getView().setStatus(GameStatus.finished);
-                var highscore: number = this.m_model.end();
-                var data;
-                if (highscore) {
-                    var scoredata = { worldID: this.m_worldID, score: highscore };
-                    this.m_dataBaseHandler.updateHighScore(highscore);//Update the highscore in the database
-                    this.m_serverSocket.emit('highscoreFromServer' + this.m_worldID, scoredata);
-                }
-                clearInterval(this.m_setIntervalTimer);
-                data = { worldID: this.m_worldID };
-                this.m_serverSocket.emit('simulationFinishedFromServer' + this.m_worldID, data);
-            } else {
-                if (this.m_model.getView().getStatus() != GameStatus.paused) {
-                    this.m_model.tick();
-                    var t = this.m_model.getScenario().getDefaultDelay() / this.m_simulationSpeed;
-                    if (this.m_model.getView().getStatus() != GameStatus.paused) {
-                        this.m_tickTimeOut = setTimeout(this.tick, this.m_model.getScenario().getDefaultDelay() / this.m_simulationSpeed);
-                        this.m_lastTickTime = Date.now();
-                    }
-                }
+                this.finishGame();
+            } else if (this.m_model.getView().getStatus() != GameStatus.paused) {
+                this.m_model.tick();
+                //Schedule next tick
+                this.m_tickTimeOut = setTimeout(this.tick, this.m_model.getScenario().getDefaultDelay() / this.m_simulationSpeed);
+                this.m_lastTickTime = Date.now();
             }
         } else {
+            //Delay next tick
             this.m_tickTimeOut = setTimeout(this.tick, (this.m_model.getScenario().getDefaultDelay() / this.m_simulationSpeed - (startTime - this.m_lastTickTime)));
         }
     }

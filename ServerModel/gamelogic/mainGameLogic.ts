@@ -84,26 +84,7 @@ export class GameLogic {
             this.economicKPI.CalculateScore(month, this.gdpPerPerson);
             this.combinedKPI.CalculateScore(month, this.socialKPI, this.environmentalKPI, this.economicKPI);
 
-            //console.log("-------------------------------------");
-            //console.log("Month " + (month));
-            for (var orgID = 0; orgID <= 1; orgID++) {
-                //console.log("-------");
-                //console.log("Team " + orgID);
-                //console.log("Air temperature: " + this.airTemperature[orgID].getMonthsValue(month));
-                //console.log("Comfortable housing temperature: " + this.comfortableHousingTemperature[orgID].getMonthsValue(month));
-                //console.log("CO2 emissions: " + this.co2Emissions[orgID].getMonthsValue(month));
-                //console.log("GDP/person: " + this.gdpPerPerson[orgID].getMonthsValue(month));
-            }
-            //console.log("-------");
-            //console.log("Social: " + this.socialKPI.GetMonthsScore(month));
-            //console.log("Environmental: " + this.environmentalKPI.GetMonthsScore(month));
-            //console.log("Economic: " + this.economicKPI.GetMonthsScore(month));
-            //console.log("Combined: " + this.combinedKPI.GetMonthsScore(month));
         }
-        //console.log("-------");
-        //console.log("GAME LOGIC COMPLETE");
-        //console.log("-------");
-        //console.log("EmArr: " + JSON.stringify(this.co2Emissions));
         return this.combinedKPI.GetMonthsScore(toMonth)
     }
     getOverlayData = (p_roleName, p_dataID, p_month) => {

@@ -41,9 +41,11 @@ export class ClientGameModel extends ClientModel {
         this.m_profile = p_profile;
         this.m_status = p_status;
         var ret = {};
-        for (var role of this.m_scenario.roles) {
+        for (var i = 0; i< this.m_scenario.roles.length; i++) {
+            var role = this.m_scenario.roles[i];
             ret[role.m_name] = {};
-            for (var decision of role.m_decisions) {
+            for (var j = 0; j < role.m_decisions.length; j++) {
+                var decision = role.m_decisions[j];
                 var roleName = role.m_name;
                 var decName = decision.m_id;
                 ret[roleName][decName] = decision.m_value;
@@ -52,7 +54,8 @@ export class ClientGameModel extends ClientModel {
         this.m_currentDecisions = ret;
         
         this.m_prevSimulations = [];
-        for (var hist of p_prevSimulations) {
+        for (var i = 0; i< p_prevSimulations.length; i++) {
+            var hist = p_prevSimulations[i];
             this.m_prevSimulations.push(new ClientSimulationHistory(hist));
         }
     }

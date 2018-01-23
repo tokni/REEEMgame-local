@@ -64,12 +64,6 @@ export class Connection {
     public sendRoleChangeToServer(p_roleChange) {
         this.m_connectionToServer.emit("roleChangeFromClient" + this.m_worldID, p_roleChange); 
     }
-    public sendPathwayChangeToServer(p_pathway) {
-        this.m_connectionToServer.emit("pathwayChangeFromBrowser", p_pathway); 
-    }
-    public sendPathwayVariableChangeToServer(p_variable) {
-        this.m_connectionToServer.emit("variableChangeFromBrowser", p_variable);
-    }
     public listenToTickEvent(p_callBack) {
         this.m_connectionToServer.on('tickFromServer' + this.m_worldID, p_callBack );
     }

@@ -113,7 +113,7 @@ export default class ModelDev {
         this.executeTick();
     }
     private executeTick = () => {
-        if (this.m_view.getStatus() != GameStatus.paused && this.m_readyForNextTick) {
+        if ( this.m_readyForNextTick) {
                 this.m_readyForNextTick = false;
                 this.m_time++;
                 var dec: any = this.m_currentScenario.getDecisions();

@@ -64,7 +64,7 @@ export class FacilitatorMainScreenController {
             $("#fullspeed"+id).on('click', { speed: 24, id:id }, this.speedButtonPress);
             $("#reset" + id).on('click', { id: id }, this.resetButtonPress);
             //Copy link button
-            $("#copyLink" +id).on('click', { worldID: id, link:(location.host + this.m_path+ 'enterWorld?worldPassword='+id) }, this.copyLink);
+            $("#copyLink" + id).on('click', { worldID: id, link: (location.host + this.m_path + '/?worldPassword='+id) }, this.copyLink);
 
         }
     }
