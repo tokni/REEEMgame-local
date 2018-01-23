@@ -1,0 +1,28 @@
+{
+  "worlds": [
+    {
+      "idcode": 38227,
+      "name": "new world",
+      "owner": 2,
+      "date": "2018-01-12T09:41:28.911Z",
+      "dateactive": "2018-01-19T13:09:05.314Z",
+      "highscore": 52
+    },
+    {
+      "idcode": 92878,
+      "name": "test",
+      "owner": 1,
+      "date": "2018-01-12T13:15:41.956Z",
+      "dateactive": "2018-01-19T12:01:58.909Z",
+      "highscore": 52
+    },
+    {
+      "idcode": 23062,
+      "name": "world",
+      "owner": 1,
+      "date": "2018-01-15T12:20:40.723Z",
+      "dateactive": "2018-01-15T12:20:40.723Z",
+      "highscore": 0
+    }
+  ]
+}

@@ -1,1 +1,0 @@
-﻿export enum ClientGameStatus { paused, running, finished, oneTick, reset };

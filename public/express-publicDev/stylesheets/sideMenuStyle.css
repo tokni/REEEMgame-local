@@ -1,0 +1,139 @@
+﻿body {
+}
+
+.wrapper {
+    display: flex;
+    align-items: stretch;
+}
+
+#sidebar {
+    margin-left: -250px;
+    min-width: 250px;
+    max-width: 250px;
+    min-height: 100vh;
+    background-color: #0a6494;
+    transition: all 0.3s;
+    color: white;
+}
+
+#sidebar.expanded {
+        margin-left:0;
+        
+}
+
+#timeButtonsAcc button {
+    color: black;
+}
+
+#content {
+    width: 100%;
+}
+
+#pMap {
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+}
+
+#sidebarCollapse {
+    width: 5%;
+}
+
+#dateTable {
+    z-index: 20;
+}
+
+#menubar {
+    height: 4rem;
+    background-color: #0a6494;
+    color: white;
+    width: 100%;
+}
+
+    #menubar > table {
+        width: 100%;
+    }
+
+        #menubar > table > tbody > tr > td {
+            width: 33%;
+            font-weight: bold;
+            font-size: large;
+        }
+
+#titleDiv {
+    float: initial;
+    padding: 2%;
+    text-align: center;
+}
+
+#worldIdDiv {
+    float: right;
+    padding: 2%;
+    margin-right: 5%;
+}
+
+.nav-toggle {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    cursor: pointer;
+    height: 2rem;
+    position: relative;
+    left: 1rem;
+    width: 3.6rem;
+    z-index: 20;
+}
+
+    .nav-toggle:hover {
+        opacity: 0.8;
+    }
+
+    .nav-toggle .nav-toggle-bar, .nav-toggle .nav-toggle-bar::after, .nav-toggle .nav-toggle-bar::before {
+        position: absolute;
+        top: 50%;
+        -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
+        -webkit-transition: all 0.5s ease;
+        -moz-transition: all 0.5s ease;
+        -ms-transition: all 0.5s ease;
+        -o-transition: all 0.5s ease;
+        transition: all 0.5s ease;
+        background: white;
+        content: '';
+        height: 0.4rem;
+        width: 100%;
+    }
+
+    .nav-toggle .nav-toggle-bar {
+        margin-top: 0;
+    }
+
+        .nav-toggle .nav-toggle-bar::after {
+            margin-top: 0.8rem;
+        }
+
+        .nav-toggle .nav-toggle-bar::before {
+            margin-top: -0.8rem;
+        }
+
+    .nav-toggle.expanded .nav-toggle-bar {
+        background: transparent;
+    }
+
+        .nav-toggle.expanded .nav-toggle-bar::after, .nav-toggle.expanded .nav-toggle-bar::before {
+            background: white;
+            margin-top: 0;
+        }
+
+        .nav-toggle.expanded .nav-toggle-bar::after {
+            -ms-transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+
+        .nav-toggle.expanded .nav-toggle-bar::before {
+            -ms-transform: rotate(-45deg);
+            -webkit-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+        }

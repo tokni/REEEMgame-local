@@ -1,0 +1,25 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "user1",
+      "password": "123",
+      "worlds_owned": [
+        92878,
+        23062
+      ],
+      "worlds_playing": []
+    },
+    {
+      "id": 2,
+      "username": "user2",
+      "password": "456",
+      "worlds_owned": [
+        38227
+      ],
+      "worlds_playing": [
+        92878
+      ]
+    }
+  ]
+}

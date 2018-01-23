@@ -1,0 +1,398 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <Name>REEEMgame</Name>
+    <RootNamespace>ExpressApp1Starter</RootNamespace>
+    <LaunchUrl>http://localhost:1337/game11/</LaunchUrl>
+    <ToolsVersionPromptShown>2.3</ToolsVersionPromptShown>
+    <TypeScriptToolsVersion>2.3</TypeScriptToolsVersion>
+    <DebuggerPort>5859</DebuggerPort>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>21a1bc4b-a420-4ead-b014-db3835470c50</ProjectGuid>
+    <ProjectHome>
+    </ProjectHome>
+    <StartupFile>app2.ts</StartupFile>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{349c5851-65df-11da-9384-00065b846f21};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
+    <ProjectView>ProjectFiles</ProjectView>
+    <NodejsPort>1337</NodejsPort>
+    <TypeScriptSourceMap>true</TypeScriptSourceMap>
+    <TypeScriptModuleKind>CommonJS</TypeScriptModuleKind>
+    <EnableTypeScript>true</EnableTypeScript>
+    <StartWebBrowser>True</StartWebBrowser>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <TypeScriptTarget>ES6</TypeScriptTarget>
+    <TypeScriptJSXEmit>React</TypeScriptJSXEmit>
+    <TypeScriptCompileOnSaveEnabled>False</TypeScriptCompileOnSaveEnabled>
+    <TypeScriptNoImplicitAny>False</TypeScriptNoImplicitAny>
+    <TypeScriptRemoveComments>False</TypeScriptRemoveComments>
+    <TypeScriptOutFile />
+    <TypeScriptOutDir />
+    <TypeScriptGeneratesDeclarations>False</TypeScriptGeneratesDeclarations>
+    <TypeScriptNoEmitOnError>False</TypeScriptNoEmitOnError>
+    <TypeScriptMapRoot />
+    <TypeScriptSourceRoot />
+    <TypeScriptModuleKind>CommonJS</TypeScriptModuleKind>
+    <TypeScriptSourceMap>True</TypeScriptSourceMap>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="public\express-publicDev\AllEUstateDataPlus2BrowserTimes.ts" />
+    <TypeScriptCompile Include="public\express-publicDev\AllEUstateDataPlus2.ts" />
+    <TypeScriptCompile Include="public\express-publicDev\clientTypescript\AllEUstateDataPlus2Browser.ts" />
+    <TypeScriptCompile Include="public\express-publicDev\clientTypescript\ClientControl\ClientController.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="public\express-publicDev\clientTypescript\ClientControl\ClientGameController.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="public\express-publicDev\clientTypescript\ClientControl\FacilitatorMainScreenController.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="public\express-publicDev\clientTypescript\ClientControl\FacilitatorMainScreenHandler.ts" />
+    <TypeScriptCompile Include="public\express-publicDev\clientTypescript\ClientControl\TimeController.ts" />
+    <TypeScriptCompile Include="public\express-publicDev\clientTypescript\clientModel\ClientGameModel.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="public\express-publicDev\clientTypescript\clientModel\ClientHistory.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="public\express-publicDev\clientTypescript\clientModel\ClientProfile.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="public\express-publicDev\clientTypescript\clientModel\ClientSimulationHistory.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="public\express-publicDev\clientTypescript\clientModel\FacilitatorModel.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="public\express-publicDev\clientTypescript\clientModel\PrevSimulation.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="public\express-publicDev\clientTypescript\ClientScenario.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="public\express-publicDev\clientTypescript\ClientView\ClientGameView.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="public\express-publicDev\clientTypescript\ClientView\Dialogs\ErrorDialog.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="public\express-publicDev\clientTypescript\ClientView\Dialogs\ProfileChangedDialog.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="public\express-publicDev\clientTypescript\ClientView\Dialogs\InviteDialog.ts" />
+    <TypeScriptCompile Include="public\express-publicDev\clientTypescript\ClientView\Dialogs\VariableDialog.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="public\express-publicDev\clientTypescript\ClientControl\ListOfWorldsUpdater.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="public\express-publicDev\clientTypescript\ClientView\MainFacilitatorScreenUpdater.ts" />
+    <TypeScriptCompile Include="public\express-publicDev\clientTypescript\ClientView\MenuView\FacilitatorMenuView.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="public\express-publicDev\clientTypescript\ClientView\ClientView.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="public\express-publicDev\clientTypescript\ClientView\FacilitatorMainScreenView.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="public\express-publicDev\clientTypescript\ClientControl\Connection.ts" />
+    <TypeScriptCompile Include="public\express-publicDev\clientTypescript\Facilitator.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="public\express-publicDev\clientTypescript\ClientControl\FacilitatorController.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="public\express-publicDev\clientTypescript\ClientView\MenuView\DecisionsView.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="public\express-publicDev\clientTypescript\ClientView\Dialogs\Dialog.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="public\express-publicDev\clientTypescript\ClientView\FacilitatorView.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="public\express-publicDev\clientTypescript\ClientView\MapView\MapView.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="public\express-publicDev\clientTypescript\ClientView\MenuView\MenuView.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="public\express-publicDev\clientTypescript\ClientView\MenuView\OverlayDataView.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="public\express-publicDev\clientTypescript\ClientView\MenuView\ParticipantsListView.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="public\express-publicDev\clientTypescript\ClientView\MenuView\ProfileView.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="public\express-publicDev\clientTypescript\ClientView\MenuView\ScoreView.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="public\express-publicDev\clientTypescript\ClientView\TimeView\Time.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="public\express-publicDev\clientTypescript\ClientControl\MainScreenConnection.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="public\express-publicDev\clientTypescript\leaflet\ColorPalette.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="public\express-publicDev\clientTypescript\clientModel\GameStatus.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ServerControl\DataBaseHandler.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ServerControl\GameControllerDev.ts" />
+    <TypeScriptCompile Include="ServerControl\MainController.ts" />
+    <TypeScriptCompile Include="ServerControl\RoleChangeController.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ServerControl\ScenarioChangeController.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ServerControl\ServerController.ts" />
+    <TypeScriptCompile Include="ServerControl\ServerDecisionController.ts" />
+    <TypeScriptCompile Include="ServerControl\ServerTimeController.ts" />
+    <TypeScriptCompile Include="ServerModel\Decision.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ServerModel\gamelogic\availableData.ts" />
+    <TypeScriptCompile Include="ServerModel\gamelogic\decision.ts" />
+    <TypeScriptCompile Include="ServerModel\gamelogic\keyPerformanceIndicators.ts" />
+    <TypeScriptCompile Include="ServerModel\gamelogic\mainGameLogic.ts" />
+    <TypeScriptCompile Include="ServerModel\SimulationHistory.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ServerModel\Indicator.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ServerModel\ModelDev.ts" />
+    <TypeScriptCompile Include="ServerModel\Overlay.ts" />
+    <TypeScriptCompile Include="ServerModel\Profile.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ServerModel\Role.ts" />
+    <TypeScriptCompile Include="ServerModel\Scenario.ts" />
+    <TypeScriptCompile Include="public\express-publicDev\clientTypescript\ClientView\declarations\google.visualization.d.ts" />
+    <TypeScriptCompile Include="public\express-publicDev\clientTypescript\clientModel\ClientModel.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="public\express-publicDev\clientTypescript\ClientView\Dialogs\ScoreDialog.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="public\express-publicDev\clientTypescript\ClientControl\TimeHandler.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="public\express-publicDev\clientTypescript\ClientView\Dialogs\DataDialog.ts" />
+    <TypeScriptCompile Include="public\express-publicDev\clientTypescript\ClientView\Dialogs\WelcomeDialog.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="public\express-publicDev\clientTypescript\leaflet\leafletWrap.ts" />
+    <TypeScriptCompile Include="public\express-publicDev\clientTypescript\leaflet\TKN_map.ts" />
+    <TypeScriptCompile Include="routes\index.ts" />
+    <TypeScriptCompile Include="ServerView\GameView.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="app2.ts" />
+    <TypeScriptCompile Include="tests\availableData_test.ts">
+      <TestFramework>ExportRunner</TestFramework>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="tests\decision_test.ts">
+      <TestFramework>ExportRunner</TestFramework>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="tests\keyPerformanceIndicators_test.ts">
+      <TestFramework>ExportRunner</TestFramework>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="tests\Scripts\typings\node\node.d.ts" />
+    <TypeScriptCompile Include="tests\Scripts\typings\pg\pg.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include=".babelrc">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="files\users.json">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="files\worlds.json">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="package.json" />
+    <Content Include="public\express-publicDev\clientTypescript\icons\arrow-down-b.png" />
+    <Content Include="public\express-publicDev\clientTypescript\icons\arrow-up-b.png" />
+    <Content Include="public\express-publicDev\clientTypescript\icons\first.png" />
+    <Content Include="public\express-publicDev\clientTypescript\icons\last.png" />
+    <Content Include="public\express-publicDev\clientTypescript\icons\next.png" />
+    <Content Include="public\express-publicDev\clientTypescript\icons\prev.png" />
+    <Content Include="public\express-publicDev\javascripts\jquery.custom-scrollbar.css" />
+    <Content Include="public\express-publicDev\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="public\express-publicDev\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="public\express-publicDev\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="public\express-publicDev\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="public\express-publicDev\javascripts\jquery-1.10.2.min.map" />
+    <Content Include="public\express-publicDev\javascripts\jquery-ui-1.12.1\AUTHORS.txt" />
+    <Content Include="public\express-publicDev\javascripts\jquery-ui-1.12.1\images\ui-icons_444444_256x240.png" />
+    <Content Include="public\express-publicDev\javascripts\jquery-ui-1.12.1\images\ui-icons_555555_256x240.png" />
+    <Content Include="public\express-publicDev\javascripts\jquery-ui-1.12.1\images\ui-icons_777620_256x240.png" />
+    <Content Include="public\express-publicDev\javascripts\jquery-ui-1.12.1\images\ui-icons_777777_256x240.png" />
+    <Content Include="public\express-publicDev\javascripts\jquery-ui-1.12.1\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="public\express-publicDev\javascripts\jquery-ui-1.12.1\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="public\express-publicDev\javascripts\jquery-ui-1.12.1\index.html" />
+    <Content Include="public\express-publicDev\javascripts\jquery-ui-1.12.1\jquery-ui.css" />
+    <Content Include="public\express-publicDev\javascripts\jquery-ui-1.12.1\jquery-ui.min.css" />
+    <Content Include="public\express-publicDev\javascripts\jquery-ui-1.12.1\jquery-ui.structure.css" />
+    <Content Include="public\express-publicDev\javascripts\jquery-ui-1.12.1\jquery-ui.structure.min.css" />
+    <Content Include="public\express-publicDev\javascripts\jquery-ui-1.12.1\jquery-ui.theme.css" />
+    <Content Include="public\express-publicDev\javascripts\jquery-ui-1.12.1\jquery-ui.theme.min.css" />
+    <Content Include="public\express-publicDev\javascripts\jquery-ui-1.12.1\LICENSE.txt" />
+    <Content Include="public\express-publicDev\javascripts\jquery-ui-1.12.1\package.json" />
+    <Content Include="public\express-publicDev\stylesheets\bootstrap.css" />
+    <Content Include="public\express-publicDev\stylesheets\bootstrap.min.css" />
+    <Content Include="public\express-publicDev\stylesheets\first.css" />
+    <Content Include="public\express-publicDev\stylesheets\style.styl" />
+    <Content Include="public\express-publicDev\stylesheets\styleDev.css" />
+    <Content Include="public\express-publicDev\stylesheets\sideMenuStyle.css">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="routes\28RegTiny3.csv" />
+    <Content Include="routes\AccumulatedNewCapacity.csv" />
+    <Content Include="public\express-publicDev\clientTypescript\fullMatrix.csv" />
+    <Content Include="public\express-publicDev\clientTypescript\smallMatrixFakeData.csv" />
+    <Content Include="routes\smallMatrixFakeData.csv" />
+    <Content Include="routes\Tiny4.csv" />
+    <Content Include="tsconfig.json">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="views\defaultRoute.jade" />
+    <Content Include="views\facilitatorCreateWorld.jade" />
+    <Content Include="views\listOfWorlds.jade" />
+    <Content Include="views\facilitatorMain.jade" />
+    <Content Include="views\localLogin.jade">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="views\localLoginFail.jade">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="views\_coorDev.jade" />
+    <Content Include="views\_layout.jade" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="files\" />
+    <Folder Include="public\express-publicDev\clientTypescript\ClientView\MapView\" />
+    <Folder Include="public\express-publicDev\clientTypescript\ClientView\MenuView\" />
+    <Folder Include="public\express-publicDev\clientTypescript\ClientView\Dialogs\" />
+    <Folder Include="public\express-publicDev\clientTypescript\ClientView\TimeView\" />
+    <Folder Include="public\express-publicDev\clientTypescript\icons\" />
+    <Folder Include="ServerControl\" />
+    <Folder Include="ServerModel\gamelogic\" />
+    <Folder Include="ServerView\" />
+    <Folder Include="public\express-publicDev\clientTypescript\ClientControl\" />
+    <Folder Include="public\express-publicDev\clientTypescript\ClientView\" />
+    <Folder Include="public\express-publicDev\clientTypescript\ClientView\declarations\" />
+    <Folder Include="public\express-publicDev\clientTypescript\leaflet\" />
+    <Folder Include="public\express-publicDev\clientTypescript\clientModel\" />
+    <Folder Include="public\express-publicDev\fonts\" />
+    <Folder Include="public\express-publicDev\javascripts\" />
+    <Folder Include="public\express-publicDev\javascripts\jquery-ui-1.12.1\" />
+    <Folder Include="public\express-publicDev\javascripts\jquery-ui-1.12.1\external\" />
+    <Folder Include="public\express-publicDev\javascripts\jquery-ui-1.12.1\external\jquery\" />
+    <Folder Include="public\express-publicDev\javascripts\jquery-ui-1.12.1\images\" />
+    <Folder Include="public\express-publicDev\stylesheets\" />
+    <Folder Include="public\express-publicDev\clientTypescript\" />
+    <Folder Include="ServerModel\" />
+    <Folder Include="public\" />
+    <Folder Include="public\express-publicDev\" />
+    <Folder Include="routes\" />
+    <Folder Include="tests\Scripts\" />
+    <Folder Include="tests\Scripts\typings\" />
+    <Folder Include="tests\Scripts\typings\express\" />
+    <Folder Include="tests\Scripts\typings\sass\" />
+    <Folder Include="tests\Scripts\typings\node\" />
+    <Folder Include="tests\Scripts\typings\pg\" />
+    <Folder Include="tests\Scripts\typings\stylus\" />
+    <Folder Include="tests\" />
+    <Folder Include="views\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="public\express-publicDev\javascripts\jquery.custom-scrollbar.js" />
+    <Compile Include="public\express-publicDev\javascripts\jquery.custom-scrollbar.min.js" />
+    <Compile Include="public\express-publicDev\javascripts\bootstrap.js" />
+    <Compile Include="public\express-publicDev\javascripts\bootstrap.min.js" />
+    <Compile Include="public\express-publicDev\javascripts\jquery.tablesorter.min.js" />
+    <Compile Include="public\express-publicDev\javascripts\jquery.tablesorter.pager.js" />
+    <Compile Include="public\express-publicDev\javascripts\modernizr-2.6.2.js" />
+    <Compile Include="public\express-publicDev\javascripts\respond.js" />
+    <Compile Include="public\express-publicDev\javascripts\respond.min.js" />
+    <Compile Include="webpack.config.js" />
+    <None Include="public\express-publicDev\javascripts\jquery-1.10.2.intellisense.js" />
+    <Compile Include="public\express-publicDev\javascripts\jquery-1.10.2.js" />
+    <Compile Include="public\express-publicDev\javascripts\jquery-1.10.2.min.js" />
+    <Compile Include="public\express-publicDev\javascripts\jquery-ui-1.12.1\external\jquery\jquery.js" />
+    <Compile Include="public\express-publicDev\javascripts\jquery-ui-1.12.1\jquery-ui.js" />
+    <Compile Include="public\express-publicDev\javascripts\jquery-ui-1.12.1\jquery-ui.min.js" />
+    <None Include="public\express-publicDev\javascripts\jquery.validate-vsdoc.js" />
+    <Compile Include="public\express-publicDev\javascripts\jquery.validate.js" />
+    <Compile Include="public\express-publicDev\javascripts\jquery.validate.min.js" />
+    <Compile Include="public\express-publicDev\javascripts\jquery.validate.unobtrusive.js" />
+    <Compile Include="public\express-publicDev\javascripts\jquery.validate.unobtrusive.min.js" />
+  </ItemGroup>
+  <!-- Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them. -->
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="False" />
+  <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsTools.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:48022/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://localhost:1337</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+        <WebProjectProperties>
+          <StartPageUrl>
+          </StartPageUrl>
+          <StartAction>CurrentPage</StartAction>
+          <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>False</SilverlightDebugging>
+          <NativeDebugging>False</NativeDebugging>
+          <SQLDebugging>False</SQLDebugging>
+          <ExternalProgram>
+          </ExternalProgram>
+          <StartExternalURL>
+          </StartExternalURL>
+          <StartCmdLineArguments>
+          </StartCmdLineArguments>
+          <StartWorkingDirectory>
+          </StartWorkingDirectory>
+          <EnableENC>False</EnableENC>
+          <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
