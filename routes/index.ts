@@ -22,10 +22,10 @@ var util = require('util');
 var lowdb = require('lowdb');
 var FileSync = require('lowdb/adapters/FileSync');
 //Users file
-var usersAdapter = new FileSync('./files/users.json');
+var usersAdapter = new FileSync('./data/users.json');
 var usersDB = lowdb(usersAdapter);
 //Worlds file
-var worldsAdapter = new FileSync('./files/worlds.json');
+var worldsAdapter = new FileSync('./data/worlds.json');
 var worldsDB = lowdb(worldsAdapter);
 
 function makeScenario4(): Scenario {
