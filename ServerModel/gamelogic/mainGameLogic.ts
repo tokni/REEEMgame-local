@@ -47,12 +47,17 @@ export class GameLogic {
         this.environmentalKPI.reset();
         this.economicKPI.reset();
         this.combinedKPI.reset();
-        
-        this.airTemperature[0].addManualValues([17.3, 19.6, 19.3, 15.9, 11.0, 5.6, 1.3, -0.6, 0.4, 3.9, 8.8, 13.6]);
-        
-        this.airTemperature[1].addManualValues([14.6, 16.5, 16.5, 14.2, 10.5, 5.9, 3.9, 2.1, 2.1, 5.0, 7.6, 11.7]);
-        this.comfortableHousingTemperature[0].addManualValues([30]);
-        this.comfortableHousingTemperature[1].addManualValues([70]);
+        var eastTemp = [];
+        var westTemp = [];
+        for (var i = 0; i < 12;i++) {
+            var month = (i+5) % 12;//Start with June
+            eastTemp.push(overlayInit.features[2].properties.temp[month])
+            westTemp.push(overlayInit.features[21].properties.temp[month])
+        }
+        this.airTemperature[0].addManualValues(eastTemp);
+        this.airTemperature[1].addManualValues(westTemp);
+        this.comfortableHousingTemperature[0].addManualValues([overlayInit.features[2].properties.housing]);
+        this.comfortableHousingTemperature[1].addManualValues([overlayInit.features[21].properties.housing]);
         var tmp2 = overlayInit.features[2].properties.emisionsCO2.value
         this.co2Emissions[0].addManualValues([overlayInit.features[2].properties.emisionsCO2.value]);
         this.co2Emissions[1].addManualValues([overlayInit.features[21].properties.emisionsCO2.value]);
