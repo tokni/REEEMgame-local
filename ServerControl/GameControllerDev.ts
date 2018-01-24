@@ -8,6 +8,7 @@ import { ScenarioChangeController } from "./ScenarioChangeController";
 import { Profile } from "../ServerModel/Profile";
 import { Speed } from "./ServerTimeController"
 import DataBaseHandler from '../ServerControl/DataBaseHandler'
+import { overlayInit } from '../ServerModel/Overlay'
 var csv = require("fast-csv");
 
 export default class GameControllerDev {
@@ -82,7 +83,8 @@ export default class GameControllerDev {
         var history: SimulationHistory = this.m_model.getHistory();
         var prevSimulations: SimulationHistory[] = this.m_model.getPrevSimulations();
         var speed: Speed = this.m_timeController.getCurrentSpeed();
-        return { initData: "data for Init", scenario: scenario, history: history, prevSimulations: prevSimulations, worldID: this.m_worldID, speed: speed };
+        var indicatorData = overlayInit;
+        return { initData: "data for Init", scenario: scenario, history: history, prevSimulations: prevSimulations, worldID: this.m_worldID, speed: speed, indicatorData: indicatorData };
     }
     private createMainInitData() {
         var scenario: { roles: Role[], duration: number, time: number, status: GameStatus, score: { c: number, s: number, v: number, o: number } } = this.m_model.getClientScenario();

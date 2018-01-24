@@ -3,9 +3,9 @@
 export class MapView {
     private m_map: TKN_Map;
     private m_scenario;
-    constructor(p_scenario, p_con) {
+    constructor(p_scenario, p_con, p_indicatorData) {
         console.log("C Mapview");
-        this.m_map = new TKN_Map();
+        this.m_map = new TKN_Map(p_indicatorData);
         this.m_map.setConnection(p_con);
 
         this.m_scenario = p_scenario;

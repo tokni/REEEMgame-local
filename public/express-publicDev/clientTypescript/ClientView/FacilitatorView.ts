@@ -15,8 +15,8 @@ declare var $: any;
  
 export class FacilitatorView extends ClientGameView{
     private m_profiles;
-    constructor(p_connection, p_roles, p_model, p_profile, p_profiles, p_currentRole, p_new) {
-        super(p_connection, p_roles, p_currentRole, p_model, p_profile, p_profiles, p_new);
+    constructor(p_connection, p_roles, p_model, p_profile, p_profiles, p_currentRole, p_new, p_indicatorData) {
+        super(p_connection, p_roles, p_currentRole, p_model, p_profile, p_profiles, p_new, p_indicatorData);
         console.log("C FacilitatorView");
         this.m_profiles = p_profiles;
         this.createControls();

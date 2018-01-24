@@ -1,6 +1,5 @@
 ﻿declare var L: any;
 declare var $: any;
-import { AllstateData } from "../../AllEUstateDataPlus2"
 import { Connection } from "../ClientControl/Connection"
 import { ColorPalette } from "./ColorPalette"
 export enum Layer { none, data1, housing, temperature, GNP, browser };
@@ -39,11 +38,10 @@ export class TKN_Map {
     private m_colorOfAirTemp: ColorPalette;
     private m_colorOfComfort: ColorPalette;
 
-    constructor() {
+    constructor(p_indicatorData) {
         var self = this;
         console.log("Constructing TKN_map");
-        this.m_geoJSON_data = AllstateData;
-
+        this.m_geoJSON_data = p_indicatorData;
         this.m_colorPalette = new ColorPalette('#DDDDDD',
             [{ color: '#800026', value: 0 }, { color: '#FFEDA0', value: 25 }, { color: '#F0EDA0', value: 65 }]);
         this.m_colorOfGNP4 = new ColorPalette('#FFEDA0',
@@ -307,7 +305,7 @@ export class TKN_Map {
             reuseTiles: true
         }).addTo(this.m_map);
         
-        this.m_geojsonTemp = L.geoJson(AllstateData, {
+        this.m_geojsonTemp = L.geoJson(p_indicatorData, {
             style: this.setStyleTemp,
             onEachFeature: this.setOnEachFeatureTemp
         }).on('add', () => {
@@ -329,15 +327,15 @@ export class TKN_Map {
             style: this.setStyleEmision,
             onEachFeature: this.setOnEachFeatureEmision
         })
-        this.m_geojsonSocial = L.geoJson(AllstateData, {
+        this.m_geojsonSocial = L.geoJson(p_indicatorData, {
             style: this.setStyleSocial,
             onEachFeature: this.setOnEachFeatureSocial
         })
-        this.m_geojsonHousing = L.geoJson(AllstateData, {
+        this.m_geojsonHousing = L.geoJson(p_indicatorData, {
             style: this.setStyleHousing,
             onEachFeature: this.setOnEachFeatureHousing
         })
-        this.m_geojsonGNP = L.geoJson(AllstateData, {
+        this.m_geojsonGNP = L.geoJson(p_indicatorData, {
             style: this.setStyleGNP,
             onEachFeature: this.setOnEachFeatureGNP
         })

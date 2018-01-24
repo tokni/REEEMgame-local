@@ -27,12 +27,12 @@ export abstract class ClientView {
     private m_prevSimText: string = "Simulation ";
 
     //constructor(p_connection, p_roles, p_currentRole, p_map, p_model: ClientModel, p_profile, p_profiles) {
-    constructor(p_connection, p_roles, p_model:ClientModel) {
+    constructor(p_connection, p_roles, p_model: ClientModel, p_indicatorData) {
         this.m_dialogs = new Map<DialogKeys, Dialog>();
         this.m_connection = p_connection;
         this.m_model = p_model;
 
-        this.m_map = new MapView(p_model.getScenario(), this.m_connection);
+        this.m_map = new MapView(p_model.getScenario(), this.m_connection, p_indicatorData);
         this.m_roles = p_roles;
         
         $("#role").accordion({ collapsible: true, heightStyle: "content" });

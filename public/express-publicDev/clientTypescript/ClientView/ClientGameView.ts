@@ -12,8 +12,8 @@ export abstract class ClientGameView extends ClientView {
     protected m_model: ClientGameModel
     protected m_currentRole;
 
-    constructor(p_connection, p_roles, p_currentRole, p_model: ClientModel, p_profile, p_profiles, p_newParticipant) {
-        super(p_connection, p_roles, p_model);
+    constructor(p_connection, p_roles, p_currentRole, p_model: ClientModel, p_profile, p_profiles, p_newParticipant, p_indicatorData) {
+        super(p_connection, p_roles, p_model, p_indicatorData);
         this.m_currentRole = p_currentRole;
         this.m_dialogs.set(DialogKeys.WelcomeDialog, new WelcomeDialog(this.m_model.getProfile(), p_newParticipant, this.m_model));
     }

@@ -69,11 +69,12 @@ export class Facilitator {
     private onConnectionReady = (p_data) => {
         console.log("ConnectionReady");
         if (!this.m_model) {
+            var indicatorData = p_data.indicatorData;
             this.m_scenario = p_data.scenario ;
             this.m_model = new FacilitatorModel(this.m_participant, this.m_scenario, p_data.history, p_data.prevSimulations,this.m_profiles, this.m_offlineParticipants);
             //this.m_facilitatorView = new FacilitatorView(this.m_connection, this.m_scenario.roles, this.m_map, this.m_model, this.m_participant, this.m_profiles, this.m_currentRole);
             //this.m_facilitatorController = new FacilitatorController(this.m_connection, this.m_map, this.m_facilitatorView, this.m_model, this.m_scenario.status, this.m_participant, this.m_currentRole);
-            this.m_facilitatorView = new FacilitatorView(this.m_connection, this.m_scenario.roles, this.m_model, this.m_participant, this.m_profiles, this.m_currentRole, this.m_new);
+            this.m_facilitatorView = new FacilitatorView(this.m_connection, this.m_scenario.roles, this.m_model, this.m_participant, this.m_profiles, this.m_currentRole, this.m_new, indicatorData);
             this.m_facilitatorController = new FacilitatorController(this.m_connection, this.m_facilitatorView, this.m_model, this.m_scenario.status, this.m_participant, this.m_currentRole);
 
         }
