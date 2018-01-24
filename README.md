@@ -9,7 +9,6 @@ The game is a simulation of how the future will look depending on how participan
 
 [webpack](https://github.com/webpack/webpack)  webpack ^3.7.1
 ## Installation
-	cd .\REEEMgame\
 	npm install 
 ## Build the server and client 
  	npm run build
