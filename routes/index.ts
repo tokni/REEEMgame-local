@@ -28,54 +28,7 @@ var usersDB = lowdb(usersAdapter);
 var worldsAdapter = new FileSync('./data/worlds.json');
 var worldsDB = lowdb(worldsAdapter);
 
-function makeScenario4(): Scenario {
-    var ret: Scenario;
-    var dec1: Decision = new Decision("SubEast", "Heating subsidies", 0, 0, 100, "E", 'Dec1 describe');
-    var dec2: Decision = new Decision("ResEast", "Renewable investments", 0, 0, 50, "F", 'Dec2 describe');
-    var dec3: Decision = new Decision("SubWest", "Heating subsidies", 0, 0, 100, "E", 'Dec1 describe');
-    var dec4: Decision = new Decision("ResWest", "Renewable investments", 0, 0, 50, "F", 'Dec2 describe');
-    var dec5: Decision = new Decision("SubNorth", "Heating subsidies", 0, 0, 100, "E", 'Dec1 describe');
-    var dec6: Decision = new Decision("ResNorth", "Renewable investments", 0, 0, 50, "F", 'Dec2 describe');
-    var dec7: Decision = new Decision("SubSouth", "Heating subsidies", 0, 0, 100, "E", 'Dec1 describe');
-    var dec8: Decision = new Decision("ResSouth", "Renewable investments", 0, 0, 50, "F", 'Dec2 describe');
-    var dec9: Decision = new Decision("Inno", "InnovationC", 200, 0, 1000, "I", 'Dec3 describe');
-    var dec10: Decision = new Decision("Res2", "ResearchD", 35, 0, 50, "F", 'Dec4 describe');
-
-    //Bulgaria
-    var ind1: Indicator = new Indicator("CO<sub>2</sub>", 'CO2Emission', 't/person', 7.56, 2,'Click to see the CO2 emissions (in annual tonnes per person) in the countries',2);
-    var ind2: Indicator = new Indicator("Comfort", 'comfort', "scale (0-100)", 12, 0, 'Descrip Comfort',2);
-    var ind3: Indicator = new Indicator("Air Temperature", 'airtemperature', ' &#x2103;', 13, 0, 'Air Temperature description',2);
-    var ind4: Indicator = new Indicator("GDP", 'gdp', "USD/person", 14, 0, 'Describe GDP',2);
-
-    //Netherlands
-    var ind5: Indicator = new Indicator("CO<sub>2</sub>", 'CO2Emission', 't/person', 7.56, 2, 'Click to see the CO2 emissions (in annual tonnes per person) in the countries', 21);
-    var ind6: Indicator = new Indicator("Comfort", 'comfort', "scale (0-100)", 12, 0, 'Descrip Comfort', 21);
-    var ind7: Indicator = new Indicator("Air Temperature", 'airtemperature', ' &#x2103;', 13, 0, 'Air Temperature description', 21);
-    var ind8: Indicator = new Indicator("GDP", 'gdp', "USD/person", 14, 0, 'Describe GDP', 21);
-
-    //Finland
-    var ind9: Indicator = new Indicator("CO<sub>2</sub>", 'CO2Emission', 't/person', 7.56, 2, 'Click to see the CO2 emissions (in annual tonnes per person) in the countries', 9);
-    var ind10: Indicator = new Indicator("Comfort", 'comfort', "scale (0-100)", 12, 0, 'Descrip Comfort', 9);
-    var ind11: Indicator = new Indicator("Air Temperature", 'airtemperature', ' &#x2103;', 13, 0, 'Air Temperature description', 9);
-    var ind12: Indicator = new Indicator("GDP", 'gdp', "USD/person", 14, 0, 'Describe GDP', 9);
-
-    //Spain
-    var ind13: Indicator = new Indicator("CO<sub>2</sub>", 'CO2Emission', 't/person', 7.56, 2, 'Click to see the CO2 emissions (in annual tonnes per person) in the countries', 7);
-    var ind14: Indicator = new Indicator("Comfort", 'comfort', "scale (0-100)", 12, 0, 'Descrip Comfort', 7);
-    var ind15: Indicator = new Indicator("Air Temperature", 'airtemperature', ' &#x2103;', 13, 0, 'Air Temperature description', 7);
-    var ind16: Indicator = new Indicator("GDP", 'gdp', "USD/person", 14, 0, 'Describe GDP', 21);
-
-    var role1: Role = new Role("East", [dec1, dec2], [ind2, ind3, ind4], 'AA3939');
-    var role2: Role = new Role("West", [dec3, dec4], [ind5, ind7, ind8], 'AA6C39');
-    var role3: Role = new Role("North", [dec5, dec6], [ind10, ind11, ind12], '226666');
-    var role4: Role = new Role("South", [dec7, dec8], [ind13, ind15, ind16], '2D882D');
-    var role6: Role = new Role("Observer", [], [ind3, ind4], '632770');
-    var role7: Role = new Role("Coordinator", [], [ind1, ind2, ind3, ind4], 'AA6339');
-
-    var ret: Scenario = new Scenario([role1, role2, role3, role4, role6, role7], 2015, 1, 100, 1000, new GameLogic(4),"Scenario 4p","scenario4");
-    return ret;
-}
-function makeScenario2(): Scenario {
+function makeScenario(): Scenario {
     var ret: Scenario;
     var dec1: Decision = new Decision("SubEast", "Heating subsidies", 0, 0, 100, "E", 'Dec1 describe');
     var dec2: Decision = new Decision("ResEast", "Renewable investments", 0, 0, 100, "F", 'Dec2 describe');
@@ -101,13 +54,12 @@ function makeScenario2(): Scenario {
 
 var path = ServerController.m_path;
 var mainController: MainController = MainController.getInstance();
-var scenario2 = makeScenario2();
-var scenario4 = makeScenario4();
+var scenario = makeScenario();
 var view;
 var model;
 
-var scenarios: Scenario[] = [scenario2, scenario4];
-var scenariosToSendtoClient: { id: string, name: string }[] = [{ id: scenario2.getID(), name: scenario2.getName() }, { id: scenario4.getID(), name: scenario4.getName() }];
+var scenarios: Scenario[] = [scenario];
+var scenariosToSendtoClient: { id: string, name: string }[] = [{ id: scenario.getID(), name: scenario.getName() }];
 
 export function backToMain(req: express.Request, res: express.Response) {
     var user = usersDB.get('users').find({ id: parseInt(req.body.id) }).value();
@@ -305,7 +257,6 @@ function openFacilitatorMain(p_user: { id: number, username: string, worlds_owne
         var world: { idcode: number, name: string, owner: number, date: string, dateactive: string, highscore: number } = worldsDB.get('worlds').find({ idcode: id }).value();
         var gameController = mainController.getGameController(id);
         if (!gameController && id != undefined) {
-            var scenario = makeScenario2();
             view = new GameView(scenario, id, ServerController.getInstance(path).getSocket());
             model = new ModelDev(scenario, view, scenarios);
             if (world.highscore) {
@@ -332,8 +283,8 @@ function openFacilitatorMain(p_user: { id: number, username: string, worlds_owne
         var world: { idcode: number, name: string, owner: number, date: string, dateactive: string, highscore: number } = worldsDB.get('worlds').find({ idcode: id }).value();
         var gameController = mainController.getGameController(id);
         if (!gameController && i != undefined) {
-            view = new GameView(scenario2, id, ServerController.getInstance(path).getSocket());
-            model = new ModelDev(scenario2, view, scenarios);
+            view = new GameView(scenario, id, ServerController.getInstance(path).getSocket());
+            model = new ModelDev(scenario, view, scenarios);
 
             console.log("create modelDev " + i + " for " + p_user.username + " for playing");
             view.setModel(model);
@@ -405,8 +356,8 @@ function createNewWorld(p_owner: { id: number, username: string, worlds_owned: n
 function openWorld(p_worldID, p_user: { id: number, username: string, }, p_permissions, p_res) {
     var gameController = mainController.getGameController(p_worldID);
     if (!gameController) {
-        view = new GameView(scenario2, p_worldID, ServerController.getInstance(path).getSocket());
-        model = new ModelDev(scenario2, view, scenarios);
+        view = new GameView(scenario, p_worldID, ServerController.getInstance(path).getSocket());
+        model = new ModelDev(scenario, view, scenarios);
         view.setModel(model);
         gameController = mainController.createGameController(ServerController.getInstance().getSocket(), p_worldID, model, usersDB, worldsDB);
     }
