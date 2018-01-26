@@ -1,5 +1,5 @@
 ﻿import { AvailableData, AirTemperature, ComfortableHousingTemperature, CO2Emissions, GDPperPerson } from './availableData';
-import { EnergySubsidies, InvestmentInRenewables } from './decision';
+import { EnergySubsidies, InvestmentInRenewables, NewDecision } from './decision';
 import { SocialKPI, EnvironmentalKPI, EconomicKPI, CombinedKPI } from './keyPerformanceIndicators';
 import { overlayInit } from '../Overlay'
 
@@ -14,6 +14,9 @@ export class GameLogic {
 
     private energySubsidies: Array<EnergySubsidies> = [];
     private investmentInRenewables: Array<InvestmentInRenewables> = [];
+
+    //For a new decision
+    private newDecision: Array<NewDecision> = [];
 
     private socialKPI = new SocialKPI();
     private environmentalKPI = new EnvironmentalKPI();
@@ -30,6 +33,8 @@ export class GameLogic {
             this.gdpPerPerson.push(new GDPperPerson(organizationID));
             this.energySubsidies.push(new EnergySubsidies(organizationID));
             this.investmentInRenewables.push(new InvestmentInRenewables(organizationID));
+            //Initilizing the new decision
+            this.newDecision.push(new NewDecision(organizationID));
         }
         this.ResetWorld();
     }
@@ -42,6 +47,8 @@ export class GameLogic {
             this.gdpPerPerson[organizationID].reset();
             this.energySubsidies[organizationID].reset();
             this.investmentInRenewables[organizationID].reset();
+            //Reset new decision
+            this.newDecision[organizationID].reset();
         }
         this.socialKPI.reset();
         this.environmentalKPI.reset();
@@ -67,6 +74,9 @@ export class GameLogic {
         //month 0
         this.energySubsidies[0].decisionValuePush = 0; this.investmentInRenewables[0].decisionValuePush = 0;
         this.energySubsidies[1].decisionValuePush = 0; this.investmentInRenewables[1].decisionValuePush = 0;
+        //Add initial values of the new decision
+        this.newDecision[0].decisionValuePush = 0;
+        this.newDecision[1].decisionValuePush = 0;
 
         this.socialKPI.CalculateScore(0, this.comfortableHousingTemperature);
         this.environmentalKPI.CalculateScore(0, this.co2Emissions);
@@ -74,13 +84,18 @@ export class GameLogic {
         this.combinedKPI.CalculateScore(0, this.socialKPI, this.environmentalKPI, this.economicKPI);
     }
 
-    CalculateMonthValues(fromMonth: number, toMonth: number, energySubsidiesDecision: Array<number>, investmentInRenewablesDecision: Array<number>) {
+    CalculateMonthValues(fromMonth: number, toMonth: number, energySubsidiesDecision: Array<number>, investmentInRenewablesDecision: Array<number>, aNewDecision?:Array<number>) {
         for (var month = fromMonth; month <= toMonth; month++) {
             for (var orgID = 0; orgID <= 1; orgID++) {
                 this.energySubsidies[orgID].decisionValuePush = energySubsidiesDecision[orgID];
                 this.investmentInRenewables[orgID].decisionValuePush = investmentInRenewablesDecision[orgID];
-                this.airTemperature[orgID].CalculateValue(month, this.environmentalKPI);
+                //add the value of the new decision
+                if (aNewDecision) {
+                    this.newDecision[orgID].decisionValuePush = aNewDecision[orgID];
+                    //this.gdpPerPerson[orgID].CalculateValue(month, this.energySubsidies[orgID], this.investmentInRenewables[orgID], this.comfortableHousingTemperature[orgID], this.newDecision[orgID]);
+                }
                 this.gdpPerPerson[orgID].CalculateValue(month, this.energySubsidies[orgID], this.investmentInRenewables[orgID], this.comfortableHousingTemperature[orgID]);
+                this.airTemperature[orgID].CalculateValue(month, this.environmentalKPI);
                 this.comfortableHousingTemperature[orgID].CalculateValue(month, this.energySubsidies[orgID], this.gdpPerPerson[orgID], this.airTemperature[orgID]);
                 this.co2Emissions[orgID].CalculateValue(month, this.energySubsidies[orgID], this.investmentInRenewables[orgID]);
             }

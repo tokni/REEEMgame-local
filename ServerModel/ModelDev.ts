@@ -117,7 +117,7 @@ export default class ModelDev {
                 this.m_readyForNextTick = false;
                 this.m_time++;
                 var dec: any = this.m_currentScenario.getDecisions();
-                this.m_currentScenario.getGameLogic().CalculateMonthValues(this.m_time, this.m_time, [dec.East.SubEast, dec.West.SubWest], [dec.East.ResEast, dec.West.ResWest]);
+                this.m_currentScenario.getGameLogic().CalculateMonthValues(this.m_time, this.m_time, [dec.East.SubEast, dec.West.SubWest], [dec.East.ResEast, dec.West.ResWest], [dec.East.newDec1, dec.West.newDec2]);
                 var east_emi = this.m_currentScenario.getGameLogic().getOverlayData('East', 'CO2Emission', this.m_time);
                 var west_emi = this.m_currentScenario.getGameLogic().getOverlayData('West', 'CO2Emission', this.m_time);
                 this.calculateEmisionOverlay(east_emi, west_emi);

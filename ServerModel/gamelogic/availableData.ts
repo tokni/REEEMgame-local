@@ -1,4 +1,4 @@
-﻿import { EnergySubsidies, InvestmentInRenewables } from './decision';
+﻿import { EnergySubsidies, InvestmentInRenewables, NewDecision } from './decision';
 import { EnvironmentalKPI } from './keyPerformanceIndicators';
 
 export abstract class AvailableData {
@@ -163,13 +163,24 @@ export class GDPperPerson extends AvailableData {
     private maxPastMonths: number = 6;
     private defaultGrowth: number = 0.002;
 
+    //New constant for the example with new decision
+    private newDecisionImpactOnNextYearGDP: number = -0.000025;
+
     CalculateValue(month: number, energySubsidies: EnergySubsidies, investmentInRenewables: InvestmentInRenewables,
-        comfortableHousingTemperature: ComfortableHousingTemperature) {
+        comfortableHousingTemperature: ComfortableHousingTemperature, newDecision?: NewDecision) {
         let gdpLastMonth = this.getMonthsValue(month - 1);
         let energySubsidiesLastMonth = energySubsidies.GetMonthsDecision(month - 1);
         let investmentInRenewableLastMonth = investmentInRenewables.GetMonthsDecision(month - 1);
         let fromMonth = ((month) > this.maxPastMonths) ? (month) - this.maxPastMonths : 0;
         let sixMonthMinComfort = comfortableHousingTemperature.GetPastMinimum(fromMonth, month - 1);
+
+        //Example of how the new decision could influence this indicator
+        //let newDecisionLastMonth = newDecision.GetMonthsDecision(month - 1);        
+        //let gdpValue = gdpLastMonth * (1 + newDecisionLastMonth * this.newDecisionImpactOnNextYearGDP
+        //    + investmentInRenewableLastMonth * this.renewInvestImpactOnNextYearsGDP
+        //    + (sixMonthMinComfort - this.sixMonthMinComfortImpactOnGDPthreshold) * this.sixMonthMinComfortImpactOnGDP)
+        //    * (1 + this.defaultGrowth);        
+
         let gdpValue = gdpLastMonth * (1 + energySubsidiesLastMonth * this.subsidiesImpactOnNextYearsGDP
             + investmentInRenewableLastMonth * this.renewInvestImpactOnNextYearsGDP
             + (sixMonthMinComfort - this.sixMonthMinComfortImpactOnGDPthreshold) * this.sixMonthMinComfortImpactOnGDP)

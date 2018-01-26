@@ -50,3 +50,8 @@ export class EnergySubsidies extends Decision {
 export class InvestmentInRenewables extends Decision {
 
 }
+
+//For a new decision
+export class NewDecision extends Decision {
+
+}

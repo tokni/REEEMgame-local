@@ -35,6 +35,10 @@ function makeScenario(): Scenario {
     var dec3: Decision = new Decision("SubWest", "Heating subsidies", 0, 0, 100, "E", 'Dec1 describe');
     var dec4: Decision = new Decision("ResWest", "Renewable investments", 0, 0, 100, "F", 'Dec2 describe');
 
+    //For a new decision
+    var newDecision1 = new Decision("newDec1", "New Decision", 0, 0, 100, "D", "New decision description");
+    var newDecision2 = new Decision("newDec2", "New Decision", 0, 0, 100, "D", "New decision description");
+
     var ind1: Indicator = new Indicator("CO<sub>2</sub>", 'CO2Emission', 't/person', 7.56, 2, 'Click to see the CO2 emissions (in annual tonnes per person) in the countries', 2);
     var ind2: Indicator = new Indicator("Comfort", 'comfort', "scale (0-100)", 12, 0, 'Descrip Comfort',2);
     var ind3: Indicator = new Indicator("Air Temperature", 'airtemperature', ' &#x2103;', 13, 0, 'Air Temperature description',2);
