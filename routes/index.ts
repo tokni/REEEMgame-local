@@ -392,7 +392,7 @@ function openWorld(p_worldID, p_user: { id: number, username: string, }, p_permi
         if (rol.getName() == currentRole)
             currentRole = rol;
     }
-    p_res.render('_coorDev', {
+    p_res.render('worldView', {
         title: 'PCon',
         username: p_user.username,
         permissions: p_permissions,

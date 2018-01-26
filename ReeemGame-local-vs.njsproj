@@ -56,7 +56,7 @@
     <Content Include="views\listOfWorlds.jade" />
     <Content Include="views\localLogin.jade" />
     <Content Include="views\localLoginFail.jade" />
-    <Content Include="views\_coorDev.jade" />
+    <Content Include="views\worldView.jade" />
     <Content Include="views\_layout.jade" />
     <TypeScriptCompile Include="public\express-publicDev\clientTypescript\ClientScenario.ts" />
     <TypeScriptCompile Include="public\express-publicDev\clientTypescript\Facilitator.ts" />
