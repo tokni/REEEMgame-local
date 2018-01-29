@@ -18,13 +18,13 @@ export class FacilitatorModel extends ClientGameModel {
             m_name: string, m_indicators: {}
         }[], status: ClientGameStatus
     }, p_history: {
-        m_scoreHistory: { combined: number[], social: number[], economic: number[], environmental: number[] },
+        m_scoreHistory: { combined: number[], social: number[], economic: number[], environmental: number[], newScore: number[] },
         m_indicatorHistory: {}[],
         m_decisionHistory: {}[],
         m_decisionsMadeHistory: { role: string, type: string, value: number }[][],
         m_overlayHistory: { e: number, h: number, a: number, g: number }[][];
     }, p_prevSimulations: {
-        m_scoreHistory: { combined: number[], social: number[], economic: number[], environmental: number[] },
+        m_scoreHistory: { combined: number[], social: number[], economic: number[], environmental: number[], newScore:number[] },
         m_indicatorHistory: {}[],
         m_decisionHistory: {}[],
         m_decisionsMadeHistory: { role: string, type: string, value: number }[][],

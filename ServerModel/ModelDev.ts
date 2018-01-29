@@ -73,7 +73,7 @@ export default class ModelDev {
     public getPrevSimulations() {
         return this.m_prevSimulations;
     }
-    public getScores(): { c: number, s: number, v: number, o: number } {
+    public getScores(): { c: number, s: number, v: number, o: number, newScore: number } {
         //c: combined score, s: social score, v: environmental score, o: economic score
         return this.m_currentScenario.getScore(this.m_time);
     }

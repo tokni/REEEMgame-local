@@ -94,9 +94,29 @@ export class EconomicKPI extends KeyPerformanceIndicators {
     }
 }
 
+//An example of a new score
+export class NewScoreKPI extends KeyPerformanceIndicators {
+
+    private benchmark: number = 50;
+
+    CalculateScore(month: number, co2Emissions: Array<CO2Emissions>, comfortableHousingTemperature: Array<ComfortableHousingTemperature>) {
+        let calculatedSum = 0;
+        for (var organizationID = 0; organizationID <= 1; organizationID++) {
+            calculatedSum += co2Emissions[organizationID].getMonthsValue(month) *2;
+            calculatedSum += comfortableHousingTemperature[organizationID].getMonthsValue(month);
+            calculatedSum = calculatedSum / 3;
+        }
+        let calculatedScore = calculatedSum / this.benchmark * this._multiplier;
+        let score = calculatedScore > 100 ? 100 : (calculatedScore < 0 ? 0 : calculatedScore);
+        this.scorePush = score;
+    }
+}
+
 export class CombinedKPI extends KeyPerformanceIndicators {
 
-    CalculateScore(month: number, social: SocialKPI, environmental: EnvironmentalKPI, economic: EconomicKPI) {
+    CalculateScore(month: number, social: SocialKPI, environmental: EnvironmentalKPI, economic: EconomicKPI, newScore?: NewScoreKPI) {
+        //Modified combined score to include a new score
+        //this.scorePush = (social.GetMonthsScore(month) + environmental.GetMonthsScore(month) + economic.GetMonthsScore(month) + newScore.GetMonthsScore(month)) / 4;
         this.scorePush = (social.GetMonthsScore(month) + environmental.GetMonthsScore(month) + economic.GetMonthsScore(month)) / 3;
     }
 }

@@ -29,7 +29,7 @@ export class ClientModel {
             m_name: string, m_indicators: {}
         }[]
     }, p_history: {
-        m_scoreHistory: { combined: number[], social: number[], economic: number[], environmental: number[] },
+        m_scoreHistory: { combined: number[], social: number[], economic: number[], environmental: number[], newScore:number[] },
         m_indicatorHistory: {}[],
         m_decisionHistory: {}[],
         m_decisionsMadeHistory: { role: string, type: string, value: number }[][],
@@ -51,7 +51,7 @@ export class ClientModel {
             m_name: string, m_indicators: {}
         }[], status: ClientGameStatus
     }, p_history: {
-        m_scoreHistory: { combined: number[], social: number[], economic: number[], environmental: number[] },
+        m_scoreHistory: { combined: number[], social: number[], economic: number[], environmental: number[], newScore: number[] },
         m_indicatorHistory: {}[],
         m_decisionHistory: {}[],
         m_decisionsMadeHistory: { role: string, type: string, value: number }[][],
@@ -95,17 +95,17 @@ export class ClientModel {
         return this.m_time;
     }
     public tick(p_time: number, p_data: {
-        t: number, s: { c: number, s: number, v: number, o: number }, i: {},
+        t: number, s: { c: number, s: number, v: number, o: number, newScore: number }, i: {},
         o: { e: number, h: number, a: number, g: number }[], d:
         { role: string, type: string, value: number }[]
-    }): void {
+    }): void { 
         if (this.m_time != p_time) {//Prevent same tick being added multiple times to history (this especially happens when creating the model)
             this.m_time = p_time;
             this.addToHistory(p_data);
         }
     }
     public addToHistory(p_data: {
-        t: number, s: { c: number, s: number, v: number, o: number }, i: {},
+        t: number, s: { c: number, s: number, v: number, o: number, newScore: number }, i: {},
         o: { e: number, h: number, a: number, g: number }[], d:
         { role: string, type: string, value: number }[]
     }) {

@@ -59,7 +59,7 @@ export abstract class ClientController {
                 }[], start: number,
                 step: number, duration: number, time: number, status: ClientGameStatus, score: { com: number, soc: number, env: number, eco: number }
             }, historyData: {
-                m_scoreHistory: { combined: number[], social: number[], economic: number[], environmental: number[] },
+                m_scoreHistory: { combined: number[], social: number[], economic: number[], environmental: number[], newScore: number[] },
                 m_indicatorHistory: {}[],
                 m_decisionHistory: {}[],
                 m_decisionsMadeHistory: { role: string, type: string, value: number }[][],

@@ -9,7 +9,8 @@ export class ScoreView {
         $("#socialScore").text("Social: " + Math.round(p_data.s));
         $("#economicScore").text("Economic: " + Math.round(p_data.o));
         $("#environmentalScore").text("Environmental: " + Math.round(p_data.v));
+
+        //Update new score
+        $("#newScore").text("New Score: " + Math.round(p_data.newScore));
     }
-
-
 }

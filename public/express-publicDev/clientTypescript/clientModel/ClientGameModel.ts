@@ -24,14 +24,14 @@ export class ClientGameModel extends ClientModel {
     },
         p_status,
         p_history: {
-        m_scoreHistory: { combined: number[], social: number[], economic: number[], environmental: number[] },
+        m_scoreHistory: { combined: number[], social: number[], economic: number[], environmental: number[], newScore: number[] },
         m_indicatorHistory: {}[],
         m_decisionHistory: {}[],
         m_decisionsMadeHistory: { role: string, type: string, value: number }[][],
         m_overlayHistory: { e: number, h: number, a: number, g: number }[][];
     },
         p_prevSimulations: {
-        m_scoreHistory: { combined: number[], social: number[], economic: number[], environmental: number[] },
+        m_scoreHistory: { combined: number[], social: number[], economic: number[], environmental: number[], newScore: number[] },
         m_indicatorHistory: {}[],
         m_decisionHistory: {}[],
         m_decisionsMadeHistory: { role: string, type: string, value: number }[][],
@@ -85,7 +85,7 @@ export class ClientGameModel extends ClientModel {
         }
     }
     public addToHistory(p_data: {
-        t: number, s: { c: number, s: number, v: number, o: number }, i: {},
+        t: number, s: { c: number, s: number, v: number, o: number ,newScore: number }, i: {},
         o: { e: number, h: number, a: number, g: number }[], d:
         { role: string, type: string, value: number }[]
     }) {
@@ -126,51 +126,56 @@ export class ClientGameModel extends ClientModel {
     }
     public reset(p_data: {
         t: number,
-        s: { c: number, s: number, v: number, o: number }, i: {},
+        s: { c: number, s: number, v: number, o: number, newScore: number }, i: {},
         o: { e: number, h: number, a: number, g: number }[], d: {}
     }): void {
         this.m_history.setDecisionHistory([this.m_currentDecisions]);
         this.m_history.setOverlayHistory([p_data.o]);
         this.m_history.setIndicatorHistory([p_data.i]);
         this.m_history.setDecisionMadeHistory([[]]);
-        this.m_history.setScoreHistory({ com: [p_data.s.c], soc: [p_data.s.s], env: [p_data.s.v], eco: [p_data.s.o] });
+        this.m_history.setScoreHistory({ com: [p_data.s.c], soc: [p_data.s.s], env: [p_data.s.v], eco: [p_data.s.o], newScore: [p_data.s.newScore] });
         this.m_time = p_data.t;
 
     }
     public getScoreDialogData(): any[] {
         if (this.m_history.getHistory().score.length > 0) {
-            var ret: any[] = [[]];
-            ret[0] = [
+            var data: any[] = [[]];
+            data[0] = [
                 { label: 'Time', type: 'date'},
                 { type: 'string', role: 'annotation' },
                 { type: 'string', role: 'annotationText', p: { html: true } },
                 { label: 'Combined' },
                 { label: 'Social' },
                 { label: 'Economic' },
-                { label: 'Environmental' }];
+                { label: 'Environmental' },
+                //Add label for the new score
+                //{label: 'New Score'}
+            ];
             for (var i = 0; i < this.m_history.getHistory().score.length; i++) {
                 var decisionTitle: string = null;
 
                 if (this.m_history.getHistory().decisionsMade[i].length > 0) {
                     decisionTitle = "Decision";
                 }
-                ret[i + 1] = [];
-                ret[i + 1][1] = decisionTitle;
-                ret[i + 1][2] = this.getDecisionString(this.m_history.getHistory().decisionsMade[i]);
+                data[i + 1] = [];
+                data[i + 1][1] = decisionTitle;
+                data[i + 1][2] = this.getDecisionString(this.m_history.getHistory().decisionsMade[i]);
                 //add timeScale
                 var startYear = 2017;
                 var startMonth = 5;//0 index. We start in june
                 var year = startYear + Math.floor((startMonth + i) / 12);
                 var month = Math.floor(((startMonth + i) % 12));
-                ret[i + 1][0] = new Date(year, month);
+                data[i + 1][0] = new Date(year, month);
                 //This could be optimized by transforming to columns and combining
-                ret[i + 1][3] = this.m_history.getHistory().score[i];
-                ret[i + 1][4] = this.m_history.getHistory().social[i];
-                ret[i + 1][5] = this.m_history.getHistory().economic[i]
-                ret[i + 1][6] = this.m_history.getHistory().environmental[i];
+                data[i + 1][3] = this.m_history.getHistory().score[i];
+                data[i + 1][4] = this.m_history.getHistory().social[i];
+                data[i + 1][5] = this.m_history.getHistory().economic[i]
+                data[i + 1][6] = this.m_history.getHistory().environmental[i];
+                //Add the new score
+                //data[i + 1][7] = this.m_history.getHistory().newScore[i];
             }
         }
-        return ret;
+        return data;
     }
     private getDecisionString(p_decisions:
         { role: string, type: string, value: number }[]): string {

@@ -67,13 +67,15 @@ export class Scenario {
         }
         return ret;
     }
-    public getScore(p_month): { c: number, s: number, v: number, o: number } {
+    public getScore(p_month): { c: number, s: number, v: number, o: number, newScore: number } {
         //c: combined score, s: social score, v: environmental score, o: economic score
         return {
             c: Math.round( this.m_gameLogic.getCombinedKPIAt(p_month) ),
             s: Math.round(this.m_gameLogic.getSocialKPIAt(p_month)),
             v: Math.round(this.m_gameLogic.getEnvironmentalKPIAt(p_month)),
-            o: Math.round(this.m_gameLogic.getEconomicKPIAt(p_month))
+            o: Math.round(this.m_gameLogic.getEconomicKPIAt(p_month)),
+            //For a new score
+            newScore: Math.round(this.m_gameLogic.getNewScoreKPIAt(p_month))
         }
     }
     public getIndicatorData(p_month) {

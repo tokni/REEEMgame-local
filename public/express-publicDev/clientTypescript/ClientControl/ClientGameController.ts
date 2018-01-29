@@ -33,6 +33,9 @@ export abstract class ClientGameController extends ClientController {
         $("#socialScore").on('click', this.handleSocialScore);
         $("#economicScore").on('click', this.handleEconomicalScore);
         $("#environmentalScore").on('click', this.handleEnvironmentalScore);
+        //For a new score button
+        $("#newScore").on('click', this.handleNewScore);
+
         $("#currentSimBtn").on('click', this.handleCurrentSim);
 
         //Must update decisions view 
@@ -84,7 +87,7 @@ export abstract class ClientGameController extends ClientController {
     }
     protected reset(p_data: {
         t: number,
-        s: { c: number, s: number, v: number, o: number }, i: {},
+        s: { c: number, s: number, v: number, o: number, newScore: number }, i: {},
         o: { e: number, h: number, a: number, g: number }[], d: {}
     }) {
         this.goToCurrentSim();
@@ -122,8 +125,13 @@ export abstract class ClientGameController extends ClientController {
     private handleEnvironmentalScore = () => {
         this.m_view.openDialog(DialogKeys.ScoreDialog, this.m_model.getScoreDialogData());
     }
+
+    //Handler for a new score
+    private handleNewScore = () => {
+        this.m_view.openDialog(DialogKeys.ScoreDialog, this.m_model.getScoreDialogData());
+    }
     protected onTick = (p_data: {
-        t: number, s: { c: number, s: number, v: number, o: number }, i: {},
+        t: number, s: { c: number, s: number, v: number, o: number, newScore: number }, i: {},
         o: { e: number, h: number, a: number, g: number }[], d:
         { role: string, type: string, value: number }[], dt: number
     }) => {
@@ -150,7 +158,7 @@ export abstract class ClientGameController extends ClientController {
     private onTimeChange = (p_data: {
         status: ClientGameStatus, data: {
             t: number,
-            s: { c: number, s: number, v: number, o: number }, i: {},
+            s: { c: number, s: number, v: number, o: number, newScore: number }, i: {},
             o: { e: number, h: number, a: number, g: number }[], d: {}
         }
     }) => {
