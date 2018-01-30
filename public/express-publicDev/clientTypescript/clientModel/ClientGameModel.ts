@@ -161,7 +161,7 @@ export class ClientGameModel extends ClientModel {
                 data[i + 1][1] = decisionTitle;
                 data[i + 1][2] = this.getDecisionString(this.m_history.getHistory().decisionsMade[i]);
                 //add timeScale
-                var startYear = 2017;
+                var startYear = this.getStartYear();
                 var startMonth = 5;//0 index. We start in june
                 var year = startYear + Math.floor((startMonth + i) / 12);
                 var month = Math.floor(((startMonth + i) % 12));

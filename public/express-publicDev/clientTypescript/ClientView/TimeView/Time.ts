@@ -4,13 +4,13 @@ declare var $: any;
 
 export class Time {
     private m_monthNames: String[] = ["June", "July", "August", "September", "October", "November", "December", "January", "February", "March", "April", "May"];
-    private m_startYear = 2017;
+    private m_startYear;
     private m_startMonth = 6;
     private m_model: ClientModel;
 
     constructor(p_model: ClientModel, p_startYear?, p_startMonth?) {
-        if (p_startYear)
-            this.m_startYear = p_startYear;
+        this.m_startYear = p_model.getStartYear();
+
         console.log("C Time");
         this.m_model = p_model;
         this.update(p_model.getTime());

@@ -114,9 +114,9 @@ export class GameLogic {
             this.economicKPI.CalculateScore(month, this.gdpPerPerson);
             //Calculating the new score
             this.newScoreKPI.CalculateScore(month, this.co2Emissions, this.comfortableHousingTemperature);
-            this.combinedKPI.CalculateScore(month, this.socialKPI, this.environmentalKPI, this.economicKPI, this.newScoreKPI);
+            //this.combinedKPI.CalculateScore(month, this.socialKPI, this.environmentalKPI, this.economicKPI, this.newScoreKPI);
 
-            //this.combinedKPI.CalculateScore(month, this.socialKPI, this.environmentalKPI, this.economicKPI);
+            this.combinedKPI.CalculateScore(month, this.socialKPI, this.environmentalKPI, this.economicKPI);
 
         }
         return this.combinedKPI.GetMonthsScore(toMonth)

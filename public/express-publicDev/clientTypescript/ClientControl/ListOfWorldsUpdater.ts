@@ -7,7 +7,7 @@ export class ListOfWorldsUpdater {
     private m_socket;
     private m_monthNames: String[] = ["June", "July", "August", "September", "October", "November", "December", "January", "February", "March", "April", "May"];
     private m_worldIds: number[];
-    private m_startYear: number = 2017;
+    private m_startYear: number;;
     private m_connection: MainScreenConnection;
     public constructor(p_connection, p_worlds: { name: string, idcode: string, status: number, time: number, score: number, highscore: number }[]) {
         this.m_connection = p_connection;
@@ -23,7 +23,8 @@ export class ListOfWorldsUpdater {
             }
         }
     }
-    private onConnectionReady = (p_data: { scenario: { roles: any[], duration: number, time: number, status: ClientGameStatus, score: { c: number, s: number, v: number, o: number }, highscore: number }, history: any, prevSimulations: any[], worldID: number }) => {
+    private onConnectionReady = (p_data: { scenario: { roles: any[], duration: number, start:number, time: number, status: ClientGameStatus, score: { c: number, s: number, v: number, o: number }, highscore: number }, history: any, prevSimulations: any[], worldID: number }) => {
+        this.m_startYear = p_data.scenario.start;
         this.m_connection.listenToTickEvent(this.tick, p_data.worldID);
         this.m_connection.listenToFinishEvent(this.onFinish, p_data.worldID);
         this.m_connection.listenToHighscoreEvent(this.handleHighScore, p_data.worldID);

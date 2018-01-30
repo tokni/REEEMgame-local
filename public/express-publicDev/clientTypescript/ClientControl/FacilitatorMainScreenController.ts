@@ -9,22 +9,23 @@ export enum Speed { x0, x1, x2, x4, x8, x16 }
 export class FacilitatorMainScreenController {
 
     private m_timeController: TimeController;
-    private m_worldIDs: number[];
+    private m_worlds: { ID: number, startYear: number }[];
     private m_path: string;
     private m_view: FacilitatorMainScreenView;
     private m_connection: MainScreenConnection;
     private m_currentSpeeds: Map<number, Speed> = new Map<number, Speed>();
     private m_scenarios: { id: string, name: string }[];
-    constructor(p_connection, p_worlds: { name: string, idcode: string, status: number, time: number, score: number, highscore: number, speed: Speed }[], p_path: string, p_scenarios: {id: string, name:string}[]) {
+    constructor(p_connection, p_worlds: { name: string, idcode: string, status: number, time: number, score: number, highscore: number, speed: Speed, startYear: number }[], p_path: string, p_scenarios: {id: string, name:string}[]) {
         this.m_path = p_path;
         this.m_view = new FacilitatorMainScreenView(p_scenarios);
         this.m_connection = p_connection;
-        this.m_worldIDs = [];
+        this.m_worlds = [];
         this.m_scenarios = p_scenarios;
         console.log("creating facilitatorMainScreenController");
         for (var i = 0; i < p_worlds.length; i++) {
             var w = p_worlds[i];
-            this.m_worldIDs.push(parseInt( w.idcode));
+            var world: { ID: number, startYear: number } = { ID: parseInt(w.idcode), startYear: w.startYear };
+            this.m_worlds.push(world);
             if (this.m_connection.isConnectionReady(parseInt(w.idcode))) {
                 console.log("Connection is ready");
                 this.onConnectionReady(this.m_connection.getConnectionReadyData(parseInt(w.idcode)));
@@ -37,22 +38,22 @@ export class FacilitatorMainScreenController {
         this.addHandlersToControls();
     }
 
-    protected onConnectionReady = (p_data: { scenario: { roles: any[], duration: number, time: number, status: ClientGameStatus, score: { c: number, s: number, v: number, o: number }, highscore: number}, history: any, prevSimulations: any[], worldID: number, speed: Speed }) => {
+    protected onConnectionReady = (p_data: { scenario: { roles: any[], duration: number, time: number, status: ClientGameStatus, score: { c: number, s: number, v: number, o: number }, highscore: number, start: number}, history: any, prevSimulations: any[], worldID: number, speed: Speed }) => {
         this.m_connection.listenToTickEvent(this.onTick, p_data.worldID);
         this.m_connection.listenToFinishEvent(this.onFinish, p_data.worldID);
         this.m_connection.listenToHighscoreEvent(this.onNewHighscore, p_data.worldID);
         this.m_connection.listenToTimeEvent(this.onTimeChangedFromServer, p_data.worldID);
         this.m_connection.listenToScenarioEvent(this.onScenarioChange, p_data.worldID);
         this.setSpeed(p_data.worldID, p_data.speed);
-        this.m_view.updateTime(p_data.worldID, p_data.scenario.time);
+        this.m_view.updateTime(p_data.worldID, p_data.scenario.time, p_data.scenario.start);
         this.m_view.updateStatus(p_data.worldID, p_data.scenario.status);
         this.m_view.updateButtons(p_data.worldID, p_data.scenario.status);
         this.m_view.updateScore(p_data.worldID, p_data.scenario.score.c);
         this.m_view.updateHighscore(p_data.worldID, p_data.scenario.highscore);
     }
     addHandlersToControls() {
-        for (var i = 0; i < this.m_worldIDs.length; i++) {
-            var id = this.m_worldIDs[i];
+        for (var i = 0; i < this.m_worlds.length; i++) {
+            var id = this.m_worlds[i].ID;
             //time buttons
             for (var j = 0; j < this.m_scenarios.length; j++) {
                 var s = this.m_scenarios[j];
@@ -95,9 +96,18 @@ export class FacilitatorMainScreenController {
         s: { c: number, s: number, v: number, o: number }, i: { },
         o: { e: number, h: number, a: number, g: number }[], d: { }
     } }) {
-        this.m_view.updateTime(p_data.worldID, p_data.data.t);
+        this.m_view.updateTime(p_data.worldID, p_data.data.t, this.getStartYearOfWorld(p_data.worldID));
         this.m_view.updateScore(p_data.worldID, p_data.data.s.c);
         this.stop(p_data.worldID);
+    }
+    private getStartYearOfWorld(p_id) {
+        for (var i = 0; i < this.m_worlds.length; i++) {
+            var w = this.m_worlds[i];
+            if (w.ID == p_id) {
+                return w.startYear;
+            }
+        }
+        return undefined;
     }
     private onNewHighscore=(p_data: { worldID: number, score: number })=> {
         this.m_view.updateHighscore(p_data.worldID, p_data.score);
@@ -122,7 +132,7 @@ export class FacilitatorMainScreenController {
         { role: string, type: string, value: number }[], dt: number
     }) => {
         console.log("Tick Rec: " );
-        this.m_view.updateTime(p_data.w, p_data.t);
+        this.m_view.updateTime(p_data.w, p_data.t, this.getStartYearOfWorld(p_data.w));
         this.m_view.updateScore(p_data.w, p_data.s.c);
         if (p_data.w == '35598' || p_data.w == '95112' || p_data.w == '65640')
             this.m_connection.sendTickReceivedToServer(p_data.dt);

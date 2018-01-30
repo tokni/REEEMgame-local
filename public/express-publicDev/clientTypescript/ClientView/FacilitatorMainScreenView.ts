@@ -4,7 +4,6 @@ declare var $: any;
 
 export class FacilitatorMainScreenView{
     private m_monthNames: String[] = ["June", "July", "August", "September", "October", "November", "December", "January", "February", "March", "April", "May"];
-    private m_startYear = 2017;
     private m_scenarios: { id: string, name: string }[];h = 6;
     private m_startMonth = 6;
     constructor(p_scenarios: { id: string, name: string }[]) {
@@ -57,8 +56,8 @@ export class FacilitatorMainScreenView{
         }
         $("#fastButton" + p_worldID).text(speed);
     }
-    public updateTime(p_id, p_time) {
-        var year = this.m_startYear + Math.floor((p_time + this.m_startMonth - 1) / 12);
+    public updateTime(p_id, p_time, p_startYear) {
+        var year = p_startYear + Math.floor((p_time + this.m_startMonth - 1) / 12);
         var month = Math.floor((p_time % 12));
         var monthName = this.m_monthNames[month];
         $('#month' + p_id).html(monthName);

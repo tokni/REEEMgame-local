@@ -52,7 +52,10 @@ function makeScenario(): Scenario {
     var role2: Role = new Role("West", [dec3, dec4], [ind5, ind7, ind8], 'AA6C39');
     var role3: Role = new Role("Observer", [], [ind1, ind2, ind3, ind4], '226666');
 
-    var ret: Scenario = new Scenario([role1, role2,role3], 2015, 1, 396, 2500, new GameLogic(2), "Scenario 2p","scenario2");
+    //For a new role
+    var newRole: Role = new Role("NewRole", [], [ind1, ind4], '226666');
+
+    var ret: Scenario = new Scenario([role1, role2,role3], 1999, 1, 396, 2500, new GameLogic(2), "Scenario 2p","scenario2");
     return ret;
 }
 
@@ -137,7 +140,8 @@ export function listOfWorlds(req: express.Request, res: express.Response) {
             owner: number,
             date: string,
             dateactive: string,
-            highscore: number
+            highscore: number,
+            startYear: number
         } = worldsFromJSON[i];
 
         var gameController = mainController.getGameController(world.idcode);
@@ -149,6 +153,7 @@ export function listOfWorlds(req: express.Request, res: express.Response) {
             }
             var statusString = "Paused"
             var time = 0;
+            var startYear = world.startYear;
         } else {
             var score = Math.round(gameController.getModel().getScores().c);
             var highscore = Math.round(gameController.getModel().getHighscore());
@@ -166,8 +171,8 @@ export function listOfWorlds(req: express.Request, res: express.Response) {
                     break;
             }
             var time = gameController.getModel().getTime();
+            var startYear = gameController.getModel().getStartYear();
         }
-        var startYear = 2017;
         var monthNames = ["June", "July", "August", "September", "October", "November", "December", "January", "February", "March", "April", "May"];
         var year = startYear + Math.floor(time / 12);
         var month = Math.floor((time % 12));
@@ -270,7 +275,7 @@ function openFacilitatorMain(p_user: { id: number, username: string, worlds_owne
             view.setModel(model);
             gameController = mainController.createGameController(ServerController.getInstance().getSocket(), id, model, usersDB, worldsDB);
         }
-        var w = { name: "", idcode: 0, status: "0", time: 0, score: 0, highscore: 0, speed: 0, scenario: "" };
+        var w = { name: "", idcode: 0, status: "0", time: 0, score: 0, highscore: 0, speed: 0, scenario: "", startYear: 0 };
         w.score = gameController.getModel().getScores().c;
         w.highscore = gameController.getModel().getHighscore();
         w.speed = gameController.getTimeController().getCurrentSpeed();
@@ -279,6 +284,7 @@ function openFacilitatorMain(p_user: { id: number, username: string, worlds_owne
         w.name = world.name;
         w.idcode = id;
         w.scenario = gameController.getModel().getScenario().getName();
+        w.startYear = gameController.getModel().getStartYear();
         worlds.push(w);
     }
     //Create a world for each world the user is playing
@@ -294,7 +300,7 @@ function openFacilitatorMain(p_user: { id: number, username: string, worlds_owne
             view.setModel(model);
             gameController = mainController.createGameController(ServerController.getInstance().getSocket(), id, model, usersDB, worldsDB);
         }
-        var w = { name: "", idcode: 0, status: "0", time: 0, score: 0, highscore: 0, speed: 0, scenario: "" };
+        var w = { name: "", idcode: 0, status: "0", time: 0, score: 0, highscore: 0, speed: 0, scenario: "", startYear: 0  };
         w.score = gameController.getModel().getScores().c;
         w.highscore = world.highscore;
         w.speed = gameController.getTimeController().getCurrentSpeed();
@@ -303,9 +309,10 @@ function openFacilitatorMain(p_user: { id: number, username: string, worlds_owne
         w.name = world.name;
         w.idcode = id;
         w.scenario = gameController.getModel().getScenario().getName();
+        w.startYear = gameController.getModel().getStartYear();
         worlds_playing.push(w);
     }
-    //If the play has at least one world then open the main screen
+    //If the participant has at least one world then open the main screen
     if (p_forceOpenMainScreen || worlds.length || worlds_playing.length) {
         var facilitatorID = p_user.id;
         var facilitatorName = p_user.username;
@@ -349,7 +356,8 @@ function createNewWorld(p_owner: { id: number, username: string, worlds_owned: n
         "owner": p_owner.id,
         "date": new Date(Date.now()),
         "dateactive": new Date(Date.now()),
-        "highscore": 0
+        "highscore": 0,
+        "startYear": scenario.getSimulationStart()
     }).write();
     //Update the worlds_owned list
     p_owner.worlds_owned.push(id);
@@ -408,6 +416,7 @@ function openWorld(p_worldID, p_user: { id: number, username: string, }, p_permi
         scores: scores,
         status: status,
         allParticipants: allParticipants,
-        userID: p_user.id
+        userID: p_user.id,
+        startYear: clientScenario.start
     });
 }

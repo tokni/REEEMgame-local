@@ -88,6 +88,9 @@ export class ClientModel {
     } {
         return this.m_history.getHistory();
     }
+    public getStartYear(): number {
+        return this.m_scenario.start;
+    }
     public getDuration(): number {
         return this.m_scenario.duration;
     }
