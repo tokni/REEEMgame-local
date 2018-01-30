@@ -55,7 +55,7 @@ function makeScenario(): Scenario {
     //For a new role
     var newRole: Role = new Role("NewRole", [], [ind1, ind4], '226666');
 
-    var ret: Scenario = new Scenario([role1, role2,role3], 1999, 1, 396, 2500, new GameLogic(2), "Scenario 2p","scenario2");
+    var ret: Scenario = new Scenario([role1, role2,role3], 2017, 100, 396, 2500, new GameLogic(2), "Scenario 2p","scenario2");
     return ret;
 }
 
