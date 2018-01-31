@@ -51,9 +51,7 @@ export class ParticipantsListView {
         var div: HTMLDivElement = document.createElement("div");
         if (document.getElementById("onlineParticipants")) {
             document.getElementById("onlineParticipants").appendChild(div);
-            console.log("Nick: " + p_profile.nickName);
             var nickShort = p_profile.nickName.replace(/\s+|\@|\./g, '');
-            console.log("Nick: " + nickShort);
             div.id = "div_participant_" + nickShort;
             div.classList.add("dropdown");
 

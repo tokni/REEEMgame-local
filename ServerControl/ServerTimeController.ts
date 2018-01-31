@@ -84,7 +84,6 @@ export default class ServerTimeController {
         this.m_serverSocket.emit("timeChangeFromServer" + this.m_worldID, data);
     }
     private oneTick(data) {
-        console.log("one tick on server");
         this.executeOneTick();
         this.m_serverSocket.emit("timeChangeFromServer" + this.m_worldID, data);
     }

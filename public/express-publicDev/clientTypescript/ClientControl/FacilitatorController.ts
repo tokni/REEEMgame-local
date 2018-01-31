@@ -77,8 +77,6 @@ export class FacilitatorController extends ClientGameController {
         this.handlersToChangeRoleControls();
     }
     private onProfileChange = (p_profile: { nickName: string, currentRole: string, pin: string }) => {
-        var i = 0;
-        console.log("Recived Profile: " + JSON.stringify( p_profile ));
         var newProfile = this.m_model.getOnlineProfileByNickName(p_profile.nickName);
         var nickShort = p_profile.nickName.replace(/\s+|\@|\./g, '');
         
@@ -90,8 +88,6 @@ export class FacilitatorController extends ClientGameController {
 
         (<FacilitatorMenuView>this.m_view.getMenuView()).getParticipantsView().update();
         this.handlersToChangeRoleControls();
-        var tmp23 = this.m_model.getProfile();
-        var tmp24 = p_profile.nickName;
         var modelName;
         if (this.m_model.getProfile().name)
             modelName = this.m_model.getProfile().name;
