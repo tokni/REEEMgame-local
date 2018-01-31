@@ -37,7 +37,7 @@ export class MainFacilitatorScreenUpdater {
         this.updateTime(data.id, data.time);
         this.updateScore(data.id, data.score);
     }
-    private mainInit = (data) => {  // data.time data.id
+    private mainInit = (data) => {// data.time data.id
         console.log("Init-time: " + data.time + "  tick-WID: " + data.id);
         this.updateTime(data.time, data.id);
     }

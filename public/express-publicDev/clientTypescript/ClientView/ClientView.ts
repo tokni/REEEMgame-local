@@ -5,12 +5,10 @@ import { Time } from "./TimeView/Time"
 import { ClientModel } from "../clientModel/ClientModel"
 import { Dialog } from "./Dialogs/Dialog"
 import { ScoreDialog } from "./Dialogs/ScoreDialog"
-import { VariableDialog } from "./Dialogs/VariableDialog"
 import { InviteDialog } from "./Dialogs/InviteDialog"
 import { ProfileChangedDialog } from "./Dialogs/ProfileChangedDialog"
 import { WelcomeDialog } from "./Dialogs/WelcomeDialog"
 import { ErrorDialog } from "./Dialogs/ErrorDialog"
-//import { DialogKeys}
 
 declare var $: any;
 export enum DialogKeys { ScoreDialog, ProfileChangedDialog, WelcomeDialog, VariableDialog, InviteDialog, ErrorDialog }
@@ -21,12 +19,10 @@ export abstract class ClientView {
     protected m_time: Time;
     protected m_dialogs: Map<DialogKeys, Dialog>
     protected m_roles;
-    
     protected m_model:ClientModel;
     private m_prevSimId: string = "prevSim";
     private m_prevSimText: string = "Simulation ";
-
-    //constructor(p_connection, p_roles, p_currentRole, p_map, p_model: ClientModel, p_profile, p_profiles) {
+    
     constructor(p_connection, p_roles, p_model: ClientModel, p_indicatorData) {
         this.m_dialogs = new Map<DialogKeys, Dialog>();
         this.m_connection = p_connection;
@@ -53,24 +49,15 @@ export abstract class ClientView {
                 // IE doesn't register the blur when sorting
                 // so trigger focusout handlers to remove .ui-state-focus
                 ui.item.children("p").triggerHandler("focusout");
-                //$(this).accordion("refresh"); this is problem
+                //$(this).accordion("refresh"); this is the problem
             }
         });
         
         this.m_time = new Time(p_model);
         this.m_dialogs.set(DialogKeys.ScoreDialog, new ScoreDialog());
-        this.m_dialogs.set(DialogKeys.VariableDialog, new VariableDialog());
         this.m_dialogs.set(DialogKeys.ProfileChangedDialog, new ProfileChangedDialog(this.m_model));
-        //this.m_dialogs.set(DialogKeys.WelcomeDialog, new WelcomeDialog(this.m_model.getProfile(), p_newParticipant, this.m_model));
-        //http://www.reeem.org#{path}enterWorld?worldPassword=#{world.idcode}
-        //this.m_connection.getPath();
-        //console.log("link to world: + " + "< a href = 'http://localhost:1337" + this.m_connection.getPath() + "enterWorld?worldPassword=" + this.m_connection.getWorldID() +"' > link < /a>");
-        //this.m_dialogs.set(DialogKeys.InviteDialog, new InviteDialog("<a href ='http://localhost:1337" + this.m_connection.getPath() +
-        //    "/?worldPassword=" + this.m_connection.getWorldID() + "'>http://localhost:1337" + this.m_connection.getPath() + "/?worldPassword=" + this.m_connection.getWorldID() + "</a>"));
-
         this.m_dialogs.set(DialogKeys.InviteDialog, new InviteDialog(this.m_connection.getWorldID(), this.m_connection.getPath()));
         this.m_dialogs.set(DialogKeys.ErrorDialog, new ErrorDialog());
-
     }
 
     openDialog(p_dialog: DialogKeys, p_data: any) {
@@ -122,6 +109,4 @@ export abstract class ClientView {
             $('#currentSimBtn').hide();
         }
     }
-    
-
 }

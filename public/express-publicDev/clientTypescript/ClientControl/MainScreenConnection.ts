@@ -1,10 +1,8 @@
-﻿
-declare var io: any;
+﻿declare var io: any;
 import { ClientGameStatus } from "../clientModel/GameStatus"
 
 export class MainScreenConnection {
     private m_connectionToServer;
-
     private m_connectionReadyData: Map<number, any> = new Map<number, any>();
     private m_connectionReady: Map<number, boolean> = new Map<number, boolean>();
 
@@ -18,7 +16,6 @@ export class MainScreenConnection {
         }
     }
     private onConnection = () => {
-
     }
     private onDisconnect = () => {
     }

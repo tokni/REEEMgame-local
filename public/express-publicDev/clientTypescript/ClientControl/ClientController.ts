@@ -5,8 +5,7 @@ import { ClientView } from "../ClientView/ClientView"
 import { ClientGameStatus } from "../clientModel/GameStatus"
 import { DialogKeys } from "../ClientView/ClientView"
 
-declare var $: any;
- 
+declare var $: any; 
 
 export abstract class ClientController {
     protected m_connection: Connection;
@@ -106,7 +105,6 @@ export abstract class ClientController {
     }
     protected goBackTo = (p_time: number) => {
         var data = this.m_model.getDataFromHistory(p_time);
-
         this.m_view.getMenuView().update(data);
         this.m_view.getMapView().update(data.o);
         this.m_view.getMenuView().getDecView().update(data.d);

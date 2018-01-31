@@ -1,7 +1,4 @@
-﻿
-// <reference path = "../Scripts/typings/pg/pg.d.ts"/>
-﻿// <reference path = "../ServerControl/ServerController.ts"/>
-import ServerController from "../ServerControl/ServerController";
+﻿import ServerController from "../ServerControl/ServerController";
 import MainController from "../ServerControl/MainController";
 import ModelDev from "../ServerModel/ModelDev";
 import GCDev from "../ServerControl/GameControllerDev";
@@ -111,8 +108,8 @@ export function deleteWorld(req: express.Request, res: express.Response) {
     //Remove this world from worlds_playing for all users
     var allUsers = usersDB.get('users').value();
     for (var i = 0; i < allUsers.length; i++) {
-        var user = allUsers[i];
-        var worldsPlaying: number[] = user.worlds_playing;
+        var u = allUsers[i];
+        var worldsPlaying: number[] = u.worlds_playing;
         var newWorldsPlaying: number[] = [];
         for (var j = 0; j < worldsPlaying.length; j++) {
             var world: number = worldsPlaying[j];
@@ -121,7 +118,7 @@ export function deleteWorld(req: express.Request, res: express.Response) {
             }
         }
         if (worldsPlaying.length != newWorldsPlaying.length) {
-            usersDB.get('users').find({ id: parseInt(user.id) }).set("worlds_playing", newWorldsPlaying).write();
+            usersDB.get('users').find({ id: parseInt(u.id) }).set("worlds_playing", newWorldsPlaying).write();
         }
     }
     //Remove world from worlds file
@@ -271,7 +268,6 @@ function openFacilitatorMain(p_user: { id: number, username: string, worlds_owne
             if (world.highscore) {
                 model.setHighscore(world.highscore)
             }
-            console.log("create modelDev " + id + " for " + p_user.username + " highscore: " + world.highscore);
             view.setModel(model);
             gameController = mainController.createGameController(ServerController.getInstance().getSocket(), id, model, usersDB, worldsDB);
         }

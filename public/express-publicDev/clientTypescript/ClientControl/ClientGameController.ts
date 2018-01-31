@@ -11,10 +11,8 @@ export abstract class ClientGameController extends ClientController {
     protected m_model: ClientGameModel;
     protected m_view: ClientGameView;
     
-
     constructor(p_connection, p_view, p_model, status: ClientGameStatus) {
         super(p_connection, p_view, p_model);
-        console.log("C ClientGameController");
         this.m_view = p_view;
         this.m_model = p_model;
         if (this.m_view.getCurrentRole() != 'facilitator')
@@ -77,7 +75,6 @@ export abstract class ClientGameController extends ClientController {
         this.m_view.getMenuView().showHistory(false);
         this.goToCurrentSim();
     }
-
     protected stop() {
         this.m_model.setStatus(ClientGameStatus.paused);
         this.m_view.getTimeView().changeTimeBarToSlider();
@@ -175,8 +172,6 @@ export abstract class ClientGameController extends ClientController {
         }
     }
     protected onConnectionReady = () => {
-        //super.onConnectionReady();
-        console.log("con ready");
         var tmp = this.m_model.getProfile();
         this.m_connection.sendInitToServer(this.m_model.getProfile());
         this.m_connection.listenToTickEvent(this.onTick);

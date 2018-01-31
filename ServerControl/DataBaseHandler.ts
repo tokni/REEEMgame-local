@@ -1,5 +1,4 @@
-﻿
-export default class ServerTimeController {
+﻿export default class ServerTimeController {
     private m_serverSocket;
     private m_worldID;
     private usersDB;

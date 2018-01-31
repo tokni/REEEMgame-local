@@ -14,27 +14,18 @@
       "name": "test",
       "owner": 1,
       "date": "2018-01-12T13:15:41.956Z",
-      "dateactive": "2018-01-30T11:50:01.595Z",
+      "dateactive": "2018-01-31T09:53:21.193Z",
       "highscore": 61,
       "startYear": 2017
     },
     {
-      "idcode": 23062,
-      "name": "world",
-      "owner": 1,
-      "date": "2018-01-15T12:20:40.723Z",
-      "dateactive": "2018-01-15T12:20:40.723Z",
+      "idcode": 88684,
+      "name": "new world",
+      "owner": 2,
+      "date": "2018-01-31T09:57:18.499Z",
+      "dateactive": "2018-01-31T09:57:18.499Z",
       "highscore": 0,
       "startYear": 2017
-    },
-    {
-      "idcode": 31587,
-      "name": "new world",
-      "owner": 1,
-      "date": "2018-01-30T10:54:31.779Z",
-      "dateactive": "2018-01-30T10:54:48.436Z",
-      "highscore": 0,
-      "startYear": 1999
     }
   ]
 }

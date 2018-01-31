@@ -6,9 +6,8 @@ export class ProfileChangedDialog extends Dialog {
     private containerDiv: HTMLDivElement;
     private textDiv: HTMLDivElement;
     private m_model: ClientModel;
-    constructor(p_model:ClientModel) {
+    constructor(p_model: ClientModel) {
         super();
-        console.log("C ProfileChamged Dialog");
         this.m_model = p_model;
         this.m_id = "profileChangedDialog";
         var mainDiv: HTMLDivElement = document.createElement("div");
@@ -34,13 +33,13 @@ export class ProfileChangedDialog extends Dialog {
         closeButton.id = "closeDialogButton";
         closeButton.innerHTML = "Ok, close";
         closeButton.classList.add("dialogButton")
-        closeButton.addEventListener("click",this.close);
+        closeButton.addEventListener("click", this.close);
 
         $("#" + this.m_id).hide();
     }
 
-    public close=(): void => {
-        $("#"+this.m_id).dialog("close");
+    public close = (): void => {
+        $("#" + this.m_id).dialog("close");
     }
     public open(p_data: { oldProfile: { nickName: string, pin: string, userType: "participant" | "facilitator", currentRole: string }, newProfile: { nickName: string, pin: string, userType: "participant" | "facilitator", currentRole: string } }): void {
         this.setText(p_data.oldProfile, p_data.newProfile);
@@ -52,7 +51,6 @@ export class ProfileChangedDialog extends Dialog {
             height: 250,
             resizable: false,
         });
-        //$("#" + this.m_id).dialog("open");
     }
     public getID(): string {
         return this.m_id;
@@ -62,32 +60,31 @@ export class ProfileChangedDialog extends Dialog {
         var newValue: string = p_newProfile.currentRole;
         var msg: string = "Your " + changed + " is " + newValue + ".";
         this.msgDiv.innerHTML = msg;
-        
-        if (changed == "role") {
 
+        if (changed == "role") {
             var roles: any[] = this.m_model.getScenario().roles;
             switch (p_newProfile.currentRole) {
                 case 'East':
                     if (roles.length == 3) {
                         this.textDiv.innerHTML = "You are EAST, and you can make decisions regarding heating subsidies and investments in renewable facilities in the east. "
                             + "Your challenge is - together with West - to maximize the combined SCORE in year 2050. "
-                            
+
                             + "The decisions that you make impact all the available variables. "
                             + "Good luck - and let's see how close to the perfect 100 score you manage to get together with West. You can re-read this message if you click on your name in the top left hand corner. ";
                     }
                     else {
                         this.textDiv.innerHTML = "You are EAST, and you can make decisions regarding heating subsidies and investments in renewable facilities in the east. "
                             + "Your challenge is - together with West, North and South - to maximize the combined SCORE in year 2050. "
-                           
+
                             + "The decisions that you make impact all the available variables. "
                             + "Good luck - and let's see how close to the perfect 100 score you manage to get together with West, North and South. You can re-read this message if you click on your name in the top left hand corner. ";
-}
+                    }
                     break;
                 case 'West':
                     if (roles.length == 3) {
                         this.textDiv.innerHTML = "You are WEST, and you can make decisions regarding heating subsidies and investments in renewable facilities in the west. "
                             + "Your challenge is - together with East - to maximize the combined SCORE in year 2050. "
-                           
+
                             + "The decisions that you make impact all the available variables. "
                             + "Good luck - and let's see how close to the perfect 100 score you manage to get together with East. You can re-read this message if you click on your name in the top left hand corner. ";
                     } else {
@@ -123,13 +120,11 @@ export class ProfileChangedDialog extends Dialog {
                             + "Their challenge is jointly to maximize the combined SCORE in year 2050. "
                             + "The decisions that they make impact all the available variables. "
                             + "Let's see how close to the perfect 100 score they manage to get. You can re-read this message if you click on your name in the top left hand corner. ";
-                    }}
+                    }
+            }
         }
     }
     public update() {
-
+        //nothing to update
     }
-
-
-
 }

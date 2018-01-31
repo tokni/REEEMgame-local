@@ -16,10 +16,8 @@ export class ClientModel {
         }[]
     };
     
-    
     protected m_history: ClientSimulationHistory;
     
-
     public constructor(p_scenario: {
         start: number,
         step: number,
@@ -37,10 +35,7 @@ export class ClientModel {
     }) {
         this.m_scenario = p_scenario;
         this.m_time = p_scenario.time;
-        
         this.m_history = new ClientSimulationHistory(p_history);
-        
-        
     }
     public changeScenario(p_scenario: {
         start: number,
@@ -124,9 +119,4 @@ export class ClientModel {
     } {
         return this.m_history.getDataFromHistory(p_time);
     }
-    
-    
-    
-    
-
 }

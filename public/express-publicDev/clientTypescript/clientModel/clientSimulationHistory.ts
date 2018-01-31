@@ -1,5 +1,4 @@
-﻿
-export class ClientSimulationHistory {
+﻿export class ClientSimulationHistory {
     private m_overlayHistory: { e: number, h: number, a: number, g: number }[][];
     private m_indicatorHistory: {}[];
     private m_decisionsMadeHistory: { role: string, type: string, value: number }[][] = [[]];
@@ -41,7 +40,6 @@ export class ClientSimulationHistory {
                 decisionsMade: this.m_decisionsMadeHistory,
                 overlays: this.m_overlayHistory
             };
-
         return history;
     }
 
@@ -92,7 +90,6 @@ export class ClientSimulationHistory {
         copy.m_decisionsMadeHistory = this.m_decisionsMadeHistory.slice();
         copy.m_overlayHistory = this.m_overlayHistory.slice();
         copy.m_indicatorHistory = this.m_indicatorHistory.slice();
-
         return copy;
     }
     public getDataFromHistory(p_time: number): {
@@ -107,11 +104,9 @@ export class ClientSimulationHistory {
             d: {},
             o: { e: number, h: number, a: number, g: number }[]
         } = {
-                //scores: { com: this.m_scoreHistory.combined[p_time], soc: this.m_scoreHistory.social[p_time], eco: this.m_scoreHistory.economic[p_time], env: this.m_scoreHistory.environmental[p_time] },
                 s: this.getScoresFromHistory(p_time),
                 i: this.m_indicatorHistory[p_time],
                 d: this.m_decisionHistory[p_time],
-                //overlays: this.m_overlayHistory[p_time]
                 o: this.getOverlaysFromHistory(p_time)
             }
         return historyData;

@@ -1,6 +1,6 @@
 ﻿import { ClientGameStatus } from "../clientModel/GameStatus"
-//declare var ClientGameStatus: any;
 declare var io: any;
+
 export class Connection {
     private m_worldID;
     private m_path;
@@ -16,7 +16,6 @@ export class Connection {
         this.m_connectionToServer.on('connect', this.onConnection);
         this.m_connectionToServer.on('disconnect', this.onDisconnect);
         this.m_connectionToServer.on('connectionReady' + this.m_worldID, this.onConnectionReady);
-        
     }                                   
     private onConnection = () => {
         
@@ -100,17 +99,7 @@ export class Connection {
     public listenToScenarioEvent(p_callback) {
         this.m_connectionToServer.on('scenarioChangeFromServer' + this.m_worldID, p_callback);
     }
-    public listenToPathwayChangeEvent(p_callback) {
-        this.m_connectionToServer.on('pathwayChangeFromServer', p_callback);
-    }
     public listenToVariableChangeEvent(p_callback) {
         this.m_connectionToServer.on('variableChangeFromServer', p_callback);
     }
-    public sendClickOnFeature(p_featureData) {
-        this.m_connectionToServer.emit("clickOnFeature" + this.m_worldID, p_featureData);
-    }
-    public listenToClickOnFeatureEvent(p_callback) {
-        this.m_connectionToServer.on('clickOnFeatureFromServer', p_callback);
-    }
-
 }

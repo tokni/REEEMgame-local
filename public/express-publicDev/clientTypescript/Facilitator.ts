@@ -6,7 +6,6 @@ import { TKN_Map } from "./leaflet/TKN_map"
 import { ClientGameStatus } from "./clientModel/GameStatus"
 import { FacilitatorModel } from "./clientModel/FacilitatorModel"
 
-
 export class Facilitator {
     private m_connection: Connection;
     private m_facilitatorView: FacilitatorView;
@@ -22,14 +21,12 @@ export class Facilitator {
             m_name: string, m_indicators: {}
         }[], status: ClientGameStatus
     };
-    //private m_map: TKN_Map;
     private m_participant;
     private m_profiles: { nickName: string, pin: string, currentRole: string }[] = [];
     private m_currentRole: string;
     private m_new: boolean;
 
     constructor(p_connection: Connection, p_participant, p_profiles, p_allProfiles, p_currentRole, p_new) {
-        console.log("C Facilitator");
         this.m_connection = p_connection;
         this.m_participant = p_participant;
         this.m_currentRole = p_currentRole;
@@ -55,28 +52,19 @@ export class Facilitator {
             }
         }
         if (this.m_connection.isConnectionReady()) {
-            console.log("Connection is ready");
             this.onConnectionReady(this.m_connection.getConnectionReadyData());
         } 
         else {
-            console.log("Facilitator listing to connection ready event");
             this.m_connection.listenToConnectionReadyEvent(this.onConnectionReady);
         }
-        
-        //this.m_map = new TKN_Map();
-
     }
     private onConnectionReady = (p_data) => {
-        console.log("ConnectionReady");
         if (!this.m_model) {
             var indicatorData = p_data.indicatorData;
             this.m_scenario = p_data.scenario ;
             this.m_model = new FacilitatorModel(this.m_participant, this.m_scenario, p_data.history, p_data.prevSimulations,this.m_profiles, this.m_offlineParticipants);
-            //this.m_facilitatorView = new FacilitatorView(this.m_connection, this.m_scenario.roles, this.m_map, this.m_model, this.m_participant, this.m_profiles, this.m_currentRole);
-            //this.m_facilitatorController = new FacilitatorController(this.m_connection, this.m_map, this.m_facilitatorView, this.m_model, this.m_scenario.status, this.m_participant, this.m_currentRole);
             this.m_facilitatorView = new FacilitatorView(this.m_connection, this.m_scenario.roles, this.m_model, this.m_participant, this.m_profiles, this.m_currentRole, this.m_new, indicatorData);
             this.m_facilitatorController = new FacilitatorController(this.m_connection, this.m_facilitatorView, this.m_model, this.m_scenario.status, this.m_participant, this.m_currentRole);
-
         }
     }
 }

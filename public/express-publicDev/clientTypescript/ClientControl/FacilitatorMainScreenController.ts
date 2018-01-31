@@ -7,7 +7,6 @@ declare var $: any;
 
 export enum Speed { x0, x1, x2, x4, x8, x16 }
 export class FacilitatorMainScreenController {
-
     private m_timeController: TimeController;
     private m_worlds: { ID: number, startYear: number }[];
     private m_path: string;
@@ -15,23 +14,21 @@ export class FacilitatorMainScreenController {
     private m_connection: MainScreenConnection;
     private m_currentSpeeds: Map<number, Speed> = new Map<number, Speed>();
     private m_scenarios: { id: string, name: string }[];
+
     constructor(p_connection, p_worlds: { name: string, idcode: string, status: number, time: number, score: number, highscore: number, speed: Speed, startYear: number }[], p_path: string, p_scenarios: {id: string, name:string}[]) {
         this.m_path = p_path;
         this.m_view = new FacilitatorMainScreenView(p_scenarios);
         this.m_connection = p_connection;
         this.m_worlds = [];
         this.m_scenarios = p_scenarios;
-        console.log("creating facilitatorMainScreenController");
         for (var i = 0; i < p_worlds.length; i++) {
             var w = p_worlds[i];
             var world: { ID: number, startYear: number } = { ID: parseInt(w.idcode), startYear: w.startYear };
             this.m_worlds.push(world);
             if (this.m_connection.isConnectionReady(parseInt(w.idcode))) {
-                console.log("Connection is ready");
                 this.onConnectionReady(this.m_connection.getConnectionReadyData(parseInt(w.idcode)));
             }
             else {
-                console.log("listening to connection ready event");
                 this.m_connection.listenToConnectionReadyEvent(this.onConnectionReady, parseInt(w.idcode));
             }
         }
@@ -131,13 +128,8 @@ export class FacilitatorMainScreenController {
         o: { e: number, h: number, a: number, g: number }[], d:
         { role: string, type: string, value: number }[], dt: number
     }) => {
-        console.log("Tick Rec: " );
         this.m_view.updateTime(p_data.w, p_data.t, this.getStartYearOfWorld(p_data.w));
         this.m_view.updateScore(p_data.w, p_data.s.c);
-        if (p_data.w == '35598' || p_data.w == '95112' || p_data.w == '65640')
-            this.m_connection.sendTickReceivedToServer(p_data.dt);
-        //this.m_connection.sendTickReceivedToServer({ t: p_data.t, w: p_data.w });
-
     }
     private setSpeed(p_worldID: number, p_speed: number) {
         var newSpeed: Speed;
@@ -200,22 +192,18 @@ export class FacilitatorMainScreenController {
         this.m_connection.sendTimeToServer(speedNumber, p_data.data.id);
     }
     private resetButtonPress = (p_event: { data: { id: number }}) => {
-        console.log("ResetButtonPress");
         this.stop(p_event.data.id);
         this.m_connection.sendTimeToServer(-10, p_event.data.id);
     }
     private startButtonPress = (p_event: { data: { id: number } }) => {
-        console.log("StartButtonPress");
         this.start(p_event.data.id);
         this.m_connection.sendTimeToServer(1, p_event.data.id);
     }
     private stopButtonPress = (p_event: { data: { id: number } }) => {
-        console.log("StopButtonPress");
         this.stop(p_event.data.id);
         this.m_connection.sendTimeToServer(0, p_event.data.id);
     }
     private speedButtonPress = (p_event: { data: { id: number, speed:number } }) => {
-        console.log("SpeedButtonPress");
         this.start(p_event.data.id);
         this.m_connection.sendTimeToServer(p_event.data.speed, p_event.data.id);
     }

@@ -3,7 +3,6 @@ import { OverlayDataView } from "./OverlayDataView"
 import { DecisionsView } from "./DecisionsView"
 import { ScoreView } from "./ScoreView"
 import { ClientModel } from "../../clientModel/ClientModel"
-
 declare var $: any;
 
 export class MenuView {
@@ -44,9 +43,6 @@ export class MenuView {
     }
     public getProfileView() {
         return this.m_profile;
-    }
-    public getScoreDialogData() {
-        //return this.m_score.getScoreVizArray();
     }
     public getDecView(): DecisionsView {
         return this.m_decisions;

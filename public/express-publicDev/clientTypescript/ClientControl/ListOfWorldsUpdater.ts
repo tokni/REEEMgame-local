@@ -11,30 +11,22 @@ export class ListOfWorldsUpdater {
     private m_connection: MainScreenConnection;
     public constructor(p_connection, p_worlds: { name: string, idcode: string, status: number, time: number, score: number, highscore: number }[]) {
         this.m_connection = p_connection;
-        console.log("creating facilitatorMainScreenController");
         for (var w of p_worlds) {
             if (this.m_connection.isConnectionReady(parseInt(w.idcode))) {
-                console.log("Connection is ready");
                 this.onConnectionReady(this.m_connection.getConnectionReadyData(parseInt(w.idcode)));
             }
             else {
-                console.log("listening to connection ready event");
                 this.m_connection.listenToConnectionReadyEvent(this.onConnectionReady, parseInt(w.idcode));
             }
         }
     }
-    private onConnectionReady = (p_data: { scenario: { roles: any[], duration: number, start:number, time: number, status: ClientGameStatus, score: { c: number, s: number, v: number, o: number }, highscore: number }, history: any, prevSimulations: any[], worldID: number }) => {
+    private onConnectionReady = (p_data: { scenario: { roles: any[], duration: number, start: number, time: number, status: ClientGameStatus, score: { c: number, s: number, v: number, o: number }, highscore: number }, history: any, prevSimulations: any[], worldID: number }) => {
         this.m_startYear = p_data.scenario.start;
         this.m_connection.listenToTickEvent(this.tick, p_data.worldID);
         this.m_connection.listenToFinishEvent(this.onFinish, p_data.worldID);
         this.m_connection.listenToHighscoreEvent(this.handleHighScore, p_data.worldID);
         this.m_connection.listenToTimeEvent(this.onTimeChangedFromServer, p_data.worldID);
         this.m_connection.listenToLastActiveEvent(this.onLastActiveChanged, p_data.worldID);
-        //this.updateTime(p_data.worldID, p_data.scenario.time);
-        //this.updateStatus(p_data.worldID, p_data.scenario.status);
-        //this.updateScore(p_data.worldID, p_data.scenario.score.com);
-        //this.updateHighScore(p_data.worldID, p_data.scenario.highscore);
-        //this.registerUpdates();
     }
     private onLastActiveChanged = (p_data: { worldID: number, date: Date }) => {
         var lastActive = new Date(p_data.date);
@@ -68,13 +60,10 @@ export class ListOfWorldsUpdater {
         this.updateHighScore(data.worldID, data.score);
         this.registerUpdates();
     }
-
     private tick = (data) => {
-        console.log("tick-time: " + data.t + "  tick-WID: " + data.w);
         this.updateTime(data.w, data.t);
         this.updateScore(data.w, data.s.c);
         this.registerUpdates();
-        
     }
     public updateTime(p_id, p_time) {
         var year = this.m_startYear + Math.floor(p_time / 12);
@@ -82,10 +71,8 @@ export class ListOfWorldsUpdater {
         var monthName = this.m_monthNames[month];
         $('#month' + p_id).html(monthName);
         $('#year' + p_id).html(year);
-        
     }
     public updateScore(p_id, p_score): void {
-        console.log("up score" + p_score);
         $("#score" + p_id).text(Math.round(p_score));
     }
     public updateStatus(p_id, p_status): void {
@@ -95,25 +82,19 @@ export class ListOfWorldsUpdater {
                 status = "Running";
                 break;
             case ClientGameStatus.finished:
-                status= "Finished";
+                status = "Finished";
                 break;
             default:
                 status = "Paused";
                 break;
-                    
         }
         $("#status" + p_id).text(status);
     }
     public updateHighScore(p_id, p_score): void {
         $("#highscore" + p_id).text(Math.round(p_score));
     }
-
     private registerUpdates() {
-       // $("#worldsTable").trigger('destroyPager');
         $("#worldsTable").trigger("update");
         $("#worldsTable").trigger("appendCache");
-        //$("#worldsTable").tablesorterPager({container: $("#pager") });
-
-        
     }
 }

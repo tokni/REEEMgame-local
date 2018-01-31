@@ -43,7 +43,6 @@ export default class GameControllerDev {
             }
         });
         clientSocket.on("initFromClient" + this.m_worldID, (data) => {
-            console.log("init " + data.nickName + " clientSocketID: " + clientSocket.id);
             clientSocket.nickname = data.name;
             clientSocket.worldID = this.m_worldID;
             clientSocket.permissions = data.permissions;
@@ -58,7 +57,6 @@ export default class GameControllerDev {
                     initData = this.createMainInitData();
                 }
             }
-            console.log("emiting connection ready " + this.m_worldID);
             this.m_serverSocket.emit('connectionReady' + this.m_worldID, initData);
         }
         clientSocket.on("tickReceivedFromClient" + this.m_worldID, (data) => {
@@ -68,7 +66,6 @@ export default class GameControllerDev {
         });
     }
     private onDisconnect = (clientSocket) => {
-        console.log("onDisconnect " + clientSocket.nickname);
         var participant: { nickName: string, pin: string, currentRole: string } = { nickName: clientSocket.nickname, pin: clientSocket.pin, currentRole: undefined };
         var profile: Profile = this.m_model.removeOnlineParticipant(participant.nickName);
         if (profile) {
@@ -96,7 +93,6 @@ export default class GameControllerDev {
         return this.m_model;
     }
     private handleInit = (p_data: { name: string, currentRole: string, permissions: { player: boolean, controller: boolean } }, p_clientSocket) => {
-        console.log("initDataxx: " + JSON.stringify(p_data) + "  From: " + p_clientSocket.id);
         this.m_serverSocket.emit('participantEnteredFromServer' + this.m_worldID, p_data);
         this.m_model.getView().tick();
     }

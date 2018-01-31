@@ -3,7 +3,6 @@ import { ClientModel } from "./ClientModel"
 import { ClientSimulationHistory} from "./ClientSimulationHistory"
 
 export class ClientGameModel extends ClientModel {
-    //private m_profile: { nickName: string, pin: string, userType: "participant" | "facilitator", currentRole: string };
     private m_profile: { name: string, currentRole: string, permissions: { player: boolean, controller: boolean } };
     private m_status: ClientGameStatus;
     private m_prevSimulations: ClientSimulationHistory[];
@@ -94,7 +93,6 @@ export class ClientGameModel extends ClientModel {
         this.m_history.addToOverlayHistory(p_data.o);
         this.m_history.addToDecisionHistory(this.m_currentDecisions);
         this.m_history.addToDecisionMadeHistory(p_data.d);
-
     }
     public updateDecisions(p_dec: { role: string, type: string, value: number }[]) {
         var newDecisions: {} = {};//Cannot just update currentDecisions directly because then it would update all decisions in decisionHistory

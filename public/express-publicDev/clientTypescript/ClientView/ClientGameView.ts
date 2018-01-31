@@ -4,9 +4,7 @@ import { ClientModel } from "../clientModel/ClientModel"
 import { ScoreDialog } from "./Dialogs/ScoreDialog"
 import { ClientGameStatus } from "../clientModel/GameStatus"
 import { WelcomeDialog } from "./Dialogs/WelcomeDialog"
-
 declare var $: any;
-
 
 export abstract class ClientGameView extends ClientView {
     protected m_model: ClientGameModel
@@ -21,7 +19,6 @@ export abstract class ClientGameView extends ClientView {
         var scoreDialog: ScoreDialog = <ScoreDialog>this.m_dialogs.get(DialogKeys.ScoreDialog);
         //If score dialog has been initialised and is open
         if (scoreDialog && $("#" + scoreDialog.getID()).hasClass("ui-dialog-content") && $("#" + scoreDialog.getID()).dialog('isOpen') == true) {
-
             scoreDialog.update(this.m_model.getScoreDialogData());
         }
     }

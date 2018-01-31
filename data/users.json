@@ -5,9 +5,7 @@
       "username": "user1",
       "password": "123",
       "worlds_owned": [
-        92878,
-        23062,
-        31587
+        92878
       ],
       "worlds_playing": []
     },
@@ -16,7 +14,8 @@
       "username": "user2",
       "password": "456",
       "worlds_owned": [
-        38227
+        38227,
+        88684
       ],
       "worlds_playing": [
         92878

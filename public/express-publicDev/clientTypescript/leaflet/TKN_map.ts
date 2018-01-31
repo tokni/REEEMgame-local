@@ -111,15 +111,12 @@ export class TKN_Map {
         this.m_layer = Layer.none; 
         this.m_map = L.map('pMap', { doubleClickZoom: false}).setView([51.505, 16.09], 4);
         this.m_map.on('update', (e) => {
-            var tmpTime = Date.now();
             this.m_month = e.month;
             this.m_currentUnit = e.unit;
             this.m_variableName = e.var_name;
             this.m_pathway_name = e.pathway_name;
+            this.m_global_info.update({ path_name: this.m_pathway_name, var_name: this.m_variableName });
             
-                this.m_global_info.update({ path_name: this.m_pathway_name, var_name: this.m_variableName });
-            
-            var tmp = this.m_geoJSON_data;
             this.m_geojsonHousing.clearLayers();
             this.m_geojsonHousing.addData(this.m_geoJSON_data);
             this.m_geojsonEmision.clearLayers();
@@ -128,7 +125,6 @@ export class TKN_Map {
             this.m_geojsonGNP.addData(this.m_geoJSON_data);
             this.m_geojsonTemp.clearLayers();
             this.m_geojsonTemp.addData(this.m_geoJSON_data);
-            var tmpTime = Date.now();
             if (this.m_currentLayer) {
                 this.m_map.removeLayer(this.m_currentLayer);
                 this.m_map.addLayer(this.m_currentLayer);
@@ -154,13 +150,11 @@ export class TKN_Map {
 
             this._div_content_path = L.DomUtil.create('div', 'eu28_info_content_path', this._div_content);
             this._div_path_comment = L.DomUtil.create('button', 'eu28_info_content_path_comment', this._div_content);
-            L.DomEvent.on(this._div_path_comment, 'click', self.on_pathway_comment);
             this._div_path_comment.innerHTML = 'Comment on Pathway';
             L.DomUtil.addClass(this._div_path_comment, "hide_button");
 
             this._div_content_var = L.DomUtil.create('div', 'eu28_info_content_var', this._div_content);
             this._div_var_comment = L.DomUtil.create('button', "eu28_info_content_var_comment", this._div_content);
-            L.DomEvent.on(this._div_var_comment, 'click', self.on_variable_comment);
             this._div_var_comment.innerHTML = 'Comment on Indicator';
             L.DomUtil.addClass(this._div_var_comment, "hide_button");
            
@@ -527,45 +521,7 @@ public updateCurrentLayer(p_month: number, p_pathway_name?, p_unit?, var_name?) 
         var tmp = 0;
         console.log("PAtheqay name: " + p_pathway_name);
     }
-    public onBrowserClick = (e) => {
-        console.log("sc: " + JSON.stringify(e.target.feature.id));
-        this.m_connection.sendClickOnFeature({ id: e.target.feature.id, name: e.target.feature.properties.name });
-    }
-    public onBrowserDblclick = (e) => {
-        e.originalEvent.preventDefault();
-        console.log("dc: " + e.target);
-    }
-    public onBrowserContextmenu = (e) => {
-        console.log("cm: " + e.target);
-    }
     public setConnection(p_connection) {
         this.m_connection = p_connection;
-    }
-    private on_pathway_comment = () => {
-        console.log("Pathway Comment");
-        console.log(this.m_pathway_name);
-        var strWindowFeatures = "location=yes,height=570,width=720,scrollbars=yes,status=yes";
-        var URL = "http://game.reeem.org:9000/questions/show/5a339a5ce614d73301ce95a2";
-        var win = window.open(URL, "_blank", strWindowFeatures);
-
-    }
-    private on_variable_comment = () => {
-        console.log("variable Comment");
-        console.log(this.m_variableName);
-        var strWindowFeatures = "location=yes,height=570,width=720,scrollbars=yes,status=yes";
-        var URL;
-        switch (this.m_variableName) {
-            case "Import fuel prices": URL = "http://game.reeem.org:9000/questions/show/5a311299496d522774105880"; break;
-            case "Maximum electricity production of renewables": URL = "http://game.reeem.org:9000/questions/show/5a313769496d522774105897"; break;
-            case "Minimal electricity production of renewables": URL = "http://game.reeem.org:9000/questions/show/5a31379d496d52277410589a"; break;
-            case "Potentials of biomass": URL= "http://game.reeem.org:9000/questions/show/5a3112ed496d522774105882"; break;
-            case "Service demands agriculture": URL = "http://game.reeem.org:9000/questions/show/5a313573496d522774105888"; break;
-            case "Service demands commercial": URL = "http://game.reeem.org:9000/questions/show/5a313620496d52277410588b"; break;
-            case "Service demands industry": URL = "http://game.reeem.org:9000/questions/show/5a313678496d52277410588e"; break;
-            case "Service demands residential": URL = "http://game.reeem.org:9000/questions/show/5a3136db496d522774105891"; break;
-            case "Service demands transport": URL = "http://game.reeem.org:9000/questions/show/5a31371e496d522774105894"; break;
-
-        }
-        var win = window.open(URL, "_blank", strWindowFeatures);
     }
 }

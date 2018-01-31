@@ -93,7 +93,6 @@
     <TypeScriptCompile Include="public\express-publicDev\clientTypescript\clientModel\clientSimulationHistory.ts" />
     <TypeScriptCompile Include="public\express-publicDev\clientTypescript\clientModel\FacilitatorModel.ts" />
     <TypeScriptCompile Include="public\express-publicDev\clientTypescript\clientModel\GameStatus.ts" />
-    <TypeScriptCompile Include="public\express-publicDev\clientTypescript\clientModel\PrevSimulation.ts" />
     <TypeScriptCompile Include="public\express-publicDev\clientTypescript\ClientView\ClientGameView.ts" />
     <TypeScriptCompile Include="public\express-publicDev\clientTypescript\ClientView\ClientView.ts" />
     <TypeScriptCompile Include="public\express-publicDev\clientTypescript\ClientView\FacilitatorMainScreenView.ts" />
@@ -115,7 +114,6 @@
     <TypeScriptCompile Include="public\express-publicDev\clientTypescript\ClientView\Dialogs\InviteDialog.ts" />
     <TypeScriptCompile Include="public\express-publicDev\clientTypescript\ClientView\Dialogs\ProfileChangedDialog.ts" />
     <TypeScriptCompile Include="public\express-publicDev\clientTypescript\ClientView\Dialogs\ScoreDialog.ts" />
-    <TypeScriptCompile Include="public\express-publicDev\clientTypescript\ClientView\Dialogs\VariableDialog.ts" />
     <TypeScriptCompile Include="public\express-publicDev\clientTypescript\ClientView\Dialogs\WelcomeDialog.ts" />
     <TypeScriptCompile Include="public\express-publicDev\clientTypescript\ClientView\MapView\MapView.ts" />
     <TypeScriptCompile Include="public\express-publicDev\clientTypescript\ClientView\MenuView\DecisionsView.ts" />

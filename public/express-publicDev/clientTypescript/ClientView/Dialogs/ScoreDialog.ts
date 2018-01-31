@@ -1,8 +1,7 @@
-﻿
-declare var $: any;
+﻿declare var $: any;
 import { Dialog } from "./Dialog"
 
-export class ScoreDialog extends Dialog{
+export class ScoreDialog extends Dialog {
     private m_mainDiv: HTMLDivElement;
     constructor() {
         super();
@@ -47,7 +46,7 @@ export class ScoreDialog extends Dialog{
             width: 1000,
             height: 600,
         });
-        
+
     }
     public close(): void {
         console.log("close dialog");
@@ -57,7 +56,7 @@ export class ScoreDialog extends Dialog{
         return this.m_id;
     }
     public update(p_data: any[][]): void {
-        if (!p_data || p_data.length<3) {
+        if (!p_data || p_data.length < 3) {
             $("#msgDiv").show();
             $("#chartDiv").hide();
         } else {
@@ -65,7 +64,6 @@ export class ScoreDialog extends Dialog{
             $("#chartDiv").show();
             var scoreChart: google.visualization.LineChart = new google.visualization.LineChart(document.getElementById("chartDiv"));
             var scoreChartData = google.visualization.arrayToDataTable(p_data);
-
 
             var scoreChartOptions: google.visualization.LineChartOptions = {
                 hAxis: {
@@ -79,10 +77,10 @@ export class ScoreDialog extends Dialog{
                 lineWidth: 1,
                 height: 400,
                 width: 900,
-                
-                 tooltip: { isHtml: true } }
-            scoreChart.draw(scoreChartData, scoreChartOptions);
-            }
-        }
 
+                tooltip: { isHtml: true }
+            }
+            scoreChart.draw(scoreChartData, scoreChartOptions);
+        }
+    }
 }

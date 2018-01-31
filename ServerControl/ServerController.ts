@@ -1,5 +1,4 @@
-﻿ 
-import sass = require('node-sass');
+﻿import sass = require('node-sass');
 import sass_middleware = require('node-sass-middleware');
 export enum GameStatus { running, paused };
 
@@ -14,8 +13,6 @@ export default class ServerController {
     private m_path;
     private m_open;
     static m_path: string;
-    private rt = 0;
-
     private static ms_instance: ServerController;
 
     constructor(p_path: string) {

@@ -9,7 +9,6 @@ export class TimeHandler {
     private m_worldID;
     private m_status: ClientGameStatus;
     public constructor(p_worldID: number, p_status: ClientGameStatus, p_socket, p_facilitatorMainScreenUpdater: MainFacilitatorScreenUpdater) {
-        console.log("TimeHandler for "+p_worldID + " created");
         this.m_worldID = p_worldID;
         this.m_facilitatorMainScreenUpdater = p_facilitatorMainScreenUpdater;
         this.m_socket = p_socket;
@@ -19,19 +18,16 @@ export class TimeHandler {
         this.m_socket.on('stop' + this.m_worldID, this.stop);
     }
     public startTime = () => {
-        console.log("emit start time from Timehandler");
         var data = 'startE';
         this.m_socket.emit('startTime' + this.m_worldID, data);
     }
     public stopTime = () => {
         this.updateStatus(ClientGameStatus.paused);
-        console.log("emit stop time");
         var data = 'stopE';
         this.m_socket.emit('stopTime' + this.m_worldID, data);
     }
     public resetTime = () => {
         this.updateStatus(ClientGameStatus.paused);
-        console.log("emit reset");
         this.m_socket.emit('reset' + this.m_worldID);
     }
     public fastForward = () => {
@@ -61,11 +57,9 @@ export class TimeHandler {
         this.updateStatus(ClientGameStatus.paused);
     }
     public end = () => {
-        console.log("end");
         this.updateStatus(ClientGameStatus.finished);
     }
     public restart = (data) => {
-        console.log("restart");
         this.updateStatus(ClientGameStatus.paused);
         this.m_facilitatorMainScreenUpdater.updateTime(data.id, data.time);
         this.m_facilitatorMainScreenUpdater.updateScore(data.id, data.comb);

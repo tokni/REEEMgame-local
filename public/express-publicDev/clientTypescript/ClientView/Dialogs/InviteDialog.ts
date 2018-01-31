@@ -6,7 +6,6 @@ export class InviteDialog extends Dialog {
     private m_variableName: string = "Variable";
     constructor(p_worldID, p_path) {
         super();
-        console.log("C InviteDialog");
         this.m_id = "inviteDialog";
         this.m_mainDiv = document.createElement("div");
         $('body').append(this.m_mainDiv);
@@ -22,7 +21,6 @@ export class InviteDialog extends Dialog {
         contentDiv.style.paddingBottom = "10px";
         this.m_mainDiv.appendChild(contentDiv);
 
-
         var link = document.createElement("a");
         link.href = p_path + '/?worldPassword=' + p_worldID;
         link.innerHTML = location.host + p_path + '/?worldPassword=' + p_worldID;
@@ -34,12 +32,8 @@ export class InviteDialog extends Dialog {
         button.innerHTML = "Copy link to clipboard";
         button.classList.add("pull-right");
         button.classList.add("btn-xs");
-        
-
-        
         this.m_mainDiv.appendChild(button);
         
-
         var closeButton: HTMLButtonElement = document.createElement("button");
         this.m_mainDiv.appendChild(closeButton);
         closeButton.id = "closeInviteDialogButton";
@@ -80,31 +74,9 @@ export class InviteDialog extends Dialog {
         return this.m_id;
     }
     public update(p_data: any[][]): void {
-        //console.log("VariableDialog update");
-        //if (!p_data) {
-        //    $("#msgVariableDiv").show();
-        //    $("#variableChartDiv").hide();
-        //} else {
-        //    $("#msgVariableDiv").hide();
-        //    $("#variableChartDiv").show();
-        //    $("#variableDialogHeader").html(p_data[0][2] + " in " + p_data[0][3]);
-        //    var variableChartOptions: google.visualization.PieChartOptions = {
-        //        title: p_data[0][0] + " " + p_data[0][1],
-        //        chartArea: { left: '15%', top: '15%', width: '65%', height: '70%' },
-        //        height: 400,
-        //        width: 900,
-        //        is3D: true,
-        //        tooltip: { isHtml: true }
-        //    }
-        //    p_data.splice(0, 1);
-        //    var variableChart: google.visualization.LineChart = new google.visualization.PieChart(document.getElementById("variableChartDiv"));
-        //    var variableChartData = google.visualization.arrayToDataTable(p_data);
-        //    variableChart.draw(variableChartData, variableChartOptions);
-        //}
+        //nothing to update
     }
     public setVariableName(p_name) {
         this.m_variableName = p_name;
     }
-    
-
 }

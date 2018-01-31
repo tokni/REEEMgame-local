@@ -7,9 +7,7 @@ export class FacilitatorMainScreenView{
     private m_scenarios: { id: string, name: string }[];h = 6;
     private m_startMonth = 6;
     constructor(p_scenarios: { id: string, name: string }[]) {
-        console.log("C FacilitatorMainScreenView");
         this.m_scenarios = p_scenarios;
-
     }
     public updateButtons(p_worldID: number, p_status: ClientGameStatus) {
         switch (p_status) {
@@ -35,7 +33,7 @@ export class FacilitatorMainScreenView{
     public updateSpeedButton(p_currentSpeed: Speed, p_worldID: number) {
         var speed: string;
         switch (p_currentSpeed) {
-            case Speed.x0://If game is paused, the speed button should jumpt to x2
+            case Speed.x0://If game is paused, the speed button should jump to x2
                 speed = "x2";
                 break;
             case Speed.x1:

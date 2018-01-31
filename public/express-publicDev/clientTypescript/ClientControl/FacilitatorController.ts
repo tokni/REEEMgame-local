@@ -1,5 +1,4 @@
-﻿//import { Connection } from "../Connection"
-import { FacilitatorModel } from "../clientModel/FacilitatorModel"
+﻿import { FacilitatorModel } from "../clientModel/FacilitatorModel"
 import { FacilitatorView } from "../ClientView/FacilitatorView"
 import { ClientGameStatus } from "../clientModel/GameStatus"
 import { FacilitatorMenuView } from "../ClientView/MenuView/FacilitatorMenuView"
@@ -14,7 +13,6 @@ export class FacilitatorController extends ClientGameController {
     protected m_currentRole;
     constructor(p_connection, p_view, p_model, p_status: ClientGameStatus, p_profile, p_currentRole) {
         super(p_connection, p_view, p_model, p_status);
-        console.log("C FacilitatorController");
         this.m_currentRole = p_currentRole;
         this.m_connection.listenToParticipantEnterEvent(this.onParticipantEntered);
         this.m_connection.listenToProfileChangeEvent(this.onProfileChange); 
@@ -46,7 +44,6 @@ export class FacilitatorController extends ClientGameController {
     }
     private onSlide = (event, ui) => {
         this.m_view.getMenuView().getDecView().updateValue(event.data.id, ui.value);
-
     }
     private onParticipantLeftGame = (p_participant: { nickname: string }) =>{
         this.m_model.removeOfflineProfile(p_participant.nickname);
@@ -169,27 +166,22 @@ export class FacilitatorController extends ClientGameController {
         this.m_view.updateButtons(ClientGameStatus.running);
     }
     public resetButtonPress = () => {
-        console.log("ResetButtonPress");
         this.m_view.updateButtons(ClientGameStatus.paused);
         this.m_connection.sendTimeToServer(-10);
     }
     public startButtonPress = () => {
-        console.log("StartButtonPress");
         this.m_view.updateButtons(ClientGameStatus.running);
         this.m_connection.sendTimeToServer(1);
     }
     public stopButtonPress = () => {
-        console.log("StopButtonPress");
         this.m_view.updateButtons(ClientGameStatus.paused);
         this.m_connection.sendTimeToServer(0);
     }
     public speedButtonPress = (e) => {
-        console.log("SpeedButtonPress");
         this.m_view.updateButtons(ClientGameStatus.running);
         this.m_connection.sendTimeToServer(e.data.speed);
     }
     public oneTickButtonPress = () => {
-        console.log("oneTickButtonPress");
         this.m_connection.sendTimeToServer(-1);
     }
 }

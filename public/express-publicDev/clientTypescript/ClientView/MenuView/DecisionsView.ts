@@ -32,7 +32,6 @@ export class DecisionsView {
         }
     }
     public updateValue(p_id: string, p_value: number) {
-
         $("#" + p_id + 'value').text(p_value);
     }
     public updateDecSliders(p_decisions) {

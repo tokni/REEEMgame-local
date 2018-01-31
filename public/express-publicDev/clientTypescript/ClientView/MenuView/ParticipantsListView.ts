@@ -1,20 +1,16 @@
 ﻿import { FacilitatorModel } from "../../clientModel/FacilitatorModel"
-
 declare var $: any;
 
 export class ParticipantsListView {
     private m_model: FacilitatorModel;
 
-
     constructor(p_model: FacilitatorModel) {
-        console.log("C ParticipantsListView");
         this.m_model = p_model;
         this.update();
     }
     public update() {
         var onPart = $("#onlineParticipants");
         onPart.empty();
-        var tmp = document.getElementById("onlineParticipants");
         for (var profile1 of this.m_model.getOnlineProfiles()) {
             var div = this.createChangeProfileButton(profile1);
             this.createChangeProfileDropdown(profile1, div);
@@ -22,15 +18,13 @@ export class ParticipantsListView {
 
         var onPart = $("#offlineParticipants");
         onPart.empty();
-        var tmp = document.getElementById("offlineParticipants");
         for (var p of this.m_model.getOfflineProfiles()) {
             this.createOfflineParticipant(p);
         }
-
     }
 
-    createChangeProfileDropdown(p_profile: { nickName: string, currentRole: string}, p_buttonDiv) {
-        if (p_buttonDiv) { 
+    createChangeProfileDropdown(p_profile: { nickName: string, currentRole: string }, p_buttonDiv) {
+        if (p_buttonDiv) {
             var ul: HTMLUListElement = document.createElement("ul");
             ul.classList.add("dropdown-menu");
             ul.classList.add("role-dropdown");
@@ -53,7 +47,7 @@ export class ParticipantsListView {
             }
         }
     }
-    createChangeProfileButton(p_profile: { nickName: string, pin: any,currentRole: string }) {
+    createChangeProfileButton(p_profile: { nickName: string, pin: any, currentRole: string }) {
         var div: HTMLDivElement = document.createElement("div");
         if (document.getElementById("onlineParticipants")) {
             document.getElementById("onlineParticipants").appendChild(div);
@@ -71,11 +65,11 @@ export class ParticipantsListView {
             button.type = 'button';
             button.setAttribute("data-toggle", 'dropdown');
             button.id = nickShort;
-            button.innerHTML = p_profile.nickName +" "+ p_profile.currentRole;
+            button.innerHTML = p_profile.nickName + " " + p_profile.currentRole;
             return div;
         }
     }
-    createOfflineParticipant(p_profile: { nickName: string, pin: any}) {
+    createOfflineParticipant(p_profile: { nickName: string, pin: any }) {
         if (document.getElementById("offlineParticipants")) {
             var div: HTMLDivElement = document.createElement("div");
             document.getElementById("offlineParticipants").appendChild(div);

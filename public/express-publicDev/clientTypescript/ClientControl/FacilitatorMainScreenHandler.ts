@@ -1,5 +1,4 @@
-﻿//declare var io: any;
-declare var $: any;
+﻿declare var $: any;
 import io from 'socket.io'
 import { MainFacilitatorScreenUpdater } from "../ClientView/MainFacilitatorScreenUpdater"
 import { TimeHandler } from "./TimeHandler"
@@ -12,10 +11,8 @@ export class FacilitatorMainScreenHandler {
     private m_conn = false;
 
     public constructor() {
-        console.log("C FacilitatorMainScreenHandler");
         this.m_facilitatorMainScreenUpdater = new MainFacilitatorScreenUpdater(this.m_socket);
         this.m_socket.on("connect", this.handleConnect);
-        
     }
     public getConn() {
         return this.m_conn;

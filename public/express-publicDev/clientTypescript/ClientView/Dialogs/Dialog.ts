@@ -1,5 +1,4 @@
-﻿
-export abstract class Dialog {
+﻿export abstract class Dialog {
     protected m_id: string;
     constructor() { }
     abstract open(p_data): void; 

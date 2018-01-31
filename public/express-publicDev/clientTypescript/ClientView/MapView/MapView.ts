@@ -28,5 +28,4 @@ export class MapView {
         }
         this.m_map.updateCurrentLayer(p_data[p_data.length - 1]);
     }
-
 }

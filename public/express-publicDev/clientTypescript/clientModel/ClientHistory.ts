@@ -1,7 +1,6 @@
 ﻿import { ClientIndicator } from "../ClientScenario"
 export class ClientHistory {
     public m_indicatorHistory: {}[];
-    //public m_overlayHistory: { emisionsCO2: number, housingTemp: number, airTemp: number, gnp: number }[][];
     public m_overlayHistory: ClientIndicator[][];
 }
 

@@ -2,7 +2,6 @@
 import { ClientGameStatus } from "../clientModel/GameStatus"
 
 export class FacilitatorModel extends ClientGameModel {
-
     private m_onlineProfiles: { nickName: string, pin: string, currentRole: string }[] = [];
     private m_offlineProfiles: { nickName: string, pin: string}[] = [];
 
@@ -31,11 +30,9 @@ export class FacilitatorModel extends ClientGameModel {
         m_overlayHistory: { e: number, h: number, a: number, g: number }[][];
     }[], p_onlineParticipants: { nickName: string, pin: string, currentRole: string }[],
         p_offlineParticipants: { nickName: string, pin: string }[]) {
-        //super(p_profile, p_scenario, p_history, p_prevSimulations);
         super(p_scenario, p_profile, p_scenario.status, p_history, p_prevSimulations);
         this.m_onlineProfiles = p_onlineParticipants;
         this.m_offlineProfiles = p_offlineParticipants;
-        console.log("C FModel");
     }
 
     public getOnlineProfiles(): { nickName: string, pin: string, currentRole: string }[] {

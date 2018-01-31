@@ -3,8 +3,6 @@
 export class OverlayDataView {
     private m_currentRole;
     constructor() {
-        console.log("C OverlayDataView");
-        //this.m_currentRole = p_currentRole;
     }
     public update(p_data, p_role) {
         if (p_role.m_name != 'Coordinator') {
@@ -30,6 +28,5 @@ export class OverlayDataView {
             btn.classList.add('menuButton');
             btn.setAttribute('title', indicator.m_description);
         }
-        
     }
 }

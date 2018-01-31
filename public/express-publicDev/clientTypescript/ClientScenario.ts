@@ -1,7 +1,6 @@
 ﻿class ClientScenario {
     public duration: number;
-    public time: number;
-    
+    public time: number;    
 }
 
 export class ClientRole {
