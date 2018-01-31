@@ -1,5 +1,4 @@
-﻿
-export class Decision {
+﻿export class Decision {
     private m_id;
     private m_name;
     private m_value;

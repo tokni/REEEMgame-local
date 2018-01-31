@@ -41,7 +41,6 @@
     <TypeScriptCompile Include="ServerModel\Indicator.ts" />
     <TypeScriptCompile Include="ServerModel\ModelDev.ts" />
     <TypeScriptCompile Include="ServerModel\Overlay.ts" />
-    <TypeScriptCompile Include="ServerModel\OverlayData.ts" />
     <TypeScriptCompile Include="ServerModel\Profile.ts" />
     <TypeScriptCompile Include="ServerModel\Role.ts" />
     <TypeScriptCompile Include="ServerModel\Scenario.ts" />

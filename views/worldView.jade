@@ -219,6 +219,7 @@ block content
      $(function() {
         // Load the Visualization API and the corechart package.
         google.charts.load('current', {'packages':['corechart']});
+
         var connection = new connectBundle.Connection('#{worldID}', "/game11"); 
         var facilitator = new facilitatorBundle.Facilitator(connection, { name: !{JSON.stringify(username)}, pin: "123", permissions: !{JSON.stringify(permissions)}, currentRole: !{JSON.stringify(currentRole.m_name)}},  !{JSON.stringify(participants)}, !{JSON.stringify(allParticipants)}, !{JSON.stringify(currentRole)}, #{newParticipant}); 
      });   

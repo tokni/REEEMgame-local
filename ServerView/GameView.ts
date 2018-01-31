@@ -1,5 +1,4 @@
-﻿
-import { EventEmitter } from 'events';
+﻿import { EventEmitter } from 'events';
 import { GameStatus } from "../ServerControl/ServerTimeController";
 
 export class GameView {
@@ -54,7 +53,6 @@ export class GameView {
         var data = {
             currentRole: p_data.m_currentRole, nickName: p_data.m_nickName, pin: p_data.m_pin
         };
-        console.log("Send RoleChange: " + JSON.stringify(data));
         this.m_serverSocket.emit("profileChangeFromServer" + this.m_worldID, data);
     }
     private createProfileData() {

@@ -87,11 +87,11 @@ export class GameLogic {
         this.socialKPI.CalculateScore(0, this.comfortableHousingTemperature);
         this.environmentalKPI.CalculateScore(0, this.co2Emissions);
         this.economicKPI.CalculateScore(0, this.gdpPerPerson);
-        //this.combinedKPI.CalculateScore(0, this.socialKPI, this.environmentalKPI, this.economicKPI);
+        this.combinedKPI.CalculateScore(0, this.socialKPI, this.environmentalKPI, this.economicKPI);
 
         //Calculate first value of new score
         this.newScoreKPI.CalculateScore(0, this.co2Emissions, this.comfortableHousingTemperature);
-        this.combinedKPI.CalculateScore(0, this.socialKPI, this.environmentalKPI, this.economicKPI, this.newScoreKPI);
+        //this.combinedKPI.CalculateScore(0, this.socialKPI, this.environmentalKPI, this.economicKPI, this.newScoreKPI);
     }
 
     CalculateMonthValues(fromMonth: number, toMonth: number, energySubsidiesDecision: Array<number>, investmentInRenewablesDecision: Array<number>, aNewDecision?:Array<number>) {
@@ -164,27 +164,27 @@ export class GameLogic {
     getNewScoreKPIAt(p_month) {
         return this.newScoreKPI.GetMonthsScore(p_month);
     }
-    //getScoreHistory(): { combined: number[], social: number[], economic: number[], environmental: number[]}  {
-    //    var history: { combined: number[], social: number[], economic: number[], environmental: number[] } = {
-    //        combined: this.combinedKPI.getScore(),
-    //        social: this.socialKPI.getScore(),
-    //        economic: this.economicKPI.getScore(),
-    //        environmental: this.environmentalKPI.getScore()
-    //    } 
-    //    return history;
-    //}
-
-    //Alternative function where a new score is added
-    getScoreHistory(): { combined: number[], social: number[], economic: number[], environmental: number[], newScore: number[] } {
-        var history: { combined: number[], social: number[], economic: number[], environmental: number[], newScore:number[] } = {
+    getScoreHistory(): { combined: number[], social: number[], economic: number[], environmental: number[]}  {
+        var history: { combined: number[], social: number[], economic: number[], environmental: number[] } = {
             combined: this.combinedKPI.getScore(),
             social: this.socialKPI.getScore(),
             economic: this.economicKPI.getScore(),
-            environmental: this.environmentalKPI.getScore(),
-            //add new score to history
-            newScore: this.newScoreKPI.getScore()
-        }
+            environmental: this.environmentalKPI.getScore()
+        } 
         return history;
     }
+
+    //Alternative function where a new score is added
+    //getScoreHistory(): { combined: number[], social: number[], economic: number[], environmental: number[], newScore: number[] } {
+    //    var history: { combined: number[], social: number[], economic: number[], environmental: number[], newScore:number[] } = {
+    //        combined: this.combinedKPI.getScore(),
+    //        social: this.socialKPI.getScore(),
+    //        economic: this.economicKPI.getScore(),
+    //        environmental: this.environmentalKPI.getScore(),
+    //        //add new score to history
+    //        newScore: this.newScoreKPI.getScore()
+    //    }
+    //    return history;
+    //}
     
 }
