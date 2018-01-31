@@ -31,17 +31,14 @@ export default class ServerController {
         this.m_server.listen(this.m_app.get('port'), () => {
             console.log('Express opn server listening on port ' + this.m_app.get('port'));
         });
-        console.log("Path: " + ServerController.m_path);
     }
     public static getInstance(p_path: string = ""): ServerController {
         var u = 0;
         if (ServerController.ms_instance) {
-            console.log("C ServerController old");
             return ServerController.ms_instance;
         }
         else {
             ServerController.ms_instance = new ServerController(p_path);
-            console.log("C ServerController new");
             return ServerController.ms_instance;
         }
     }
@@ -66,8 +63,6 @@ export default class ServerController {
             this.m_app.use(this.m_express.errorHandler());
         }
         
-
-
         this.m_app.get(ServerController.m_path + 'worlds', this.m_routes.listOfWorlds);
         this.m_app.get(ServerController.m_path + '/worlds', this.m_routes.listOfWorlds);
         this.m_app.get(ServerController.m_path + '/worlds/', this.m_routes.listOfWorlds);

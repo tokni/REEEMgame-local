@@ -81,11 +81,9 @@
     <TypeScriptCompile Include="public\express-publicDev\clientTypescript\ClientControl\Connection.ts" />
     <TypeScriptCompile Include="public\express-publicDev\clientTypescript\ClientControl\FacilitatorController.ts" />
     <TypeScriptCompile Include="public\express-publicDev\clientTypescript\ClientControl\FacilitatorMainScreenController.ts" />
-    <TypeScriptCompile Include="public\express-publicDev\clientTypescript\ClientControl\FacilitatorMainScreenHandler.ts" />
     <TypeScriptCompile Include="public\express-publicDev\clientTypescript\ClientControl\ListOfWorldsUpdater.ts" />
     <TypeScriptCompile Include="public\express-publicDev\clientTypescript\ClientControl\MainScreenConnection.ts" />
     <TypeScriptCompile Include="public\express-publicDev\clientTypescript\ClientControl\TimeController.ts" />
-    <TypeScriptCompile Include="public\express-publicDev\clientTypescript\ClientControl\TimeHandler.ts" />
     <TypeScriptCompile Include="public\express-publicDev\clientTypescript\clientModel\ClientGameModel.ts" />
     <TypeScriptCompile Include="public\express-publicDev\clientTypescript\clientModel\ClientHistory.ts" />
     <TypeScriptCompile Include="public\express-publicDev\clientTypescript\clientModel\ClientModel.ts" />
@@ -97,7 +95,6 @@
     <TypeScriptCompile Include="public\express-publicDev\clientTypescript\ClientView\ClientView.ts" />
     <TypeScriptCompile Include="public\express-publicDev\clientTypescript\ClientView\FacilitatorMainScreenView.ts" />
     <TypeScriptCompile Include="public\express-publicDev\clientTypescript\ClientView\FacilitatorView.ts" />
-    <TypeScriptCompile Include="public\express-publicDev\clientTypescript\ClientView\MainFacilitatorScreenUpdater.ts" />
     <Content Include="public\express-publicDev\clientTypescript\icons\arrow-down-b.png" />
     <Content Include="public\express-publicDev\clientTypescript\icons\arrow-up-b.png" />
     <Content Include="public\express-publicDev\clientTypescript\icons\first.png" />

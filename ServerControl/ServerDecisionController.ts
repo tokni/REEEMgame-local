@@ -1,5 +1,4 @@
-﻿//declare var $: any;
-import DataBaseHandler from '../ServerControl/DataBaseHandler';
+﻿import DataBaseHandler from '../ServerControl/DataBaseHandler';
 
 export default class ServerDecisionController {
     private m_serverSocket;
