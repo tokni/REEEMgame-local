@@ -11,7 +11,6 @@
     "debug": "DEBUG=* node app2",
     "build": "webpack",
     "start": "node REEEMgame"
-
   },
   "devDependencies": {},
   "dependencies": {
@@ -31,7 +30,7 @@
     "node-sass": "^4.5.3",
     "node-sass-middleware": "^0.11.0",
     "opn": "^5.1.0",
-    "pg": "5.1.2",
+    "pg": "^5.1.2",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "socket.io": "^1.7.4",
